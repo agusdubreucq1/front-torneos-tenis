@@ -1,0 +1,16 @@
+:root{
+  --max-width: 1200px;
+  --bg: #ccc;
+  --bg-header: #ef2219;
+  --heigth-header: 70px;
+}
+
+html{
+  font-size: 10px;
+}
+
+body{
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+}
