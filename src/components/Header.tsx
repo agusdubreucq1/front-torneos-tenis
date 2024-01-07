@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/header.module.css'
 
 import userImg from '/icons/user.svg'
+import logoutImg from '/icons/logout.svg'
 
 const Header: React.FC = () => {
     const [user, logout] = useUser((state) => [state.user, state.logout])
@@ -12,8 +13,16 @@ const Header: React.FC = () => {
         <header className={styles.header}>
             <nav className={styles.nav}>
                 <ul className={styles.ul}>
-                    {user ? <li onClick={logout} className={styles.li}>Logout</li> : <li className={styles.li}><Link to="/login">Login</Link></li>}
-                    {user ? <li className={styles.li}><img src={userImg} alt='user'></img> {user.username}</li> : ''}
+                    <li className={styles.li}><Link to="/">Home</Link></li>
+                    {user 
+                    ? <li className={styles.li}><img src={userImg} alt='user'></img> {user.username}</li> 
+                    : ''}
+                    {user 
+                    ? <li onClick={logout} className={[styles.li, styles.logout].join(" ")}><img src={logoutImg} alt='logout'></img>Logout</li> 
+                    : <li className={styles.li}><Link to="/login">Login</Link></li>}
+                    {user
+                    ? ''
+                    : <li className={[styles.li, styles.register].join(" ")}><Link to="/register">Register</Link></li>}
                 </ul>
             </nav>
         </header>

@@ -5,6 +5,10 @@
   --heigth-header: 70px;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 html{
   font-size: 10px;
 }

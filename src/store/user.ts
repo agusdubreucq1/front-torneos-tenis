@@ -10,11 +10,13 @@ type UserState = {
   logout: () => void;
 };
 
-export const useUser = create<UserState>((set) => ({
+export const useUser = create<UserState>((set, get) => ({
   user: null,
   token: null,
   getToken: () => {
-    const token = localStorage.getItem("token");
+    get().getUser();
+    const token = get().user?.token;
+    console.log(token);
     if (token) {
       set({ token: `Bearer ${token}` });
     }
@@ -29,7 +31,7 @@ export const useUser = create<UserState>((set) => ({
   },
   getUser: () => {
     const user = localStorage.getItem("user");
-    if (user) {
+    if (user !== null && user !== "undefined") {
       set({ user: JSON.parse(user) });
     }
   },
