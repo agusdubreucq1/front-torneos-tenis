@@ -5,6 +5,7 @@ import styles from '../styles/login.module.css';
 
 import userImg from '/icons/user.svg'
 import padlock from '/icons/padlock.svg'
+import { URLBACK } from '../constantes';
 
 const Login: React.FC = () => {
     const setUser = useUser((state) => state.setUser);
@@ -20,25 +21,28 @@ const Login: React.FC = () => {
         try {
             setError(null)
             setLoading(true)
-            const response = await fetch('http://localhost:3000/login', {
+            const response = await fetch(URLBACK + '/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: data.get('username'),
+                    dni: data.get('dni'),
                     password: data.get('password'),
                 }),
             })
             const result = await response.json();
-            console.log(result);
-            setUser(result.user);
-            navigate('/')
-
+            if (!response.ok) {
+                setError(result.error)
+            } else {
+                console.log(result);
+                setUser(result.user);
+                navigate('/')
+            }
         } catch (e) {
             console.log(e);
             setError(String(e))
-        } finally{
+        } finally {
             setLoading(false)
         }
 
@@ -50,7 +54,7 @@ const Login: React.FC = () => {
                 <form onSubmit={handleSubmit} className={styles.form}>
 
                     <div>
-                        <span className={styles.label}><img src={userImg}/></span><input type="text" name='username' ></input>
+                        <span className={styles.label}><img src={userImg} /></span><input type="text" placeholder='dni' name='dni' ></input>
                     </div>
 
                     <div>

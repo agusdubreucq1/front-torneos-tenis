@@ -3,6 +3,9 @@
   --bg: #ccc;
   --bg-header: #ef2219;
   --heigth-header: 70px;
+  --bg-form: #fff;
+  --bg-input: #fff;
+  --color-label: #000;
 }
 
 *{

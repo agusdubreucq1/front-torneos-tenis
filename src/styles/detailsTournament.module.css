@@ -1,0 +1,39 @@
+.detalles{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.dato{
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    /* border: 1px solid #000; */
+    justify-content: space-between;
+    font-size: 1.6rem;
+    background-color: #eef;
+}
+
+.dato > p:first-child, .descripcion > p:first-child{
+    font-weight: bold;
+}
+
+.descripcion{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    /* border: 1px solid #000; */
+    justify-content: space-between;
+    font-size: 1.6rem;
+    background-color: #eef;
+    grid-column: span 2;
+}
+
+p{
+    margin: 0;
+}

@@ -16,7 +16,6 @@ export const useUser = create<UserState>((set, get) => ({
   getToken: () => {
     get().getUser();
     const token = get().user?.token;
-    console.log(token);
     if (token) {
       set({ token: `Bearer ${token}` });
     }

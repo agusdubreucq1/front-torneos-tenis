@@ -9,9 +9,18 @@ export interface Tournament {
   categoria: string;
 }
 
-export interface User {
-  id: number;
-  username: string;
-  password: string;
-  isAdmin: boolean;
+export type User = {
+  nombre:   string;
+  apellido: string;
+  dni:      number;
 }
+
+export type Jugador = {
+  id:        number;
+  createdAt: Date;
+  updatedAt: Date;
+  userId:    number;
+  user?:      User;
+}
+
+

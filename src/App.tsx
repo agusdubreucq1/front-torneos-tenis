@@ -9,6 +9,10 @@ import Login from './pages/Login'
 import CreateTournament from './pages/createTournament'
 import ProtectedRoute from './components/ProtectedRoute'
 import Register from './pages/Register'
+import Tournament from './pages/tournament'
+import Jugadores from './pages/Jugadores'
+import CreateJugador from './pages/createJugador'
+import Jugador from './pages/jugador'
 
 function App() {
 
@@ -28,6 +32,10 @@ function App() {
         <Route path='/' element={<Index />} ></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
+        <Route path='/jugadores' element={<Jugadores />}></Route>
+        <Route path='/jugador/:id' element={<Jugador />}></Route>
+        <Route path='/create/jugador' element={<CreateJugador />}></Route>
+        <Route path='/tournament/:id' element={<Tournament />}></Route>
         <Route element={<ProtectedRoute canNavigate={true} />}>
           <Route path='/create/tournament' element={<CreateTournament></CreateTournament>}></Route>
         </Route>

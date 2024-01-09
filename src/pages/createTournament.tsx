@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from '../styles/createTournament.module.css'
 import { useUser } from '../store/user';
+import { URLBACK } from '../constantes';
 
 const CreateTournament: React.FC = () => {
 
-    const token = useUser((state) => state.token)
+    const [token, getToken] = useUser((state) => [state.token, state.getToken])
     const [error, setError] = React.useState<null | String>(null);
     const [loading, setLoading] = React.useState(false);
 
+    useEffect(() => {
+        getToken();
+    }, [])
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        getToken()
         console.log('enviando form');
         const data = new FormData(event.currentTarget);
         try {
             setError(null)
             setLoading(true)
-            const resultado = await fetch('http://localhost:3000/admin/torneo', {
+            const resultado = await fetch( URLBACK + '/admin/torneo', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,7 +38,7 @@ const CreateTournament: React.FC = () => {
             })
             if (!resultado.ok) {
                 let json = await resultado.json();
-                setError(json.message);
+                json.message ? setError(json.message) : setError(json.error);
                 console.log(json)
             }
         }

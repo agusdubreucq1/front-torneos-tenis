@@ -1,5 +1,6 @@
 import { create} from "zustand";
 import { Tournament } from "../vite-env";
+import { URLBACK } from "../constantes";
 
 
 interface TournamentsState {
@@ -15,7 +16,7 @@ export const useTournaments = create<TournamentsState>((set) => ({
     setTournaments: (tournaments) => set({ tournaments }),
     getTournaments: () => {
         set({ error: null })
-        fetch("http://localhost:3000/torneos")
+        fetch( URLBACK + "/torneos")
             .then((response) => response.json())
             .then((data) => set({ tournaments: data }))
             .catch((error) => set({ error: String(error) }))
