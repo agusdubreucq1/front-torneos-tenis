@@ -1,0 +1,33 @@
+.cuadro{
+    display: flex;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.partido{
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    align-items: center;
+    width: 150px;
+    justify-content: space-between;
+}
+
+.jugadores{
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.jugadores > p{
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+}
+
+.resultado{
+    font-size: 1.8rem;
+    font-weight: bold;
+}

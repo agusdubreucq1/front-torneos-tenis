@@ -13,6 +13,8 @@ import Tournament from './pages/tournament'
 import Jugadores from './pages/Jugadores'
 import CreateJugador from './pages/createJugador'
 import Jugador from './pages/jugador'
+import DetailsTournament from './components/Details'
+import Draw from './components/Draw'
 
 function App() {
 
@@ -35,7 +37,10 @@ function App() {
         <Route path='/jugadores' element={<Jugadores />}></Route>
         <Route path='/jugador/:id' element={<Jugador />}></Route>
         <Route path='/create/jugador' element={<CreateJugador />}></Route>
-        <Route path='/tournament/:id' element={<Tournament />}></Route>
+        <Route path='/tournament/:id' element={<Tournament />}>
+          <Route path='/tournament/:id/details' element={<DetailsTournament />}></Route>
+          <Route path='/tournament/:id/draw' element={<Draw />}></Route>
+        </Route>
         <Route element={<ProtectedRoute canNavigate={true} />}>
           <Route path='/create/tournament' element={<CreateTournament></CreateTournament>}></Route>
         </Route>

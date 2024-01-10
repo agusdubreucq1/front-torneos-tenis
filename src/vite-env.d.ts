@@ -24,3 +24,27 @@ export type Jugador = {
 }
 
 
+// de partidos
+export type Partido = {
+  id:        number;
+  orden:     number;
+  resultado: string;
+  ronda:     string;
+  fecha:     string;
+  ganador:   null | User;
+  createdAt: Date;
+  Pareja1:   Pareja;
+  Pareja2:   Pareja;
+  Ganador:   null;
+}
+
+export type Pareja = {
+  id:        number;
+  createdAt: Date;
+  updatedAt: Date;
+  userId:    number;
+  user:      User;
+}
+
+
+

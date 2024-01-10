@@ -1,13 +1,16 @@
 import React from 'react';
-import { Tournament } from '../vite-env';
+import styles from '../styles/detailsTournament.module.css'
+import { useTournaments } from '../store/tournaments';
+import { useParams } from 'react-router-dom';
 
-import styles from '../styles/details.module.css'
 
-interface Props{
-    tournament: Tournament
-}
+const DetailsTournament: React.FC = () => {
 
-const DetailsTournament: React.FC<Props> = ({tournament}) => {
+    const {id} = useParams()
+
+    const tournaments = useTournaments((state) => state.tournaments);
+    const tournament = tournaments.find((t) => t.id == Number(id));
+
   return (
     <div className={styles.detalles}>
     <div className={styles.dato}>

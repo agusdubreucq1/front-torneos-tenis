@@ -13,7 +13,7 @@ interface Props {
 
 const CardTournament: React.FC<Props> = ({ tournament }) => {
   return (
-    <Link to={`/tournament/${tournament.id}`} className={styles.link}>
+    <Link to={`/tournament/${tournament.id}/details`} className={styles.link}>
       <article className={styles.card}>
         <div className={styles.head}>
         <div className={`${styles.estado} ${tournament.estado == 'Abierto' ? styles.disponible : styles.close}`}></div>
