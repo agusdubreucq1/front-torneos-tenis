@@ -1,61 +1,48 @@
-import React, { useEffect, useState } from 'react';
-// import { useTournaments } from '../store/tournaments';
+import React from 'react';
+import { useTournaments } from '../store/tournaments';
 import { useParams } from 'react-router-dom';
-import { URLBACK } from '../constantes';
-import { Partido } from '../vite-env';
-import { useUser } from '../store/user';
+
 
 import styles from '../styles/drawTournament.module.css'
+import { potenciasDe2 } from '../services/potenciasDe2';
+import { arrayDeNumbers } from '../services/arrayDeNumbers';
+import CardPartidoVacio from './CardPartidoVacio';
+import CardPartido from './CardPartido';
+import UsePartidos from '../hooks/usePartidos';
+
+
 
 const Draw: React.FC = () => {
 
     const { id } = useParams()
 
-    const token = useUser((state) => state.token);
+    const { loading: _loading, partidos, error: _error_partidos} = UsePartidos(id)
 
-    const [partidos, setPartidos] = useState<Partido[]>([]);
-    useEffect(() => {
-        const fetchPartidos = async () => {
-            console.log('token: ', token);
-            try {
-                const response = await fetch(`${URLBACK}/admin/torneo/${id}/partidos`, {
-                    headers: {
-                        "Authorization": token ?? '',
-                        "Content-Type": "application/json",
-                    },
-                });
-                const data = await response.json();
-                console.log(data);
-                if (!response.ok) {
-                    console.log('error');
-                    throw new Error('Error al encontrar los partidos');
+    const [tournaments, _error] = useTournaments((state) => [state.tournaments, state.error]);
+    const tournament = tournaments.find((t) => t.id == Number(id));
 
-                }
-                setPartidos(data);
-            } catch (e) {
-                console.log(e);
-            }
-        };
-        if (token) {
-            fetchPartidos();
-        }
+    if (!tournament?.cant_jugadores) {
+        return <div>No hay jugadores</div>
+    }
+    const rondas = potenciasDe2(tournament.cant_jugadores);
 
-    }, [token])
-
-    // const [tournaments, error] = useTournaments((state) => [state.tournaments, state.error]);
-    // const tournament = tournaments.find((t) => t.id == Number(id));
     return (
         <div className={styles.cuadro}>
-            {partidos.map((p) =>
-                <div key={p.id} className={styles.partido}>
-                    <div className={styles.jugadores}>
-                        <p>{p.Pareja1.user.apellido + '.' + p.Pareja1.user.nombre.slice(0, 1).toUpperCase()}</p>
-                        <p>{p.Pareja2.user.apellido + '.' + p.Pareja2.user.nombre.slice(0, 1).toUpperCase()}</p>
-                    </div>
-                    <div className={styles.resultado}>
-                        <p>{p.resultado}</p>
-                    </div>
-                </div>)}
+            {
+                rondas.map((jugadoresPorRonda: number) => {
+                    const arrayPartidos = arrayDeNumbers(jugadoresPorRonda)
+                    return <div className={styles.ronda}>{arrayPartidos.map((orden) => {
+                        if (partidos.filter((p) => p.orden == orden && p.jugadoresXRonda == jugadoresPorRonda).length > 0) {
+                            return (
+                                <CardPartido p={partidos.filter((p) => p.orden == orden)[0]}></CardPartido>
+                            )
+                        }
+                        return (
+                            <CardPartidoVacio></CardPartidoVacio>
+                        )
+                    })}</div>
+                })
+            }
 
         </div>
     );

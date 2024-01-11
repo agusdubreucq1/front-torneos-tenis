@@ -6,29 +6,12 @@ import styles from '../styles/jugadores.module.css'
 
 import plus from '/icons/plus.svg'
 import { Link } from 'react-router-dom';
+import useJugadores from '../hooks/useJugadores';
 
 const Jugadores: React.FC = () => {
 
-    const [jugadores, setJugadores] = React.useState<Jugador[]>([]);
-    const [error, setError] = React.useState<string | null>(null);
-
-    useEffect(() => {
-        const fetchJugadores = async () => {
-            try {
-                const response = await fetch(URLBACK + '/admin/jugador');
-                const data = await response.json();
-                if (!response.ok) {
-                    setError(data.error);
-                }
-                setJugadores(data);
-            } catch (e) {
-                console.log('catch error')
-                setError('Error de conexion');
-            }
-
-        };
-        fetchJugadores();
-    }, [])
+    const { jugadores, error, loading: _loading } = useJugadores()
+    
     return (
         <main className={styles.main}>
             <section className={styles.section}>
@@ -44,7 +27,7 @@ const Jugadores: React.FC = () => {
                                 <p>DNI</p>
                             </div>
                             {
-                                jugadores.map(j=>
+                                jugadores.map(j =>
                                     <div>
                                         <p>{j.user?.nombre}</p>
                                         <p>{j.user?.apellido}</p>
@@ -53,7 +36,7 @@ const Jugadores: React.FC = () => {
                             }
 
                         </div>
-            }
+                }
             </section>
         </main>
     );

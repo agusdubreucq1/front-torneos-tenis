@@ -3,6 +3,8 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
+    overflow: auto;
+    gap: 20px;
 }
 
 .partido{
@@ -13,6 +15,8 @@
     align-items: center;
     width: 150px;
     justify-content: space-between;
+    height: 80px;
+    margin: 10px 0;
 }
 
 .jugadores{
@@ -30,4 +34,11 @@
 .resultado{
     font-size: 1.8rem;
     font-weight: bold;
+}
+
+.ronda{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-around;
 }

@@ -7,6 +7,7 @@ export interface Tournament {
   lugar: string;
   estado: string;
   categoria: string;
+  cant_jugadores? : number;
 }
 
 export type User = {
@@ -36,6 +37,7 @@ export type Partido = {
   Pareja1:   Pareja;
   Pareja2:   Pareja;
   Ganador:   null;
+  jugadoresXRonda: number
 }
 
 export type Pareja = {
