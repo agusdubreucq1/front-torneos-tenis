@@ -91,3 +91,11 @@ textarea {
   cursor: pointer;
   background-color: #ff0000;
 }
+
+.error_campo{
+  color: red;
+  position: absolute;
+  font-size: 1.2rem;
+  bottom: -17px;
+  right: 0;
+}

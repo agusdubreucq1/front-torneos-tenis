@@ -1,55 +1,11 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import styles from '../styles/createTournament.module.css'
-import { useUser } from '../store/user';
-import { URLBACK } from '../constantes';
+import useCreateTournament from '../hooks/useCreateTournament';
+
 
 const CreateTournament: React.FC = () => {
 
-    const [token, getToken] = useUser((state) => [state.token, state.getToken])
-    const [error, setError] = React.useState<null | String>(null);
-    const [loading, setLoading] = React.useState(false);
-
-    useEffect(() => {
-        getToken();
-    }, [])
-
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        getToken()
-        console.log('enviando form');
-        const data = new FormData(event.currentTarget);
-        try {
-            setError(null)
-            setLoading(true)
-            const resultado = await fetch( URLBACK + '/admin/torneo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token ?? '',
-                },
-                body: JSON.stringify({
-                    nombre: data.get('nombre'),
-                    descripcion: data.get('descripcion'),
-                    fecha: data.get('fecha'),
-                    lugar: data.get('lugar'),
-                    categoria: data.get('categoria'),
-                }),
-            })
-            if (!resultado.ok) {
-                let json = await resultado.json();
-                json.message ? setError(json.message) : setError(json.error);
-                console.log(json)
-            }
-        }
-        catch (e) {
-            console.log(e);
-            setError('Error de conexion')
-        } finally {
-            setLoading(false)
-        }
-
-    }
+    const { error, errores_campos, loading, handleSubmit} = useCreateTournament()
 
     return (
         <main className={styles.main}>
@@ -59,18 +15,20 @@ const CreateTournament: React.FC = () => {
                     {error && <p className={styles.error}>{error}</p>}
 
                     <div>
-                        <label>Nombre</label>
+                        <label>Nombre <span>*</span></label>
                         <input type="text" name='nombre' />
+                        {errores_campos['nombre'] && <p className={styles.error_campo}>{errores_campos['nombre']}</p>}
                     </div>
 
                     <div>
-                        <label>Descripción</label>
+                        <label>Descripción </label>
                         <textarea name='descripcion'></textarea>
                     </div>
 
                     <div>
-                        <label>Fecha</label>
+                        <label>Fecha <span>*</span></label>
                         <input type="date" name='fecha' />
+                        {errores_campos['fecha'] && <p className={styles.error_campo}>{errores_campos['fecha']}</p>}
                     </div>
 
                     <div>
@@ -79,8 +37,19 @@ const CreateTournament: React.FC = () => {
                     </div>
 
                     <div>
-                        <label>Categoria</label>
+                        <label>Categoria <span>*</span></label>
                         <input type="text" name='categoria' />
+                        {errores_campos['categoria'] && <p className={styles.error_campo}>{errores_campos['categoria']}</p>}
+                    </div>
+
+                    <div>
+                        <label>cantidad jugadores</label>
+                        <select name="cant_jugadores">
+                            <option value={0}>seleccionar</option>
+                            <option value={32}>32</option>
+                            <option value={16}>16</option>
+                            <option value={8}>8</option>
+                        </select>
                     </div>
 
 
