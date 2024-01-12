@@ -7,6 +7,13 @@
     gap: 20px;
 }
 
+.container_partido{
+    display: block;
+    margin: 10px 0;
+    height: 80px;
+    position: relative;
+}
+
 .partido{
     display: flex;
     padding: 10px;
@@ -16,7 +23,6 @@
     width: 150px;
     justify-content: space-between;
     height: 80px;
-    margin: 10px 0;
 }
 
 .jugadores{
@@ -41,4 +47,90 @@
     flex-direction: column;
     gap: 15px;
     justify-content: space-around;
+}
+/* before de los partidos */
+.ronda:not(:first-child) .container_partido::before{
+    content: "";
+    border-color: #999;
+    display: block;
+    width: 12px;
+    left: -12px;
+    position: absolute;
+    border-top: 1px solid #999;
+    top: 49%;
+}
+/* after de los partidos */
+
+.ronda .container_partido::after {
+    position: relative;
+    width: 8px;
+    border-right-style: solid;
+    content: "";
+    border-color: #999;
+    display: block;
+    border-width: 1px;
+    left: 100%;
+}
+
+/* primera ronda */
+
+.ronda:nth-child(1) .container_partido:nth-child(odd)::after {
+    --height: 64px;
+    height: var(--height);
+    border-top-style: solid;
+    top: -50%;
+}
+
+.ronda:nth-child(1) .container_partido:nth-child(even)::after {
+    --height: 64px;
+    height: var(--height);
+    border-bottom-style: solid;
+    top: calc(-50% - var(--height));
+}
+/* segunda ronda */
+
+.ronda:nth-child(2) .container_partido:nth-child(odd)::after {
+    --height: 128px;
+    height: var(--height);
+    border-top-style: solid;
+    top: -50%;
+}
+
+.ronda:nth-child(2) .container_partido:nth-child(even)::after {
+    --height: 128px;
+    height: var(--height);
+    border-bottom-style: solid;
+    top: calc(-50% - var(--height));
+}
+
+/* tercera ronda */
+
+.ronda:nth-child(3) .container_partido:nth-child(odd)::after {
+    --height: 256px;
+    height: var(--height);
+    border-top-style: solid;
+    top: -50%;
+}
+
+.ronda:nth-child(3) .container_partido:nth-child(even)::after {
+    --height: 256px;
+    height: var(--height);
+    border-bottom-style: solid;
+    top: calc(-50% - var(--height));
+}
+
+/* cuarta ronda */
+
+.ronda:nth-child(4) .container_partido:nth-child(odd)::after {
+    --height: 512px;
+    height: var(--height);
+    border-top-style: solid;
+    top: -50%;
+}
+
+.ronda:nth-child(4) .container_partido:nth-child(even)::after {
+    --height: 512px;
+    height: var(--height);
+    border-bottom-style: solid;
+    top: calc(-50% - var(--height));
 }
