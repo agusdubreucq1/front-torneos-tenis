@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-import { URLBACK } from '../constantes';
-import { Jugador } from '../vite-env';
+import React from 'react';
 
 import styles from '../styles/jugadores.module.css'
 

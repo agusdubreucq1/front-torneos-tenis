@@ -34,11 +34,11 @@ const Draw: React.FC = () => {
                     return <div className={styles.ronda}>{arrayPartidos.map((orden) => {
                         if (partidos.filter((p) => p.orden == orden && p.jugadoresXRonda == jugadoresPorRonda).length > 0) {
                             return (
-                                <CardPartido p={partidos.filter((p) => p.orden == orden)[0]}></CardPartido>
+                                <CardPartido p={partidos.filter((p) => p.orden == orden)[0]} key={`${orden}-${jugadoresPorRonda}`} ></CardPartido>
                             )
                         }
                         return (
-                            <CardPartidoVacio></CardPartidoVacio>
+                            <CardPartidoVacio key={`${orden}-${jugadoresPorRonda}`}></CardPartidoVacio>
                         )
                     })}</div>
                 })

@@ -1,10 +1,15 @@
+:root{
+    --separacionRondas: 40px;
+}
+
 .cuadro{
     display: flex;
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
     overflow: auto;
-    gap: 20px;
+    gap: var(--separacionRondas);
+    margin-top: 50px;
 }
 
 .container_partido{
@@ -45,7 +50,7 @@
 .ronda{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    /* gap: 15px; */
     justify-content: space-around;
 }
 /* before de los partidos */
@@ -53,8 +58,8 @@
     content: "";
     border-color: #999;
     display: block;
-    width: 12px;
-    left: -12px;
+    width: calc(var(--separacionRondas) / 2);
+    left: calc((var(--separacionRondas) / 2)*-1);
     position: absolute;
     border-top: 1px solid #999;
     top: 49%;
@@ -63,7 +68,7 @@
 
 .ronda .container_partido::after {
     position: relative;
-    width: 8px;
+    width: calc(var(--separacionRondas) / 2);
     border-right-style: solid;
     content: "";
     border-color: #999;
@@ -72,13 +77,16 @@
     left: 100%;
 }
 
+.ronda:not(:last-child) .container_partido:nth-child(odd)::after{
+    border-top-style: solid;
+    top: -50%;
+}
+
 /* primera ronda */
 
 .ronda:nth-child(1) .container_partido:nth-child(odd)::after {
     --height: 64px;
     height: var(--height);
-    border-top-style: solid;
-    top: -50%;
 }
 
 .ronda:nth-child(1) .container_partido:nth-child(even)::after {
@@ -89,14 +97,12 @@
 }
 /* segunda ronda */
 
-.ronda:nth-child(2) .container_partido:nth-child(odd)::after {
+.ronda:nth-child(2):not(:last-child) .container_partido:nth-child(odd)::after {
     --height: 128px;
     height: var(--height);
-    border-top-style: solid;
-    top: -50%;
 }
 
-.ronda:nth-child(2) .container_partido:nth-child(even)::after {
+.ronda:nth-child(2):not(:last-child) .container_partido:nth-child(even)::after {
     --height: 128px;
     height: var(--height);
     border-bottom-style: solid;
@@ -105,14 +111,12 @@
 
 /* tercera ronda */
 
-.ronda:nth-child(3) .container_partido:nth-child(odd)::after {
+.ronda:nth-child(3):not(:last-child) .container_partido:nth-child(odd)::after {
     --height: 256px;
     height: var(--height);
-    border-top-style: solid;
-    top: -50%;
 }
 
-.ronda:nth-child(3) .container_partido:nth-child(even)::after {
+.ronda:nth-child(3):not(:last-child) .container_partido:nth-child(even)::after {
     --height: 256px;
     height: var(--height);
     border-bottom-style: solid;
@@ -121,15 +125,27 @@
 
 /* cuarta ronda */
 
-.ronda:nth-child(4) .container_partido:nth-child(odd)::after {
+.ronda:nth-child(4):not(:last-child) .container_partido:nth-child(odd)::after {
     --height: 512px;
     height: var(--height);
-    border-top-style: solid;
-    top: -50%;
 }
 
-.ronda:nth-child(4) .container_partido:nth-child(even)::after {
+.ronda:nth-child(4):not(:last-child) .container_partido:nth-child(even)::after {
     --height: 512px;
+    height: var(--height);
+    border-bottom-style: solid;
+    top: calc(-50% - var(--height));
+}
+
+/* quinta ronda */
+
+.ronda:nth-child(5):not(:last-child) .container_partido:nth-child(odd)::after {
+    --height: 1024px;
+    height: var(--height);
+}
+
+.ronda:nth-child(5):not(:last-child) .container_partido:nth-child(even)::after {
+    --height: 1024px;
     height: var(--height);
     border-bottom-style: solid;
     top: calc(-50% - var(--height));

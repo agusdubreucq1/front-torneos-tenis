@@ -15,11 +15,12 @@ import CreateJugador from './pages/createJugador'
 import Jugador from './pages/jugador'
 import DetailsTournament from './components/Details'
 import Draw from './components/Draw'
+import InscripcionJugador from './pages/inscripcionJugador'
 
 function App() {
 
   const getTournaments = useTournaments((state) => state.getTournaments)
-  const [getUser, getToken] = useUser((state) => [state.getUser, state.getToken])
+  const [getUser, getToken, user] = useUser((state) => [state.getUser, state.getToken, state.user])
 
   useEffect(() => {
     getTournaments()
@@ -28,6 +29,7 @@ function App() {
   }, [])
 
   return (
+    <>
     <BrowserRouter>
       <Header></Header>
       <Routes>
@@ -36,16 +38,18 @@ function App() {
         <Route path='/register' element={<Register />}></Route>
         <Route path='/jugadores' element={<Jugadores />}></Route>
         <Route path='/jugador/:id' element={<Jugador />}></Route>
-        <Route path='/create/jugador' element={<CreateJugador />}></Route>
         <Route path='/tournament/:id' element={<Tournament />}>
           <Route path='/tournament/:id/details' element={<DetailsTournament />}></Route>
           <Route path='/tournament/:id/draw' element={<Draw />}></Route>
+          <Route path='/tournament/:id/inscripcion' element={<InscripcionJugador />}></Route>
         </Route>
-        <Route element={<ProtectedRoute canNavigate={true} />}>
+        <Route element={<ProtectedRoute canNavigate={user?.isAdmin} />}>
           <Route path='/create/tournament' element={<CreateTournament></CreateTournament>}></Route>
+          <Route path='/create/jugador' element={<CreateJugador />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
+    </>
   )
 }
 

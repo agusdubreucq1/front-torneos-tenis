@@ -8,6 +8,7 @@ export interface Tournament {
   estado: string;
   categoria: string;
   cant_jugadores? : number;
+  users: User[];
 }
 
 export type User = {
