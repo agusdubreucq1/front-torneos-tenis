@@ -2,54 +2,98 @@ import React from 'react';
 import styles from '../styles/createJugador.module.css'
 import { URLBACK } from '../constantes';
 import { useUser } from '../store/user';
+import { Alert, message, Form, Input, Spin } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+
+import dni_img from '/icons/dni.svg'
 
 const CreateJugador: React.FC = () => {
 
-    const token = useUser((state)=> state.token);
-    const [error, setError] = React.useState<null | String>(null);
+    const [messageAPI, contextHolder] = message.useMessage();
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        let data= new FormData(event.currentTarget);
-        let body = {
-           nombre :  data.get('nombre'),
-           apellido : data.get('apellido'),
-           dni : data.get('dni')
+    const token = useUser((state) => state.token);
+    const [error, setError] = React.useState<null | string>(null);
+    const [loading, setLoading] = React.useState(false);
 
+    const onFinish = async (body: any) => {
+        setError(null);
+        try {
+            setLoading(true);
+            const response = await fetch(URLBACK + '/admin/jugador', {
+                headers: {
+                    Authorization: token!,
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify(body)
+
+            })
+            if (!response.ok) {
+                let json = await response.json();
+                setError(json.error)
+            } else {
+                messageAPI.success('Jugador creado con exito');
+            }
+        } catch (e) {
+            console.log(e);
+            setError('Error de conexion');
+        } finally {
+            setLoading(false);
         }
-        const response = await fetch(URLBACK + '/admin/jugador', {
-            headers: {
-                Authorization: token!
-            },
-            method: 'POST',
-            body: JSON.stringify(body)
-            
-        })
-        if (!response.ok) {
-            let json = await response.json();
-            setError(json.error)
-        }
+
     }
     return (
         <main className={styles.main}>
             <section className={styles.section}>
                 <h1 className={styles.title}>Crear jugador</h1>
-                <form className={styles.form} onSubmit={handleSubmit}>
-                    <p>{error}</p>
-                    <div>
-                        <label>Nombre</label>
-                        <input type="text" placeholder="nombre" name='nombre'></input>
+                {contextHolder}
+                <Form
+                    style={{ backgroundColor: "#dfdfdf", padding: 20, borderRadius: 10 }}
+                    name="normal_login"
+                    className="login-form"
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                >
+                    {loading &&
+                        <div style={{ textAlign: 'center', marginBottom: 10 }}>
+                            <Spin />
+                        </div>}
+                    {error && <Alert style={{ marginBottom: 10 }} message={error} type="error" showIcon />}
+                    <Form.Item
+                        name="nombre"
+                        rules={[{ required: true, message: 'Ingresa el nombre!' }]}
+                    >
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Nombre" />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="apellido"
+                        rules={[{ required: true, message: 'Ingresa el apellido!' }]}
+                    >
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Apellido" />
+                    </Form.Item>
+
+                    <Form.Item
+                        tooltip="Ingresa el dni"
+                        name="dni"
+                        rules={[{ required: true, message: 'Ingresa el dni!' },
+                        { min: 0, max: 99999999, message: 'DNI no valido' }]}
+                    >
+                        <Input
+                            prefix={
+                                // <LockOutlined className="site-form-item-icon" />
+                                <img src={dni_img} style={{ width: 20, height: 20 }} alt="dni" />
+                            }
+                            type="number"
+                            placeholder="DNI"
+                        />
+
+
+                    </Form.Item>
+                    <div style={{ textAlign: "center" }}>
+                        <input type="submit" value={'Crear'} className={styles.btn}></input>
                     </div>
-                    <div>
-                        <label>Apellido</label>
-                        <input type="text" placeholder="apellido" name='apellido'></input>
-                    </div>
-                    <div>
-                        <label>DNI</label>
-                        <input type="text" placeholder="dni" name='dni'></input>
-                    </div>
-                    <input type="submit" value="Crear" className={styles.btn}></input>
-                </form>
+                </Form>
             </section>
         </main>
     );
