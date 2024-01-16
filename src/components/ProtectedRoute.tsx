@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useUser } from '../store/user';
 
 interface Props{
     // canNavigate: boolean

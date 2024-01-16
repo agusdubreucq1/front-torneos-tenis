@@ -32,70 +32,16 @@
   align-items: center;
 }
 
-.error {
-  background-color: #f00;
-  color: #fff;
-  font-size: 1.6rem;
-  padding: 10px;
-  text-align: center;
-}
-
-textarea {
-  resize: none;
-  width: 300px;
-  padding: 5px;
-  height: 100%;
-  display: flex;
-}
-
-.form div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  width: 400px;
-  height: 35px;
-  border-radius: 5px;
-}
-
-.form > div:nth-child(2) {
-  height: 100px;
-}
-
-.form div label {
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-.form div input {
-  width: 300px;
-  height: 100%;
-  border-radius: 5px;
-  border: none;
-  outline: 1px solid #000;
-  padding: 5px;
-}
-
 .btn {
-  padding: 10px 20px;
-  border-radius: 10px;
   background-color: var(--bg-header);
   color: #fff;
-  font-size: 1.8rem;
-  text-decoration: none;
-  display: inline-flex;
-  border: none;
 }
 
 .btn:hover {
   cursor: pointer;
   background-color: #ff0000;
+  color: #fff !important;
+  border-color: #fff !important;
 }
 
-.error_campo{
-  color: red;
-  position: absolute;
-  font-size: 1.2rem;
-  bottom: -17px;
-  right: 0;
-}
+

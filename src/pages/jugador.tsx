@@ -1,15 +1,25 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import styles from '../styles/jugador.module.css'
 import useJugador from '../hooks/useJugador';
+import { Result } from 'antd';
 
 const Jugador: React.FC = () => {
     const { id } = useParams();
 
-    // const navigate = useNavigate()
-
     const {jugador, error, loading: _loading} = useJugador(id)
+
+    if(!jugador){
+        return (
+            <Result
+            status={"error"}
+            title={"404"}
+            subTitle={"No se ha encontrado el jugador"}
+            extra={<Link to={"/"} >Volver al inicio</Link>}
+            />
+        )
+    }
     
     return (
         <main className={styles.main}>

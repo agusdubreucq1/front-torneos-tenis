@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Jugador } from "../vite-env";
-import { URLBACK } from "../constantes";
+import { getJugadorById } from "../services/getJugadorById";
 
 type UseJugadorType = {
     jugador: Jugador | null,
@@ -19,17 +19,15 @@ const useJugador: (id: string | undefined) => UseJugadorType = (id) => {
             try {
                 setError(null);
                 setLoading(true);
-                const response = await fetch(`${URLBACK}/jugador/${id}`);
-                const data = await response.json();
-                console.log(data);
-                if (!response.ok) {
-                    console.log('error');
-                    setError('Error al encontrar el jugador');
-                }
+                const data= await getJugadorById(id!)
                 setJugador(data);
-            } catch(e){
-                console.log('catch error')
-                setError('Error de conexion');
+                
+            } catch(e:any) {
+                if(e.name === 'Error'){
+                    setError(e.message);
+                } else{
+                    setError('Error de conexion');
+                }
             } finally{
                 setLoading(false);
             }

@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useUser } from '../store/user';
-import { URLBACK } from '../constantes';
+import { createTournament } from '../services/createTournament';
+import { message } from 'antd';
 
 
 const useCreateTournament = () => {
     const [token, getToken] = useUser((state) => [state.token, state.getToken])
     const [error, setError] = React.useState<null | String>(null);
     const [loading, setLoading] = React.useState(false);
+    const [messageAPI, contextHolder] = message.useMessage();
 
 
     useEffect(() => {
@@ -19,23 +21,15 @@ const useCreateTournament = () => {
 
         try {
             setLoading(true)
-            const resultado = await fetch(URLBACK + '/admin/torneo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token ?? '',
-                },
-                body: JSON.stringify(body),
-            })
-            if (!resultado.ok) {
-                let json = await resultado.json();
-                json.message ? setError(json.message) : setError(json.error);
-                console.log(json)
-            }
+            await createTournament(body, token!)
+            messageAPI.success('Torneo creado con exito');
         }
-        catch (e) {
-            console.log(e);
-            setError('Error de conexion')
+        catch (e: any) {
+            if (e.name === 'Error') {
+                setError(e.message)
+            } else {
+                setError('Error de conexion')
+            }
         } finally {
             setLoading(false)
         }
@@ -45,7 +39,8 @@ const useCreateTournament = () => {
     return {
         error,
         loading,
-        handleSubmit
+        handleSubmit,
+        contextHolder
     }
 };
 

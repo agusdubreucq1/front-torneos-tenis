@@ -1,47 +1,14 @@
 import React from 'react';
 import styles from '../styles/createJugador.module.css'
-import { URLBACK } from '../constantes';
-import { useUser } from '../store/user';
-import { Alert, message, Form, Input, Spin } from 'antd';
+import { Alert, Form, Input, Spin } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 import dni_img from '/icons/dni.svg'
+import useCreateJugador from '../hooks/useCreateJugador';
 
 const CreateJugador: React.FC = () => {
 
-    const [messageAPI, contextHolder] = message.useMessage();
-
-    const token = useUser((state) => state.token);
-    const [error, setError] = React.useState<null | string>(null);
-    const [loading, setLoading] = React.useState(false);
-
-    const onFinish = async (body: any) => {
-        setError(null);
-        try {
-            setLoading(true);
-            const response = await fetch(URLBACK + '/admin/jugador', {
-                headers: {
-                    Authorization: token!,
-                    'Content-Type': 'application/json'
-                },
-                method: 'POST',
-                body: JSON.stringify(body)
-
-            })
-            if (!response.ok) {
-                let json = await response.json();
-                setError(json.error)
-            } else {
-                messageAPI.success('Jugador creado con exito');
-            }
-        } catch (e) {
-            console.log(e);
-            setError('Error de conexion');
-        } finally {
-            setLoading(false);
-        }
-
-    }
+    const { onFinish, error, loading, contextHolder } = useCreateJugador()
     return (
         <main className={styles.main}>
             <section className={styles.section}>

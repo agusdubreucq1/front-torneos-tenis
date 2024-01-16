@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from '../styles/createTournament.module.css'
 import useCreateTournament from '../hooks/useCreateTournament';
-import { Alert, DatePicker, Form, Input, Select, Spin } from 'antd';
+import { Alert, Button, DatePicker, Form, Input, Select} from 'antd';
 
 
 const CreateTournament: React.FC = () => {
 
-    const { error, loading, handleSubmit } = useCreateTournament()
+    const { error, loading, handleSubmit, contextHolder} = useCreateTournament()
 
     return (
         <main className={styles.main}>
             <section className={styles.section}>
                 <h1 className={styles.title}>Crear torneo</h1>
+                {contextHolder}
                 <Form
                     style={{ width: 500, padding: 30, background: '#dfdfdf', borderRadius: 20 }}
                     labelCol={{ span: 4 }}
@@ -22,11 +23,8 @@ const CreateTournament: React.FC = () => {
                     {error &&
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <Alert style={{ marginBottom: 10 }} message={error} type="error" showIcon />
-                        </div>}
-                    {loading &&
-                        <div style={{ marginBottom: 10, textAlign: 'center' }}>
-                            <Spin></Spin>
-                        </div>}
+                        </div>
+                    }
 
                     <Form.Item
                         rules={[{ required: true, message: 'Ingresa el nombre!' }]}
@@ -85,7 +83,7 @@ const CreateTournament: React.FC = () => {
                         ]} />
                     </Form.Item>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <button className={styles.btn}>{'Crear torneo'}</button>
+                        <Button size='large' htmlType="submit" loading={loading} className={styles.btn} >Crear Torneo</Button>
                     </div>
                 </Form>
             </section>

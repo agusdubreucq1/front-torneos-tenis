@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link, Outlet, useLocation, useParams, Navigate } from 'react-router-dom';
-import { useTournaments } from '../store/tournaments';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import styles from '../styles/tournament.module.css';
 import { useUser } from '../store/user';
+import { useTournament } from '../hooks/useTournament';
+import { Result } from 'antd';
 
 const Tournament: React.FC = () => {
     const location = useLocation()
@@ -12,11 +13,16 @@ const Tournament: React.FC = () => {
 
     const user = useUser((state) => state.user);
 
-    const [tournaments, _error] = useTournaments((state) => [state.tournaments, state.error]);
-    const tournament = tournaments.find((t) => t.id == Number(id));
+    const {tournament} = useTournament({id})
 
     if(!tournament){
-        return <Navigate to={'/'}/>
+        return (
+            <Result
+            status={"error"}
+            title={"404"}
+            subTitle={"No se ha encontrado el torneo"}
+            extra={<Link to={"/"} >Volver al inicio</Link>}></Result>
+        )
     }
 
 

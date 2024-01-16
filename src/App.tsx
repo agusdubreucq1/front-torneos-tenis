@@ -1,5 +1,5 @@
 import './App.css'
-import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import { Route, Routes, BrowserRouter, Link } from 'react-router-dom'
 import Index from './pages'
 import { useEffect } from 'react'
 import { useTournaments } from './store/tournaments'
@@ -16,39 +16,42 @@ import Jugador from './pages/jugador'
 import DetailsTournament from './components/Details'
 import Draw from './components/Draw'
 import InscripcionJugador from './pages/inscripcionJugador'
+import { Result } from 'antd'
 
 function App() {
-
-  const getTournaments = useTournaments((state) => state.getTournaments)
-  const [getUser, getToken, user] = useUser((state) => [state.getUser, state.getToken, state.user])
-
   useEffect(() => {
     getTournaments()
     getUser()
     getToken()
   }, [])
 
+  const getTournaments = useTournaments((state) => state.getTournaments)
+  const [getUser, getToken] = useUser((state) => [state.getUser, state.getToken])
+
+
+
   return (
     <>
-    <BrowserRouter>
-      <Header></Header>
-      <Routes>
-        <Route path='/' element={<Index />} ></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/register' element={<Register />}></Route>
-        <Route path='/jugadores' element={<Jugadores />}></Route>
-        <Route path='/jugador/:id' element={<Jugador />}></Route>
-        <Route path='/tournament/:id' element={<Tournament />}>
-          <Route path='/tournament/:id/details' element={<DetailsTournament />}></Route>
-          <Route path='/tournament/:id/draw' element={<Draw />}></Route>
-          <Route path='/tournament/:id/inscripcion' element={<InscripcionJugador />}></Route>
-        </Route>
-        <Route element={<ProtectedRoute canNavigate={user?.isAdmin} />}>
-          <Route path='/create/tournament' element={<CreateTournament></CreateTournament>}></Route>
-          <Route path='/create/jugador' element={<CreateJugador />}></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Header></Header>
+        <Routes>
+          <Route path='/' element={<Index />} ></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='/jugadores' element={<Jugadores />}></Route>
+          <Route path='/jugador/:id' element={<Jugador />}></Route>
+          <Route path='/tournament/:id' element={<Tournament />}>
+            <Route path='/tournament/:id/details' element={<DetailsTournament />}></Route>
+            <Route path='/tournament/:id/draw' element={<Draw />}></Route>
+            <Route path='/tournament/:id/inscripcion' element={<InscripcionJugador />}></Route>
+          </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path='/create/tournament' element={<CreateTournament></CreateTournament>}></Route>
+            <Route path='/create/jugador' element={<CreateJugador />}></Route>
+          </Route>
+          <Route path='*' element={<Result status={"error"} title={"404"} subTitle={"No se ha encontrado la ruta"} extra={<Link to={"/"} >Volver al inicio</Link>} />} ></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

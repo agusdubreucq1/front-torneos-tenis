@@ -26,7 +26,7 @@ const Jugadores: React.FC = () => {
                             </div>
                             {
                                 jugadores.map(j =>
-                                    <div>
+                                    <div key={j.user?.dni}>
                                         <p>{j.user?.nombre}</p>
                                         <p>{j.user?.apellido}</p>
                                         <p>{j.user?.dni}</p>
