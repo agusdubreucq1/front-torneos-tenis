@@ -1,6 +1,7 @@
 import { create} from "zustand";
 import { Tournament } from "../vite-env";
 import { URLBACK } from "../constantes";
+import { getTournaments } from "../services/getTournaments";
 
 
 interface TournamentsState {
@@ -14,11 +15,17 @@ export const useTournaments = create<TournamentsState>((set) => ({
     tournaments: [],
     error: null,
     setTournaments: (tournaments) => set({ tournaments }),
-    getTournaments: () => {
+    getTournaments: async () => {
         set({ error: null })
-        fetch( URLBACK + "/torneos")
-            .then((response) => response.json())
-            .then((data) => set({ tournaments: data }))
-            .catch((error) => set({ error: String(error) }))
+        try{
+            const data = await getTournaments()
+            set({ tournaments: data })
+        } catch (error: any) {
+            if(error.name === 'Error'){
+                set({ error: error.message })
+            } else {
+                set({ error: 'Error de conexion' })
+            }
+        }
     }
 }))
