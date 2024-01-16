@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Partido } from '../vite-env';
-import { URLBACK } from '../constantes';
-import { useUser } from '../store/user';
+import { getPartidosByTorneo } from '../services/getPartidosByTorneo';
 
 type UsePartidosType = {
     partidos: Partido[];
@@ -10,8 +9,6 @@ type UsePartidosType = {
   };
 
 const UsePartidos: (id: string | undefined) => UsePartidosType = (id) => {
-
-    const token = useUser((state) => state.token);
 
     const [partidos, setPartidos] = useState<Partido[]>([]);
     const [error, setError] = useState<string | null>('');
@@ -22,30 +19,20 @@ const UsePartidos: (id: string | undefined) => UsePartidosType = (id) => {
             setError(null);
             setLoading(true);
             try {
-                const response = await fetch(`${URLBACK}/admin/torneo/${id}/partidos`, {
-                    headers: {
-                        "Authorization": token ?? '',
-                        "Content-Type": "application/json",
-                    },
-                });
-                const data = await response.json();
-                console.log(data);
-                if (!response.ok) {
-                    console.log('error');
-                    throw new Error('Error al encontrar los partidos');
-                }
+                const data = await getPartidosByTorneo(id!);
                 setPartidos(data);
-            } catch (e) {
-                console.log(e);
+            } catch (e: any) {
+                if (e.name === 'Error') {
+                    setError(e.message);
+                } else {
+                    setError('Error de conexion');
+                }
             } finally{
                 setLoading(false);
             }
         };
-        if (token) {
-            fetchPartidos();
-        }
-
-    }, [token])
+        fetchPartidos();
+    }, [])
   return {
     partidos,
     error,

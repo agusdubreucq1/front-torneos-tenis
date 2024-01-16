@@ -31,12 +31,10 @@ const useRegister = () => {
     }
 
     const handleSubmit = async () => {
-        console.log(newUser)
         setLoading(true)
         try {
             setError(null)
-            const response = await register(newUser)
-            console.log(response)
+            await register(newUser)
             navigate('/login');
 
         } catch (e:any) {

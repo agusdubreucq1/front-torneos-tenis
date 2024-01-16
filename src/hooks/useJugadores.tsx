@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Jugador } from "../vite-env"
-import { URLBACK } from "../constantes";
+import { getJugadores } from "../services/getJugadores";
 
 
 interface UseJugadoresType {
@@ -19,15 +19,15 @@ const useJugadores: () => UseJugadoresType = () => {
             try {
                 setError(null);
                 setLoading(true);
-                const response = await fetch(URLBACK + '/admin/jugador');
-                const data = await response.json();
-                if (!response.ok) {
-                    setError(data.error);
-                }
+                const data = await getJugadores();
                 setJugadores(data);
-            } catch (e) {
-                console.log('catch error')
-                setError('Error de conexion');
+                
+            } catch (e: any) {
+                if(e.name === 'Error'){
+                    setError(e.message);
+                } else {
+                    setError('Error de conexión');
+                }
             } finally {
                 setLoading(false);
             }

@@ -16,7 +16,6 @@ const useCreateTournament = () => {
     }, [])
 
     const handleSubmit = async (body: any) => {
-        console.log(body)
         setError(null)
 
         try {

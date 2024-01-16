@@ -10,12 +10,10 @@ export const useLogin = () => {
     const [error, setError] = React.useState<null | String>(null);
     const [loading, setLoading] = React.useState(false);
     const handleSubmit = async (body: any) => {
-        console.log(body)
         try {
             setError(null)
             setLoading(true)
             const result = await login(body)
-            console.log(result);
             setUser(result.user);
             navigate('/')    
         } catch (e:any) {
