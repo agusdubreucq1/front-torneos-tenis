@@ -48,7 +48,7 @@ const CreateJugador: React.FC = () => {
                 <h1 className={styles.title}>Crear jugador</h1>
                 {contextHolder}
                 <Form
-                    style={{ backgroundColor: "#dfdfdf", padding: 20, borderRadius: 10 }}
+                    style={{ backgroundColor: "#dfdfdf", padding: 30, width: 400, borderRadius: 10 }}
                     name="normal_login"
                     className="login-form"
                     initialValues={{ remember: true }}
@@ -57,7 +57,8 @@ const CreateJugador: React.FC = () => {
                     {loading &&
                         <div style={{ textAlign: 'center', marginBottom: 10 }}>
                             <Spin />
-                        </div>}
+                        </div>
+                    }
                     {error && <Alert style={{ marginBottom: 10 }} message={error} type="error" showIcon />}
                     <Form.Item
                         name="nombre"

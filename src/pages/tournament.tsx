@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams, Navigate } from 'react-router-dom';
 import { useTournaments } from '../store/tournaments';
 
 import styles from '../styles/tournament.module.css';
@@ -14,6 +14,10 @@ const Tournament: React.FC = () => {
 
     const [tournaments, _error] = useTournaments((state) => [state.tournaments, state.error]);
     const tournament = tournaments.find((t) => t.id == Number(id));
+
+    if(!tournament){
+        return <Navigate to={'/'}/>
+    }
 
 
     return (
