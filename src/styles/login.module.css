@@ -66,17 +66,20 @@
 }
 
 .button{
-  padding: 10px;
-  border-radius: 10px;
+  /* padding: 10px; */
+  /* border-radius: 10px; */
   background: var(--bg-header);
   border: none;
-  font-size: 1.8rem;
+  /* font-size: 1.8rem; */
   color: #fff;
   font-weight: 400;
   transition: background 0.3s ease;
+  width: 100%;
 }
 
 .button:hover{
   cursor: pointer;
   background: #f00;
+  color: #fff !important;
+  border-color: none !important;
 }

@@ -1,68 +1,43 @@
 import React from 'react';
-import { useUser } from '../store/user';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from '../styles/login.module.css';
 
 import userImg from '/icons/user.svg'
 import padlock from '/icons/padlock.svg'
-import { URLBACK } from '../constantes';
+import { Alert, Button, Form, Input } from 'antd';
+import { useLogin } from '../hooks/useLogin';
 
 const Login: React.FC = () => {
-    const setUser = useUser((state) => state.setUser);
-
-    const navigate = useNavigate();
-
-    const [error, setError] = React.useState<null | String>(null);
-    const [loading, setLoading] = React.useState(false);
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log('enviando form');
-        const data = new FormData(event.currentTarget);
-        try {
-            setError(null)
-            setLoading(true)
-            const response = await fetch(URLBACK + '/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    dni: data.get('dni'),
-                    password: data.get('password'),
-                }),
-            })
-            const result = await response.json();
-            if (!response.ok) {
-                setError(result.error)
-            } else {
-                console.log(result);
-                setUser(result.user);
-                navigate('/')
-            }
-        } catch (e) {
-            console.log(e);
-            setError(String(e))
-        } finally {
-            setLoading(false)
-        }
-
-    }
+    const { handleSubmit, error, loading } = useLogin();
     return (
         <main className={styles.main}>
             <section className={styles.section}>
-                {error && <p className={styles.error}>{error}</p>}
-                <form onSubmit={handleSubmit} className={styles.form}>
+                <Form
+                    className="login-form"
+                    onFinish={handleSubmit}>
+                    {error &&
+                        <Form.Item>
+                            <Alert message={error} type="error" showIcon />
+                        </Form.Item>}
+                    <Form.Item
+                        rules={[{ required: true, message: 'Ingresa el dni!' }]}
+                        name={'dni'}>
+                        <Input name='dni' prefix={<img style={{ width: 20, height: 20 }} src={userImg}></img>}></Input>
+                    </Form.Item>
 
-                    <div>
-                        <span className={styles.label}><img src={userImg} /></span><input type="text" placeholder='dni' name='dni' ></input>
-                    </div>
+                    <Form.Item
+                        rules={[{ required: true, message: 'Ingresa la contraseña!' }]}
+                        name={'password'}>
+                        <Input.Password name='password' prefix={<img style={{ width: 20, height: 20 }} src={padlock}></img>}></Input.Password>
+                    </Form.Item>
 
-                    <div>
-                        <span className={styles.label}><img src={padlock} /></span><input type="password" name='password' />
-                    </div>
-
-                    <button type="submit" className={styles.button} disabled={loading}>{loading ? 'Cargando...' : 'Login'}</button>
-                </form>
+                    <Form.Item>
+                        <Button htmlType="submit" className={styles.button} loading={loading}>
+                            Log in
+                        </Button>
+                        O <Link to={'/register'}>registrarse</Link>
+                    </Form.Item>
+                </Form>
             </section>
         </main>
     );
