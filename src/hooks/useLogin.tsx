@@ -18,11 +18,11 @@ export const useLogin = () => {
             console.log(result);
             setUser(result.user);
             navigate('/')    
-        } catch (e) {
-            if(e instanceof Error){
+        } catch (e:any) {
+            if (e.name === 'Error') {
                 setError(e.message)
-            }else{
-                setError('Error de conexion');
+            } else {
+                setError('Error de conexion')
             }
         } finally {
             setLoading(false)

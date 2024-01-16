@@ -51,10 +51,14 @@
 }
 
 .btn{
-    padding: 8px 15px;
+    width: 100%;
     align-self: center;
-    border-radius: 10px;
     background-color: var(--bg-header);
     color: #fff;
     border: none;
+}
+
+.btn:hover{
+    cursor: pointer;
+    color: #fff !important;
 }
