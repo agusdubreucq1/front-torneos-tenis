@@ -12,6 +12,6 @@ export function potenciasDe2(numero: number) {
   }
   
   // Usar la función para crear un array con las potencias de 2 menores que 16
-  let array = potenciasDe2(16);
-  console.log(array); // [16, 8, 4, 2, 1]
+  // const arrayPotencias = potenciasDe2(16);
+ // [16, 8, 4, 2, 1]
   
