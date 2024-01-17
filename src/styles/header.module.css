@@ -66,3 +66,48 @@
 .logout img{
     height: 50%;
 }
+
+.link_user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-height: 100%;
+}
+
+.link_user img, .link_user svg{
+    height: 50px;
+}
+
+.popover{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    background-color: #fff;
+    color: var(--bg-header)
+}
+
+.logout_popover{
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #000;
+}
+
+.logout_popover img, .logout_popover svg{
+    height: 20px;
+}
+
+.link_user_popover{
+    color: #000;
+    text-decoration: none;
+}
+
+.link_user_popover:visited, .link_user_popover:active, .link_user_popover:hover{
+    color: #000;
+    text-decoration: none;
+}
