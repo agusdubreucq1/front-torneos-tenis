@@ -1,40 +1,38 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useUser } from '../store/user';
+import { Link } from 'react-router-dom';
+import { ConfigProvider, Descriptions, DescriptionsProps, Result, Tabs } from 'antd';
+import styles from '../styles/perfil.module.css'
 
-import styles from '../styles/jugador.module.css'
-import useJugador from '../hooks/useJugador';
-import { DescriptionsProps, Result, Descriptions, Tabs, ConfigProvider } from 'antd';
+const Perfil: React.FC = () => {
 
-const Jugador: React.FC = () => {
-    const { id } = useParams();
+    const user = useUser((state) => state.user);
 
-    const { jugador, error: _error, loading: _loading } = useJugador(id)
-
-    if (!jugador) {
+    if (!user) {
         return (
             <Result
                 status={"error"}
                 title={"404"}
-                subTitle={"No se ha encontrado el jugador"}
-                extra={<Link to={"/"} >Volver al inicio</Link>}
+                subTitle={"Debe iniciar sesion para ver su perfil"}
+                extra={<Link to={"/login"} >Volver al inicio</Link>}
             />
         )
     }
 
-    const items: DescriptionsProps['items'] = [
+    const items_jugador: DescriptionsProps['items'] = [
         {
             key: '1',
             label: 'Nombre',
-            children: jugador.user?.nombre,
+            children: user?.nombre,
         },
         {
             key: '2',
             label: 'Apellido',
-            children: jugador.user?.apellido,
+            children: user?.apellido,
         },
         {
             key: '3',
-            label: 'Torneos jugados',
+            label: 'torneos jugados',
             children: 10,
         },
         {
@@ -51,7 +49,25 @@ const Jugador: React.FC = () => {
             key: '6',
             label: 'Partidos ganados',
             children: 8,
+        }
+    ]
+
+    const items_admin: DescriptionsProps['items'] = [
+        {
+            key: '1',
+            label: 'Nombre',
+            children: user?.nombre,
         },
+        {
+            key: '2',
+            label: 'Apellido',
+            children: user?.apellido,
+        },
+        {
+            key: '3',
+            label: 'torneos creados',
+            children: 10,
+        }
     ]
 
     return (
@@ -66,11 +82,12 @@ const Jugador: React.FC = () => {
                     }}
                 >
                     <Descriptions
-                    items={items}
-                    title="Informacion del jugador"
+                    items={user.isAdmin ? items_admin : items_jugador}
+                    title="PERFIL"
                     bordered={true}
                     labelStyle={{ background: '#ef2219ee', color: '#fff' }}
-                    contentStyle={{ background: '#eee' }} />
+                    contentStyle={{ background: '#eee' }}
+                />
                 
                     <Tabs
                         defaultActiveKey="1"
@@ -79,10 +96,9 @@ const Jugador: React.FC = () => {
                         items={[{ key: '1', label: 'Partidos', children: <div></div> }, { key: '2', label: 'Torneos', children: <div></div> }]}
                     />
                 </ConfigProvider>
-
             </section>
         </main >
     );
 };
 
-export default Jugador
+export default Perfil;
