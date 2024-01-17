@@ -23,13 +23,15 @@ const Jugadores: React.FC = () => {
                                 <p>Nombre</p>
                                 <p>Apellido</p>
                                 <p>DNI</p>
+                                <p></p>
                             </div>
                             {
                                 jugadores.map(j =>
-                                    <div key={j.user?.dni}>
+                                    <div key={j.user?.dni} className={styles.fila}>
                                         <p>{j.user?.nombre}</p>
                                         <p>{j.user?.apellido}</p>
                                         <p>{j.user?.dni}</p>
+                                        <Link className={styles.link_ver} to={`/jugador/${j.id}`}>Ver</Link>
                                     </div>)
                             }
 

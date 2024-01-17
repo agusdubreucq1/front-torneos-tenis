@@ -17,6 +17,7 @@ import DetailsTournament from './components/Details'
 import Draw from './components/Draw'
 import InscripcionJugador from './pages/inscripcionJugador'
 import { Result } from 'antd'
+import Footer from './components/Footer'
 
 function App() {
   useEffect(() => {
@@ -51,6 +52,7 @@ function App() {
           </Route>
           <Route path='*' element={<Result status={"error"} title={"404"} subTitle={"No se ha encontrado la ruta"} extra={<Link to={"/"} >Volver al inicio</Link>} />} ></Route>
         </Routes>
+        <Footer></Footer>
       </BrowserRouter>
     </>
   )
