@@ -3,8 +3,6 @@ import { useUser } from '../store/user';
 import { Link } from 'react-router-dom';
 import styles from '../styles/header.module.css'
 
-import userImg from '/icons/user.svg'
-import logoutImg from '/icons/logout.svg'
 import logo from '/logo.png'
 import IconUser from './IconUser';
 import { Modal, Popover } from 'antd';
@@ -46,7 +44,7 @@ const Header: React.FC = () => {
                     <li className={styles.li}><Link to="/">Home</Link></li>
                     <li className={styles.li}><Link to="/jugadores">Jugadores</Link></li>
                     {user
-                        ? <li className={styles.li}><Popover placement="bottomRight" content={content} trigger="hover"><Link to={'/perfil'} className={styles.link_user}><IconUser />{user.username}</Link></Popover></li>
+                        ? <li className={styles.li}><Popover placement="bottomRight" content={content} trigger="hover"><Link to={'/perfil'} className={styles.link_user}><IconUser />{user.nombre}</Link></Popover></li>
                         : ''}
                     {user
                         ? ''

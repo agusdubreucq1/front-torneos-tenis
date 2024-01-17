@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import map from '/icons/maps_orange.webp'
 import date from '/icons/date_orange.webp'
 import category from '/icons/category_orange.webp'
+import { ESTADOS_TORNEOS } from '../constantes';
 
 interface Props {
   tournament: Tournament
@@ -16,7 +17,7 @@ const CardTournament: React.FC<Props> = ({ tournament }) => {
     <Link to={`/tournament/${tournament.id}/details`} className={styles.link}>
       <article className={styles.card}>
         <div className={styles.head}>
-        <div className={`${styles.estado} ${tournament.estado == 'Abierto' ? styles.disponible : styles.close}`}></div>
+        <div className={`${styles.estado} ${tournament.estado === ESTADOS_TORNEOS.EN_CURSO ? styles.disponible : styles.close}`}></div>
         <p >{tournament.nombre}</p>
       </div>
       <div className={styles.info}>
