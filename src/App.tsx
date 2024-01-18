@@ -18,7 +18,7 @@ import Draw from './components/Draw'
 import InscripcionJugador from './pages/inscripcionJugador'
 import { Result } from 'antd'
 import Footer from './components/Footer'
-import Perfil from './pages/perfil'
+import Perfil from './pages/Perfil.tsx'
 
 function App() {
   useEffect(() => {

@@ -82,13 +82,13 @@ const Perfil: React.FC = () => {
                     }}
                 >
                     <Descriptions
-                    items={user.isAdmin ? items_admin : items_jugador}
-                    title="PERFIL"
-                    bordered={true}
-                    labelStyle={{ background: '#ef2219ee', color: '#fff' }}
-                    contentStyle={{ background: '#eee' }}
-                />
-                
+                        items={user.isAdmin ? items_admin : items_jugador}
+                        title="PERFIL"
+                        bordered={true}
+                        labelStyle={{ background: '#ef2219ee', color: '#fff' }}
+                        contentStyle={{ background: '#eee' }}
+                    />
+
                     <Tabs
                         defaultActiveKey="1"
                         centered
