@@ -14,32 +14,34 @@ const useJugadores: () => UseJugadoresType = () => {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const fetchJugadores = async () => {
-            try {
-                setError(null);
-                setLoading(true);
-                const data = await getJugadores();
-                setJugadores(data);
-                
-            } catch (e: any) {
-                if(e.name === 'Error'){
-                    setError(e.message);
-                } else {
-                    setError('Error de conexión');
-                }
-            } finally {
-                setLoading(false);
+    const fetchJugadores = async () => {
+        try {
+            setError(null);
+            setLoading(true);
+            const data = await getJugadores();
+            setJugadores(data);
+            
+        } catch (e: any) {
+            if(e.name === 'Error'){
+                setError(e.message);
+            } else {
+                setError('Error de conexión');
             }
+        } finally {
+            setLoading(false);
+        }
 
-        };
+    };
+
+    useEffect(() => {
         fetchJugadores();
     }, [])
 
     return {
         jugadores,
         error,
-        loading
+        loading,
+        fetchJugadores
     }
 }
 

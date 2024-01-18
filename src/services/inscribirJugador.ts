@@ -9,12 +9,14 @@ export const inscribirJugador = async (id: string | number, token: string, body:
         },
         body: JSON.stringify(body),
     });
+    const data = await response.json();
     if (!response.ok) {
         if(response.status === 403) {
             throw new Error("No tienes permiso para inscribir");
         }
+        console.log(data)
         throw new Error("Error al inscribir al jugador");
     }
-    const data = await response.json();
+    
     return data;
 }

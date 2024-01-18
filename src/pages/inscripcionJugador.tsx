@@ -1,5 +1,4 @@
 import React from 'react';
-import useJugadores from '../hooks/useJugadores';
 import { useParams } from 'react-router-dom';
 
 import styles from '../styles/inscripcionJugador.module.css'
@@ -7,14 +6,17 @@ import { Alert, Button, Form, Select } from 'antd';
 import useInscripcion from '../hooks/useInscripcion';
 
 const InscripcionJugador: React.FC = () => {
-    const { id_torneo } = useParams()
-    const { jugadores } = useJugadores()
+    const { id } = useParams()
 
-    const { loading, error, handleFinish, contextHolder } = useInscripcion({ id: id_torneo! })
+    const [form] = Form.useForm()
+
+    const { loading, error, handleFinish, contextHolder, jugadoresNoInscriptos } = useInscripcion({ id: id ?? '', form })
+
     return (
         <section className={styles.section}>
             {contextHolder}
             <Form
+                form={form}
                 onFinish={handleFinish}
                 layout="vertical" className={styles.form}
             >
@@ -22,12 +24,13 @@ const InscripcionJugador: React.FC = () => {
 
                 <Form.Item
                     label="Elige un jugador"
-                    name="jugador"
+                    name="id_jugador"
                     rules={[{ required: true, message: 'selecciona un jugador!' }]}
                 >
                     <Select
                         placeholder="Selecciona el jugador a inscribir"
-                        options={jugadores.map((jugador) => ({
+                        allowClear={true}
+                        options={jugadoresNoInscriptos.map((jugador) => ({
                             value: jugador.id,
                             label: `${jugador.user?.nombre} ${jugador.user?.apellido}`,
                             key: jugador.user?.dni
