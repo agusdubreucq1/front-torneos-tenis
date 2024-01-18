@@ -1,12 +1,20 @@
 import { create } from "zustand";
 
+interface UserFromLogin{
+  dni: number;
+  isAdmin: boolean;
+  token: string;
+  nombre : string;
+  apellido : string;
+}
+
 type UserState = {
-  user: any;
+  user: UserFromLogin | null;
   token: string | null;
   getToken: () => void;
   setToken: (token: string) => void;
-  setUser: (user: any) => void;
-  getUser: () => void;
+  setUser: (user: UserFromLogin) => void;
+  getUser: () => void | any;
   logout: () => void;
 };
 
@@ -32,11 +40,14 @@ export const useUser = create<UserState>((set, get) => ({
     const user = localStorage.getItem("user");
     if (user !== null && user !== "undefined") {
       set({ user: JSON.parse(user) });
+      return JSON.parse(user);
+    } else {
+      return null;
     }
   },
   logout: () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     set({ user: null, token: null });
-  }
+  },
 }));
