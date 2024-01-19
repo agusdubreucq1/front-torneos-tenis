@@ -5,6 +5,7 @@ import useJugadoresFromTournament from './useJugadoresFromTournament';
 import { createPartido } from '../services/createPartido';
 import { useUser } from '../store/user';
 import { usePartidos } from '../store/partidos';
+import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
 
 interface ValuesPartido {
     orden: number | null,
@@ -17,7 +18,9 @@ const useModalCreatePartido = ({ id }: { id: string | number }) => {
     const [loading, setLoading] = React.useState(false);
     const [messageAPI, contextHolder] = message.useMessage();
 
-    const { jugadores } = useJugadoresFromTournament({ id });
+    // const { jugadores } = useJugadoresFromTournament({ id });
+    const jugadores = useJugadoresInscriptos((state) => state.jugadoresInscriptos);
+
     const token = useUser((state) => state.token);
     const getPartidos = usePartidos((state) => state.getPartidos);
 

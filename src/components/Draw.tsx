@@ -12,6 +12,7 @@ import { useUser } from '../store/user';
 import { Result } from 'antd';
 import { useTournament } from '../hooks/useTournament';
 import { usePartidos } from '../store/partidos';
+import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
 
 
 
@@ -35,9 +36,11 @@ const Draw: React.FC = () => {
     const isAdmin = tournament?.users?.map((u) => u.dni)?.includes(user?.dni ?? 0);
 
     const [partidos, getPartidos] = usePartidos((state) => [state.partidos, state.getPartidos]);
+    const getJugadoresInscriptos = useJugadoresInscriptos((state) => state.getJugadoresInscriptos);
 
     useEffect(() => {
         getPartidos(id ?? 0)
+        getJugadoresInscriptos(id ?? 0)
     }, [])
 
     const findPartido = (orden: number, jugadoresXRonda: number) => {
