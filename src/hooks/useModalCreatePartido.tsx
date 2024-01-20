@@ -1,7 +1,5 @@
 import { Modal, Select, Form, Input, DatePicker, Alert, message } from 'antd';
 import React from 'react';
-// import useJugadores from './useJugadores';
-import useJugadoresFromTournament from './useJugadoresFromTournament';
 import { createPartido } from '../services/createPartido';
 import { useUser } from '../store/user';
 import { usePartidos } from '../store/partidos';
@@ -18,7 +16,6 @@ const useModalCreatePartido = ({ id }: { id: string | number }) => {
     const [loading, setLoading] = React.useState(false);
     const [messageAPI, contextHolder] = message.useMessage();
 
-    // const { jugadores } = useJugadoresFromTournament({ id });
     const jugadores = useJugadoresInscriptos((state) => state.jugadoresInscriptos);
 
     const token = useUser((state) => state.token);
@@ -34,7 +31,7 @@ const useModalCreatePartido = ({ id }: { id: string | number }) => {
         setError(null);
         setOpenModal(false);
         form.resetFields();
-        
+
     };
 
     const handleOpenModal = ({ jugadoresXRonda, orden }: ValuesPartido) => {
@@ -112,7 +109,16 @@ const useModalCreatePartido = ({ id }: { id: string | number }) => {
                     />
                 </Form.Item>
 
-                <Form.Item label={'Resultado'} name={'resultado'}>
+                <Form.Item label={'Resultado'} name={'resultado'}
+                    rules={[
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (getFieldValue('ganador') && !value) {
+                                    return Promise.reject(new Error('Si pones un ganador debes poner el resultado!'));
+                                }
+                                return Promise.resolve();
+                            },
+                        }),]}>
                     <Input placeholder='ej: 6-3'></Input>
                 </Form.Item>
 
@@ -120,11 +126,22 @@ const useModalCreatePartido = ({ id }: { id: string | number }) => {
                     <DatePicker></DatePicker>
                 </Form.Item>
 
-                <Form.Item label={'Ganador'} name={'ganador'}>
+                <Form.Item label={'Ganador'} name={'ganador'}
+                    rules={[
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (getFieldValue('resultado') && !value) {
+                                    return Promise.reject(new Error('Si pones un resultado debes poner un ganador!'));
+                                }
+                                return Promise.resolve();
+                            },
+                        }),
+                    ]}>
                     <Select
+                        allowClear
                         options={[
-                            { label: 'Jugador 1', value: '1' },
-                            { label: 'Jugador 2', value: '2' },
+                            { label: 'Jugador 1', value: 1 },
+                            { label: 'Jugador 2', value: 2 },
                         ]}
                     ></Select>
                 </Form.Item>

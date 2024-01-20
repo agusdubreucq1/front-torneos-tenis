@@ -1,0 +1,37 @@
+.partido{
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    align-items: center;
+    width: 150px;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.jugadores{
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.jugadores > p{
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+}
+
+.jugador{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.jugador img{
+    width: 20px;
+}
+
+.resultado{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
