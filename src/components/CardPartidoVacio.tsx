@@ -1,5 +1,7 @@
 import React from "react"
-import styles from "../styles/drawTournament.module.css"
+import styles_draw from "../styles/drawTournament.module.css"
+import styles from '../styles/cardPartido.module.css'
+
 import useModalCreatePartido from "../hooks/useModalCreatePartido"
 
 interface Props {
@@ -16,7 +18,7 @@ const CardPartidoVacio: React.FC<Props> = ({ idTorneo, jugadoresXRonda, orden, i
         <>
             {contextHolder}
             {modal}
-            <div className={styles.container_partido}>
+            <div className={styles_draw.container_partido}>
                 <div className={styles.partido}>
                     {
                         isAdmin

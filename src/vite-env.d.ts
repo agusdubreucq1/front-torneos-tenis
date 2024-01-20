@@ -32,7 +32,7 @@ export type Partido = {
   resultado: string;
   ronda: string;
   fecha: string;
-  ganador: null | User;
+  ganador: null | number;
   createdAt: string;
   Pareja1: Pareja;
   Pareja2: Pareja;
