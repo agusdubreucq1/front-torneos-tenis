@@ -4,6 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import styles from '../styles/jugador.module.css'
 import useJugador from '../hooks/useJugador';
 import { DescriptionsProps, Result, Descriptions, Tabs, ConfigProvider } from 'antd';
+import PartidosJugador from '../components/PartidosJugador';
+import InscripcionesJugador from '../components/InscripcionesJugador';
 
 const Jugador: React.FC = () => {
     const { id } = useParams();
@@ -66,17 +68,18 @@ const Jugador: React.FC = () => {
                     }}
                 >
                     <Descriptions
-                    items={items}
-                    title="Informacion del jugador"
-                    bordered={true}
-                    labelStyle={{ background: '#ef2219ee', color: '#fff' }}
-                    contentStyle={{ background: '#eee' }} />
-                
+                        items={items}
+                        title="Informacion del jugador"
+                        bordered={true}
+                        labelStyle={{ background: '#ef2219ee', color: '#fff' }}
+                        contentStyle={{ background: '#eee' }} />
+
                     <Tabs
                         defaultActiveKey="1"
                         centered
 
-                        items={[{ key: '1', label: 'Partidos', children: <div></div> }, { key: '2', label: 'Torneos', children: <div></div> }]}
+                        items={[{ key: '1', label: 'Partidos', children: <PartidosJugador id={id as string} /> },
+                        { key: '2', label: 'Torneos', children: <InscripcionesJugador id={id as string} /> }]}
                     />
                 </ConfigProvider>
 
