@@ -22,7 +22,7 @@ const CardPartidoVacio: React.FC<Props> = ({ idTorneo, jugadoresXRonda, orden, i
                 <div className={styles.partido}>
                     {
                         isAdmin
-                            ? <button onClick={() => handleOpenModal({ orden, jugadoresXRonda })} >+ Partido</button>
+                            ? <button className={styles.button} onClick={() => handleOpenModal({ orden, jugadoresXRonda })} >+ Partido</button>
                             : <>
                                 <div className={styles.jugadores}>
                                     <p>-</p>

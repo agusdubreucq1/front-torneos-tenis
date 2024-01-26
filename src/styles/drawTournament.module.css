@@ -19,42 +19,32 @@
     position: relative;
 }
 
-/* .partido{
+.container_ronda{
     display: flex;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #000;
-    align-items: center;
-    width: 150px;
-    justify-content: space-between;
-    height: 80px;
+    position: relative;
+    padding-top: 20px;
 }
 
-.jugadores{
-    display: flex;
-    gap: 15px;
-    flex-direction: column;
-}
-
-.jugadores > p{
-    font-weight: 400;
-    font-size: 1.6rem;
-    margin-bottom: 0;
-}
-
-.resultado{
-    font-size: 1.8rem;
-    font-weight: bold;
-} */
 
 .ronda{
     display: flex;
     flex-direction: column;
     /* gap: 15px; */
     justify-content: space-around;
+    position: relative;
+}
+
+.nameRonda{
+    position: absolute;
+    font-size: 1.6rem;
+    font-weight: bold;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 /* before de los partidos */
-.ronda:not(:first-child) .container_partido::before{
+.container_ronda:not(:first-of-type) .ronda .container_partido::before{
     content: "";
     border-color: #999;
     display: block;
@@ -66,7 +56,7 @@
 }
 /* after de los partidos */
 
-.ronda .container_partido::after {
+.container_ronda .ronda .container_partido::after {
     position: relative;
     width: calc(var(--separacionRondas) / 2);
     border-right-style: solid;
@@ -77,19 +67,19 @@
     left: 100%;
 }
 
-.ronda:not(:last-child) .container_partido:nth-child(odd)::after{
+.container_ronda:not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after{
     border-top-style: solid;
     top: -50%;
 }
 
 /* primera ronda */
 
-.ronda:nth-child(1) .container_partido:nth-child(odd)::after {
+.container_ronda:nth-of-type(1) .ronda .container_partido:nth-of-type(odd)::after {
     --height: 64px;
     height: var(--height);
 }
 
-.ronda:nth-child(1) .container_partido:nth-child(even)::after {
+.container_ronda:nth-of-type(1) .ronda .container_partido:nth-of-type(even)::after {
     --height: 64px;
     height: var(--height);
     border-bottom-style: solid;
@@ -97,12 +87,12 @@
 }
 /* segunda ronda */
 
-.ronda:nth-child(2):not(:last-child) .container_partido:nth-child(odd)::after {
+.container_ronda:nth-of-type(2):not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after {
     --height: 128px;
     height: var(--height);
 }
 
-.ronda:nth-child(2):not(:last-child) .container_partido:nth-child(even)::after {
+.container_ronda:nth-of-type(2):not(:last-of-type) .ronda .container_partido:nth-of-type(even)::after {
     --height: 128px;
     height: var(--height);
     border-bottom-style: solid;
@@ -111,12 +101,12 @@
 
 /* tercera ronda */
 
-.ronda:nth-child(3):not(:last-child) .container_partido:nth-child(odd)::after {
+.container_ronda:nth-of-type(3):not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after {
     --height: 256px;
     height: var(--height);
 }
 
-.ronda:nth-child(3):not(:last-child) .container_partido:nth-child(even)::after {
+.container_ronda:nth-of-type(3):not(:last-of-type) .ronda .container_partido:nth-of-type(even)::after {
     --height: 256px;
     height: var(--height);
     border-bottom-style: solid;
@@ -125,12 +115,12 @@
 
 /* cuarta ronda */
 
-.ronda:nth-child(4):not(:last-child) .container_partido:nth-child(odd)::after {
+.container_ronda:nth-of-type(4):not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after {
     --height: 512px;
     height: var(--height);
 }
 
-.ronda:nth-child(4):not(:last-child) .container_partido:nth-child(even)::after {
+.container_ronda:nth-of-type(4):not(:last-of-type) .ronda .container_partido:nth-of-type(even)::after {
     --height: 512px;
     height: var(--height);
     border-bottom-style: solid;
@@ -139,12 +129,12 @@
 
 /* quinta ronda */
 
-.ronda:nth-child(5):not(:last-child) .container_partido:nth-child(odd)::after {
+.container_ronda:nth-of-type(5):not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after {
     --height: 1024px;
     height: var(--height);
 }
 
-.ronda:nth-child(5):not(:last-child) .container_partido:nth-child(even)::after {
+.container_ronda:nth-of-type(5):not(:last-of-type) .ronda .container_partido:nth-of-type(even)::after {
     --height: 1024px;
     height: var(--height);
     border-bottom-style: solid;

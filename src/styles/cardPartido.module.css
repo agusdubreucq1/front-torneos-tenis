@@ -1,10 +1,12 @@
 .partido{
-    display: flex;
+    display: grid;
+    grid-template-columns: 145px 45px;
+    gap: 10px;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #000;
     align-items: center;
-    width: 150px;
+    width: 200px;
     justify-content: space-between;
     height: 80px;
 }
@@ -25,6 +27,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin-bottom: 0;
 }
 
 .jugador img{
@@ -34,4 +39,22 @@
 .resultado{
     font-size: 1.8rem;
     font-weight: bold;
+}
+
+.button{
+    background-color: #000;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    display: inline-flex;
+    justify-self: center;
+    padding: 5px;
+    width: 80px;
+    justify-content: center;
+    transition: opacity .2s;
+}
+
+.button:hover{
+    opacity: 0.7;
 }
