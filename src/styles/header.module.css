@@ -6,6 +6,10 @@
     background-color: var(--bg-header);
 }
 
+.header a{
+    user-select: none;
+}
+
 .nav{
     display: flex;
     justify-content: space-between;
@@ -91,11 +95,16 @@
 
 .logout_popover{
     display: flex;
+    user-select: none;
     padding: 0;
     justify-content: center;
     align-items: center;
     gap: 10px;
     color: #000;
+}
+
+.logout_popover:hover{
+    cursor: pointer;
 }
 
 .logout_popover img, .logout_popover svg{

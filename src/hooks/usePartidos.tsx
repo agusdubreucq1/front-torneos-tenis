@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Partido } from '../vite-env';
-import { getPartidosByTorneo } from '../services/getPartidosByTorneo';
+import { getPartidosByTorneo } from '../services/partido';
 
 type UsePartidosType = {
     partidos: Partido[];

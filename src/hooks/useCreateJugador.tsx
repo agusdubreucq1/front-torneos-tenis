@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from '../store/user';
 import { message } from 'antd';
-import { createJugador } from '../services/createJugador';
+import { createJugador } from '../services/Jugador';
 
 const useCreateJugador = () => {
     const [messageAPI, contextHolder] = message.useMessage();

@@ -4,8 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 
 
 import styles from '../styles/drawTournament.module.css'
-import { potenciasDe2 } from '../services/potenciasDe2';
-import { arrayDeNumbers } from '../services/arrayDeNumbers';
+import { potenciasDe2 } from '../services/tools';
+import { arrayDeNumbers } from '../services/tools';
 import CardPartidoVacio from './CardPartidoVacio';
 import CardPartido from './CardPartido';
 import { useUser } from '../store/user';
@@ -13,6 +13,7 @@ import { Result } from 'antd';
 import { useTournament } from '../hooks/useTournament';
 import { usePartidos } from '../store/partidos';
 import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
+import { RONDAS, getRondas } from '../constantes';
 
 
 
@@ -56,20 +57,23 @@ const Draw: React.FC = () => {
                     rondas.map((jugadoresPorRonda: number) => {
                         const arrayPartidos = arrayDeNumbers(jugadoresPorRonda)
                         return (
-                            <div className={styles.ronda} key={jugadoresPorRonda}>
-                                {
-                                    arrayPartidos.map((orden) => {
-                                        const partido = findPartido(orden, jugadoresPorRonda)
-                                        if (partido) {
+                            <div className={styles.container_ronda} key={jugadoresPorRonda}>
+                                <span className={styles.nameRonda}>{getRondas(jugadoresPorRonda)}</span>
+                                <div className={styles.ronda} key={jugadoresPorRonda}>
+                                    {
+                                        arrayPartidos.map((orden) => {
+                                            const partido = findPartido(orden, jugadoresPorRonda)
+                                            if (partido) {
+                                                return (
+                                                    <CardPartido p={partido} key={`${partido.id}`} />
+                                                )
+                                            }
                                             return (
-                                                <CardPartido p={partido} key={`${partido.id}`} />
+                                                <CardPartidoVacio key={`${orden}-${jugadoresPorRonda}`} isAdmin={isAdmin} jugadoresXRonda={jugadoresPorRonda} orden={orden} idTorneo={id ?? 0} />
                                             )
-                                        }
-                                        return (
-                                            <CardPartidoVacio key={`${orden}-${jugadoresPorRonda}`} isAdmin={isAdmin} jugadoresXRonda={jugadoresPorRonda} orden={orden} idTorneo={id ?? 0}   />
-                                        )
-                                    })
-                                }
+                                        })
+                                    }
+                                </div>
                             </div>)
                     })
                 }

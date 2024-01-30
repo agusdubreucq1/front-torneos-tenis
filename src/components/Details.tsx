@@ -20,7 +20,7 @@ const DetailsTournament: React.FC = () => {
 
     <div className={styles.dato}>
         <p>Lugar</p>
-        <p>{tournament?.lugar}</p>
+        <p>{tournament?.lugar ? tournament?.lugar : '-'}</p>
     </div>
 
     <div className={styles.dato}>
@@ -30,7 +30,7 @@ const DetailsTournament: React.FC = () => {
 
     <div className={styles.descripcion}>
         <p>Descripcion</p>
-        <p>{tournament?.descripcion}</p>
+        <p>{tournament?.descripcion ? tournament?.descripcion : '-'}</p>
     </div>
 </div>
   );

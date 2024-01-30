@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Jugador } from "../vite-env";
-import { getInscripciones } from "../services/getInscripciones";
+import { getInscripciones } from "../services/inscripciones";
 
 const useJugadoresFromTournament: ({ id }: { id: string | number }) => { jugadores: Jugador[], error: string | null, loading: boolean } = ({ id }) => {
     const [jugadores, setJugadores] = useState<Jugador[]>([]);

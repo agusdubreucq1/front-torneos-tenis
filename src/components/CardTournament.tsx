@@ -21,7 +21,7 @@ const CardTournament: React.FC<Props> = ({ tournament }) => {
         <p >{tournament.nombre}</p>
       </div>
       <div className={styles.info}>
-        <p><img src={map} alt="" />{tournament.lugar}</p>
+        <p><img src={map} alt="" />{tournament.lugar ? tournament.lugar : '-'}</p>
         <p><img src={date} alt="" /> {tournament.fecha.slice(0, 10)}</p>
         <p><img src={category} alt="" /> {tournament.categoria}</p>
       </div>

@@ -11,6 +11,21 @@ export interface Tournament {
   users: User[];
 }
 
+export interface InscripcionesOfTournament {
+  cant_jugadores: number | null;
+  createdAt: string;
+  updatedAt: string;
+  jugadores: Jugador[];
+}
+
+export interface InscripcionesOfJugador {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  userId: number;
+  torneos: Tournament[];
+}
+
 export type User = {
   nombre: string;
   apellido: string;

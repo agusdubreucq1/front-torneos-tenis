@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Partido } from "../vite-env";
-import { getPartidosByTorneo } from "../services/getPartidosByTorneo";
+import { getPartidosByTorneo } from "../services/partido";
 
 interface UsePartido {
   partidos: Partido[];

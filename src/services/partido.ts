@@ -1,4 +1,5 @@
 import { URLBACK } from "../constantes";
+import { Partido } from "../vite-env";
 
 export const createPartido = async (body: any, token: string, id: string | number) => {
     const response = await fetch(URLBACK + '/admin/torneo/' + id + '/partidos', {
@@ -17,3 +18,12 @@ export const createPartido = async (body: any, token: string, id: string | numbe
     
     return data;
 }
+
+export const getPartidosByTorneo = async (id: string | number) => {
+    const response = await fetch(`${URLBACK}/admin/torneo/${id}/partidos`);
+    if (!response.ok) {
+      throw new Error("Error al encontrar los partidos");
+    }
+    const data = await response.json();
+    return data as Partido[];
+  };

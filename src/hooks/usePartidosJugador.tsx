@@ -1,5 +1,5 @@
 import React from "react";
-import { getPartidosByJugador } from "../services/getPartidosByJugador";
+import { getPartidosByJugador } from "../services/Jugador";
 import { Partido } from "../vite-env";
 
 interface Props {

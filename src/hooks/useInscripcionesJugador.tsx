@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Tournament } from "../vite-env";
-import { getInscripcionesByJugador } from "../services/getInscripcionesByJugador";
+import { getInscripcionesByJugador } from "../services/inscripciones";
 
 interface Props{
     id: string | number;

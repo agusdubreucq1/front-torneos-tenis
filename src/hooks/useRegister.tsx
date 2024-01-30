@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../services/register';
+import { register } from '../services/login';
 
 const useRegister = () => {
     const navigate = useNavigate();

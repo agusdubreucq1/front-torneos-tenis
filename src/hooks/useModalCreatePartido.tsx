@@ -1,6 +1,6 @@
 import { Modal, Select, Form, Input, DatePicker, Alert, message } from 'antd';
 import React from 'react';
-import { createPartido } from '../services/createPartido';
+import { createPartido } from '../services/partido';
 import { useUser } from '../store/user';
 import { usePartidos } from '../store/partidos';
 import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';

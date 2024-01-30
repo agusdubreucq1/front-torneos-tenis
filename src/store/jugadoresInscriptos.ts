@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Jugador } from "../vite-env";
-import { getInscripciones } from "../services/getInscripciones";
+import { getInscripciones } from "../services/inscripciones";
 
 export type UseJugadoresInscriptos = {
   jugadoresInscriptos: Jugador[];

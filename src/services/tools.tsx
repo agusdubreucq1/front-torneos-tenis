@@ -1,4 +1,7 @@
-// Crear una función que devuelva un array con las potencias de 2 menores que un número
+export const arrayDeNumbers = (number: number) => {
+    return Array.from({ length: number }, (_, i) => i + 1)
+}
+
 export function potenciasDe2(numero: number) {
     let array = [];
     let exponente = 0;
@@ -14,4 +17,3 @@ export function potenciasDe2(numero: number) {
   // Usar la función para crear un array con las potencias de 2 menores que 16
   // const arrayPotencias = potenciasDe2(16);
  // [16, 8, 4, 2, 1]
-  

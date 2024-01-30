@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useUser } from '../store/user';
-import { createTournament } from '../services/createTournament';
+import { createTournament } from '../services/tournament';
 import { message } from 'antd';
 
 

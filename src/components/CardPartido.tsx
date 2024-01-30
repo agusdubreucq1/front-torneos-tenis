@@ -22,7 +22,7 @@ const CardPartido: React.FC<{ p: Partido }> = ({ p }) => {
                     </div>
                 </div>
                 <div className={styles.resultado}>
-                    <p>{p.resultado}</p>
+                    <p>{p.resultado ? p.resultado : '-'}</p>
                 </div>
             </div>
         </div>

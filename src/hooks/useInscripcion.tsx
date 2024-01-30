@@ -1,8 +1,8 @@
 import React from 'react';
-import { inscribirJugador } from '../services/inscribirJugador';
+import { inscribirJugador } from '../services/inscripciones';
 import { useUser } from '../store/user';
 import { FormInstance, message } from 'antd';
-import { getJugadoresNoInscriptos } from '../services/getJugadoresNoInscriptos';
+import { getJugadoresNoInscriptos } from '../services/inscripciones';
 
 const useInscripcion = ({id, form}: {id: string | number, form?: FormInstance<any>}) => {
   const [error, setError] = React.useState<null | String>(null);

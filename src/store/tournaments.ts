@@ -1,7 +1,6 @@
 import { create} from "zustand";
 import { Tournament } from "../vite-env";
-import { URLBACK } from "../constantes";
-import { getTournaments } from "../services/getTournaments";
+import { getTournaments } from "../services/tournament";
 
 
 interface TournamentsState {

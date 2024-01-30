@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Jugador } from "../vite-env";
-import { getJugadorById } from "../services/getJugadorById";
+import { getJugadorById } from "../services/Jugador";
 
 type UseJugadorType = {
     jugador: Jugador | null,
