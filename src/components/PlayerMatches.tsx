@@ -1,5 +1,5 @@
 import React from 'react';
-import CardPartido from './cardMatch';
+import CardPartido from './CardMatch';
 import usePartidosJugador from '../hooks/usePlayerMatches';
 import styles from '../styles/partidoJugador.module.css'
 

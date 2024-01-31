@@ -7,7 +7,7 @@ import styles from '../styles/drawTournament.module.css'
 import { potenciasDe2 } from '../services/tools';
 import { arrayDeNumbers } from '../services/tools';
 import CardMatchEmpty from './CardMatchEmpty';
-import CardMatch from './cardMatch';
+import CardMatch from './CardMatch';
 import { useUser } from '../store/user';
 import { useMatches } from '../store/matches';
 import { Result } from 'antd';

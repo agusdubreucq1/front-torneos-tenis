@@ -53,6 +53,7 @@ export type Match = {
   Pareja2: Pareja;
   Ganador: null;
   jugadoresXRonda: number;
+  torneoId: number
 };
 
 export type Pareja = {

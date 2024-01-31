@@ -2,7 +2,8 @@ import React from "react"
 import styles_draw from "../styles/drawTournament.module.css"
 import styles from '../styles/cardMatch.module.css'
 
-import useModalCreatePartido from "../hooks/useModalCreatePartido"
+// import useModalCreatePartido from "../hooks/useModalCreatePartido"
+import useCreateMatch from "../hooks/useCreateMatch"
 
 interface Props {
     idTorneo: string | number,
@@ -12,7 +13,8 @@ interface Props {
 }
 const CardMatchEmpty: React.FC<Props> = ({ idTorneo, jugadoresXRonda, orden, isAdmin }) => {
 
-    const { handleOpenModal, modal, contextHolder } = useModalCreatePartido({ id: idTorneo })
+    // const { handleOpenModal, modal, contextHolder } = useModalCreatePartido({ id: idTorneo })
+    const { contextHolder, modal, handleOpenModal, setAdditionalValues } = useCreateMatch(String(idTorneo))
 
     return (
         <>
@@ -22,7 +24,12 @@ const CardMatchEmpty: React.FC<Props> = ({ idTorneo, jugadoresXRonda, orden, isA
                 <div className={styles.match}>
                     {
                         isAdmin
-                            ? <button className={styles.button} onClick={() => handleOpenModal({ orden, jugadoresXRonda })} >+ Partido</button>
+                            ? <button className={styles.button} onClick={
+                                () => {
+                                    setAdditionalValues({ orden: orden, jugadoresXRonda: jugadoresXRonda })
+                                    handleOpenModal();
+                                }
+                            } >+ Partido</button>
                             : <>
                                 <div className={styles.jugadores}>
                                     <p>-</p>
