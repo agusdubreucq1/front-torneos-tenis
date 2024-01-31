@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../styles/detailsTournament.module.css'
 import { useTournaments } from '../store/tournaments';
 import { useParams } from 'react-router-dom';
+import usePlayersFromTournament from '../hooks/usePlayersFromTournament';
 
 
 const DetailsTournament: React.FC = () => {
@@ -10,6 +11,7 @@ const DetailsTournament: React.FC = () => {
 
     const tournaments = useTournaments((state) => state.tournaments);
     const tournament = tournaments.find((t) => t.id == Number(id));
+    const {players} = usePlayersFromTournament({id: id ?? 0})
 
   return (
     <div className={styles.detalles}>
@@ -31,6 +33,11 @@ const DetailsTournament: React.FC = () => {
     <div className={styles.descripcion}>
         <p>Descripcion</p>
         <p>{tournament?.descripcion ? tournament?.descripcion : '-'}</p>
+    </div>
+
+    <div className={styles.descripcion}>
+        <p>Inscriptos</p>
+        <p>{players.map(p => p.user?.nombre + ' ' + p.user?.apellido).join(', ')}</p>
     </div>
 </div>
   );

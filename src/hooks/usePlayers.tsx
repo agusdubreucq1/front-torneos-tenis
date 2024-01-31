@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
-import { Jugador } from "../vite-env"
+import { Player } from "../vite-env"
 import { getJugadores } from "../services/Jugador";
 
 
-interface UseJugadoresType {
+interface UsePlayersType {
     loading: boolean,
     error: string | null,
-    jugadores: Jugador[]
+    players: Player[]
 }
 
-const useJugadores: () => UseJugadoresType = () => {
-    const [jugadores, setJugadores] = useState<Jugador[]>([]);
+const usePlayers: () => UsePlayersType = () => {
+    const [players, setPlayers] = useState<Player[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
-    const fetchJugadores = async () => {
+    const fetchPlayers = async () => {
         try {
             setError(null);
             setLoading(true);
             const data = await getJugadores();
-            setJugadores(data);
+            setPlayers(data);
             
         } catch (e: any) {
             if(e.name === 'Error'){
@@ -34,15 +34,15 @@ const useJugadores: () => UseJugadoresType = () => {
     };
 
     useEffect(() => {
-        fetchJugadores();
+        fetchPlayers();
     }, [])
 
     return {
-        jugadores,
+        players,
         error,
         loading,
-        fetchJugadores
+        fetchPlayers
     }
 }
 
-export default useJugadores
+export default usePlayers

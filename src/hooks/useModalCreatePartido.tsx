@@ -2,7 +2,7 @@ import { Modal, Select, Form, Input, DatePicker, Alert, message } from 'antd';
 import React from 'react';
 import { createPartido } from '../services/partido';
 import { useUser } from '../store/user';
-import { usePartidos } from '../store/partidos';
+import { useMatches } from '../store/matches';
 import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
 
 interface ValuesPartido {
@@ -19,7 +19,7 @@ const useModalCreatePartido = ({ id }: { id: string | number }) => {
     const jugadores = useJugadoresInscriptos((state) => state.jugadoresInscriptos);
 
     const token = useUser((state) => state.token);
-    const getPartidos = usePartidos((state) => state.getPartidos);
+    const getMatches = useMatches((state) => state.getMatches);
 
     const [openModal, setOpenModal] = React.useState(false);
     const [valuesPartido, setValuesPartido] = React.useState<ValuesPartido>({
@@ -48,7 +48,7 @@ const useModalCreatePartido = ({ id }: { id: string | number }) => {
             const body = { ...values, ...valuesPartido };
             await createPartido(body, token!, id);
             messageAPI.success('Partido creado con exito');
-            getPartidos(id);
+            getMatches(id);
             setOpenModal(false);
         } catch (error) {
             setError('Error al crear el partido');

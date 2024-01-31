@@ -1,7 +1,6 @@
 import React from 'react';
-import CardPartido from './CardPartido';
-import usePartidosJugador from '../hooks/usePartidosJugador';
-import CardPartidoVacio from './CardPartidoVacio';
+import CardPartido from './cardMatch';
+import usePartidosJugador from '../hooks/usePlayerMatches';
 import styles from '../styles/partidoJugador.module.css'
 
 interface Props {
@@ -9,9 +8,9 @@ interface Props {
 }
 
 
-const PartidosJugador: React.FC<Props> = ({ id }) => {
+const PlayerMatches: React.FC<Props> = ({ id }) => {
 
-    const { partidos, error, loading } = usePartidosJugador({ id });
+    const { partidos, error, loading: _loading } = usePartidosJugador({ id });
 
     return (
         <div className={styles.container}>
@@ -26,4 +25,4 @@ const PartidosJugador: React.FC<Props> = ({ id }) => {
     );
 };
 
-export default PartidosJugador
+export default PlayerMatches

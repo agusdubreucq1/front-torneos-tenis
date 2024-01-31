@@ -1,13 +1,13 @@
 import { create } from "zustand";
-import { PartidoToBack } from "../vite-env";
+import { MatchToBack } from "../vite-env";
 
 export interface PartidoState {
-    partido : PartidoToBack;
-    setPartido: (partido: PartidoToBack) => void;
+    match : MatchToBack;
+    setMatch: (match: MatchToBack) => void;
 }
 
 export const usePartido = create<PartidoState>((set) => ({
-    partido: {
+    match: {
         orden: 0,
         resultado: '',
         pareja1: 0,
@@ -17,6 +17,6 @@ export const usePartido = create<PartidoState>((set) => ({
         ganador: null,
         jugadoresXRonda: 0
     },
-    setPartido: (partido: PartidoToBack) => set({ partido: partido})
+    setMatch: (match: MatchToBack) => set({ match: match})
 }))
 

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Jugador } from "../vite-env";
+import { Player } from "../vite-env";
 import { getInscripciones } from "../services/inscripciones";
 
-const useJugadoresFromTournament: ({ id }: { id: string | number }) => { jugadores: Jugador[], error: string | null, loading: boolean } = ({ id }) => {
-    const [jugadores, setJugadores] = useState<Jugador[]>([]);
+const usePlayersFromTournament: ({ id }: { id: string | number }) => { players: Player[], error: string | null, loading: boolean } = ({ id }) => {
+    const [players, setJugadores] = useState<Player[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const fetchJugadores = async () => {
+        const fetchPlayers = async () => {
             try {
                 setError(null);
                 setLoading(true);
@@ -21,14 +21,14 @@ const useJugadoresFromTournament: ({ id }: { id: string | number }) => { jugador
                 setLoading(false);
             }
         }
-        fetchJugadores();
+        fetchPlayers();
     }, [])
 
     return {
-        jugadores,
+        players,
         error,
         loading,
     }
 }
 
-export default useJugadoresFromTournament
+export default usePlayersFromTournament

@@ -6,7 +6,7 @@ interface Props{
     id: string | number;
 }
 
-const useInscripcionesJugador = ({ id }: Props) => {
+const useRegistrationsPlayer = ({ id }: Props) => {
     const [inscripciones, setInscripciones] = React.useState<Tournament[]>([]);
     const [error, setError] = React.useState<null | string>(null);
     const [loading, setLoading] = React.useState(false);
@@ -39,4 +39,4 @@ const useInscripcionesJugador = ({ id }: Props) => {
         }
 }
 
-export default useInscripcionesJugador
+export default useRegistrationsPlayer

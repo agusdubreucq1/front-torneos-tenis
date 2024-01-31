@@ -4,11 +4,11 @@ import styles from '../styles/jugadores.module.css'
 
 import plus from '/icons/plus.svg'
 import { Link } from 'react-router-dom';
-import useJugadores from '../hooks/useJugadores';
+import usePlayers from '../hooks/usePlayers';
 
 const Jugadores: React.FC = () => {
 
-    const { jugadores, error, loading: _loading } = useJugadores()
+    const { players, error, loading: _loading } = usePlayers()
     
     return (
         <main className={styles.main}>
@@ -26,7 +26,7 @@ const Jugadores: React.FC = () => {
                                 <p></p>
                             </div>
                             {
-                                jugadores.map(j =>
+                                players.map(j =>
                                     <div key={j.user?.dni} className={styles.fila}>
                                         <p>{j.user?.nombre}</p>
                                         <p>{j.user?.apellido}</p>

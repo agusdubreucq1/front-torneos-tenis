@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { Jugador } from "../vite-env";
+import { Player } from "../vite-env";
 import { getInscripciones } from "../services/inscripciones";
 
 export type UseJugadoresInscriptos = {
-  jugadoresInscriptos: Jugador[];
+  jugadoresInscriptos: Player[];
   error: string | null;
   loading: boolean;
   getJugadoresInscriptos: (id: number | string) => void;

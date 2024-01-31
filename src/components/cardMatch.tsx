@@ -1,16 +1,16 @@
 import React from "react"
 import styles_draw from "../styles/drawTournament.module.css"
-import { Partido } from "../vite-env"
+import { Match } from "../vite-env"
 
-import styles from '../styles/cardPartido.module.css'
+import styles from '../styles/cardMatch.module.css'
 
 import tick from '/icons/tick.svg'
 
 
-const CardPartido: React.FC<{ p: Partido }> = ({ p }) => {
+const CardMatch: React.FC<{ p: Match }> = ({ p }) => {
     return (
-        <div className={styles_draw.container_partido}>
-            <div key={p.id} className={styles.partido}>
+        <div className={styles_draw.container_match}>
+            <div key={p.id} className={styles.match}>
                 <div className={styles.jugadores}>
                     <div className={styles.jugador}>
                         <p>{p.Pareja1.user.apellido + '.' + p.Pareja1.user.nombre.slice(0, 1).toUpperCase()}</p>
@@ -29,4 +29,4 @@ const CardPartido: React.FC<{ p: Partido }> = ({ p }) => {
     )
 }
 
-export default CardPartido
+export default CardMatch

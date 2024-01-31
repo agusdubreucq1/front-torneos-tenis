@@ -1,5 +1,5 @@
 import { URLBACK } from "../constantes";
-import { InscripcionesOfJugador, InscripcionesOfTournament, Jugador, Tournament } from "../vite-env";
+import { InscripcionesOfJugador, InscripcionesOfTournament, Player, Tournament } from "../vite-env";
 
 export const inscribirJugador = async (id: string | number, token: string, body: any) => {
     const response = await fetch(`${URLBACK}/admin/torneo/${id}/inscripciones`, {
@@ -38,7 +38,7 @@ export const getJugadoresNoInscriptos = async (id: number | string) => {
         throw new Error('Error al encontrar los jugadores');
     }
     const data = await response.json();
-    return data as Jugador[];
+    return data as Player[];
 }
 
 export const getInscripciones = async (id: string | number) => {

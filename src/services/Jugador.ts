@@ -1,5 +1,5 @@
 import { URLBACK } from "../constantes"
-import { Jugador, Partido } from "../vite-env";
+import { Player, Match } from "../vite-env";
 
 export const createJugador = async (body: any, token: string) => {
     const response = await fetch(URLBACK + '/admin/jugador', {
@@ -27,7 +27,7 @@ export const getPartidosByJugador = async (id: string | number) => {
         throw new Error("Error al encontrar los partidos");
     }
     
-    return data as Partido[];
+    return data as Match[];
 }
 
 export const getJugadorById = async (id: string | number) => {
@@ -36,7 +36,7 @@ export const getJugadorById = async (id: string | number) => {
         throw new Error('Error al encontrar el jugador');
     }
     const data = await response.json();
-    return data as Jugador;
+    return data as Player;
 }
 
 export const getJugadores = async () => {
@@ -45,5 +45,5 @@ export const getJugadores = async () => {
         throw new Error('Error al encontrar los jugadores');
     }
     const data = await response.json();
-    return data as Jugador[];
+    return data as Player[];
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/createJugador.module.css'
+import styles from '../styles/createPlayer.module.css'
 import { Alert, Form, Input, Spin } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 

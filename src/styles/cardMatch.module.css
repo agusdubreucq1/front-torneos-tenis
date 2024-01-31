@@ -1,4 +1,4 @@
-.partido{
+.match{
     display: grid;
     grid-template-columns: 145px 45px;
     gap: 10px;

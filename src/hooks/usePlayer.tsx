@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { Jugador } from "../vite-env";
+import { Player } from "../vite-env";
 import { getJugadorById } from "../services/Jugador";
 
 type UseJugadorType = {
-    jugador: Jugador | null,
+    jugador: Player | null,
     error: string | null,
     loading: boolean
 }
 
 
-const useJugador: (id: string | undefined) => UseJugadorType = (id) => {
+const usePlayer: (id: string | undefined) => UseJugadorType = (id) => {
 
-    const [jugador, setJugador] = useState<Jugador | null>(null);
+    const [jugador, setJugador] = useState<Player | null>(null);
     const [error, setError] = useState<string | null>('');
     const [loading, setLoading] = useState(false);
     useEffect(() => {
@@ -44,4 +44,4 @@ const useJugador: (id: string | undefined) => UseJugadorType = (id) => {
 
 }
 
-export default useJugador
+export default usePlayer

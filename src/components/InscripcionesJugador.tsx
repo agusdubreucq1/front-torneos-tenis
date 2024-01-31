@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CardTournament from './CardTournament';
-import useInscripcionesJugador from '../hooks/useInscripcionesJugador';
+import useInscripcionesJugador from '../hooks/useRegistrationsPlayer';
 import styles from '../styles/inscripcionesJugador.module.css'
 
 interface Props{
@@ -8,7 +8,7 @@ interface Props{
 }
 
 const InscripcionesJugador: React.FC<Props> = ({id}) => {
-    const {inscripciones, error, loading} = useInscripcionesJugador({id});
+    const {inscripciones, error: _, loading: __} = useInscripcionesJugador({id});
 
   return (
     <div className={styles.container}>

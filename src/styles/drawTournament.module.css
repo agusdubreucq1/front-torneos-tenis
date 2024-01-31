@@ -12,7 +12,7 @@
     margin-top: 50px;
 }
 
-.container_partido{
+.container_match{
     display: block;
     margin: 10px 0;
     height: 80px;
@@ -44,7 +44,7 @@
     text-align: center;
 }
 /* before de los partidos */
-.container_ronda:not(:first-of-type) .ronda .container_partido::before{
+.container_ronda:not(:first-of-type) .ronda .container_match::before{
     content: "";
     border-color: #999;
     display: block;
@@ -56,7 +56,7 @@
 }
 /* after de los partidos */
 
-.container_ronda .ronda .container_partido::after {
+.container_ronda .ronda .container_match::after {
     position: relative;
     width: calc(var(--separacionRondas) / 2);
     border-right-style: solid;
@@ -67,19 +67,19 @@
     left: 100%;
 }
 
-.container_ronda:not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after{
+.container_ronda:not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after{
     border-top-style: solid;
     top: -50%;
 }
 
 /* primera ronda */
 
-.container_ronda:nth-of-type(1) .ronda .container_partido:nth-of-type(odd)::after {
+.container_ronda:nth-of-type(1) .ronda .container_match:nth-of-type(odd)::after {
     --height: 64px;
     height: var(--height);
 }
 
-.container_ronda:nth-of-type(1) .ronda .container_partido:nth-of-type(even)::after {
+.container_ronda:nth-of-type(1) .ronda .container_match:nth-of-type(even)::after {
     --height: 64px;
     height: var(--height);
     border-bottom-style: solid;
@@ -87,12 +87,12 @@
 }
 /* segunda ronda */
 
-.container_ronda:nth-of-type(2):not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after {
+.container_ronda:nth-of-type(2):not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
     --height: 128px;
     height: var(--height);
 }
 
-.container_ronda:nth-of-type(2):not(:last-of-type) .ronda .container_partido:nth-of-type(even)::after {
+.container_ronda:nth-of-type(2):not(:last-of-type) .ronda .container_match:nth-of-type(even)::after {
     --height: 128px;
     height: var(--height);
     border-bottom-style: solid;
@@ -101,12 +101,12 @@
 
 /* tercera ronda */
 
-.container_ronda:nth-of-type(3):not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after {
+.container_ronda:nth-of-type(3):not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
     --height: 256px;
     height: var(--height);
 }
 
-.container_ronda:nth-of-type(3):not(:last-of-type) .ronda .container_partido:nth-of-type(even)::after {
+.container_ronda:nth-of-type(3):not(:last-of-type) .ronda .container_match:nth-of-type(even)::after {
     --height: 256px;
     height: var(--height);
     border-bottom-style: solid;
@@ -115,12 +115,12 @@
 
 /* cuarta ronda */
 
-.container_ronda:nth-of-type(4):not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after {
+.container_ronda:nth-of-type(4):not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
     --height: 512px;
     height: var(--height);
 }
 
-.container_ronda:nth-of-type(4):not(:last-of-type) .ronda .container_partido:nth-of-type(even)::after {
+.container_ronda:nth-of-type(4):not(:last-of-type) .ronda .container_match:nth-of-type(even)::after {
     --height: 512px;
     height: var(--height);
     border-bottom-style: solid;
@@ -129,12 +129,12 @@
 
 /* quinta ronda */
 
-.container_ronda:nth-of-type(5):not(:last-of-type) .ronda .container_partido:nth-of-type(odd)::after {
+.container_ronda:nth-of-type(5):not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
     --height: 1024px;
     height: var(--height);
 }
 
-.container_ronda:nth-of-type(5):not(:last-of-type) .ronda .container_partido:nth-of-type(even)::after {
+.container_ronda:nth-of-type(5):not(:last-of-type) .ronda .container_match:nth-of-type(even)::after {
     --height: 1024px;
     height: var(--height);
     border-bottom-style: solid;

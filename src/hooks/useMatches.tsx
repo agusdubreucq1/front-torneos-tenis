@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Partido } from '../vite-env';
+import { Match } from '../vite-env';
 import { getPartidosByTorneo } from '../services/partido';
 
 type UsePartidosType = {
-    partidos: Partido[];
+    partidos: Match[];
     error: string | null;
     loading: boolean;
     fetchPartidos: () => void
 };
 
-const UsePartidos: (id: string | undefined) => UsePartidosType = (id) => {
+const UseMatches: (id: string | undefined) => UsePartidosType = (id) => {
 
-    const [partidos, setPartidos] = useState<Partido[]>([]);
+    const [partidos, setPartidos] = useState<Match[]>([]);
     const [error, setError] = useState<string | null>('');
     const [loading, setLoading] = useState(false);
 
@@ -43,4 +43,4 @@ const UsePartidos: (id: string | undefined) => UsePartidosType = (id) => {
     }
 };
 
-export default UsePartidos
+export default UseMatches

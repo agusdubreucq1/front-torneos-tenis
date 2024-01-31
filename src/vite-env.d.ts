@@ -32,7 +32,7 @@ export type User = {
   dni: number;
 };
 
-export type Jugador = {
+export type Player = {
   id: number;
   createdAt: Date;
   updatedAt: Date;
@@ -41,7 +41,7 @@ export type Jugador = {
 };
 
 // de partidos
-export type Partido = {
+export type Match = {
   id: number;
   orden: number;
   resultado: string;
@@ -63,7 +63,7 @@ export type Pareja = {
   user: User;
 };
 
-export interface PartidoToBack {
+export interface MatchToBack {
   resultado: string | null,
   ronda: string | null,
   jugadoresXRonda: number //multiplo de 2,

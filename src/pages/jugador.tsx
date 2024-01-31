@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import styles from '../styles/jugador.module.css'
-import useJugador from '../hooks/useJugador';
+import useJugador from '../hooks/usePlayer';
 import { DescriptionsProps, Result, Descriptions, Tabs, ConfigProvider } from 'antd';
-import PartidosJugador from '../components/PartidosJugador';
+import PlayerMatches from '../components/PlayerMatches';
 import InscripcionesJugador from '../components/InscripcionesJugador';
 
 const Jugador: React.FC = () => {
@@ -78,7 +78,7 @@ const Jugador: React.FC = () => {
                         defaultActiveKey="1"
                         centered
 
-                        items={[{ key: '1', label: 'Partidos', children: <PartidosJugador id={id as string} /> },
+                        items={[{ key: '1', label: 'Partidos', children: <PlayerMatches id={id as string} /> },
                         { key: '2', label: 'Torneos', children: <InscripcionesJugador id={id as string} /> }]}
                     />
                 </ConfigProvider>

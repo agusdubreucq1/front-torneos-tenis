@@ -1,24 +1,24 @@
 import { create } from "zustand";
-import { Partido } from "../vite-env";
+import { Match } from "../vite-env";
 import { getPartidosByTorneo } from "../services/partido";
 
-interface UsePartido {
-  partidos: Partido[];
-  getPartidos: (id: number | string) => void;
+interface UseMatches {
+  matches: Match[];
+  getMatches: (id: number | string) => void;
   loading: boolean;
   error: string | null;
 }
 
-export const usePartidos = create<UsePartido>((set, _get) => ({
-  partidos: [],
+export const useMatches = create<UseMatches>((set, _get) => ({
+  matches: [],
   error: null,
   loading: false,
-  getPartidos: async (id) => {
+  getMatches: async (id) => {
     set({ error: null });
     set({ loading: true });
     try {
       const data = await getPartidosByTorneo(id!);
-      set({ partidos: data });
+      set({ matches: data });
     } catch (e: any) {
       if (e.name === "Error") {
         set({ error: e.message });

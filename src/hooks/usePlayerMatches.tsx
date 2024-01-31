@@ -1,13 +1,13 @@
 import React from "react";
 import { getPartidosByJugador } from "../services/Jugador";
-import { Partido } from "../vite-env";
+import { Match } from "../vite-env";
 
 interface Props {
     id: string | number
 }
 
-const usePartidosJugador = ({ id }: Props) => {
-    const [partidos, setPartidos] = React.useState<Partido[]>([]);
+const usePlayerMatches = ({ id }: Props) => {
+    const [partidos, setPartidos] = React.useState<Match[]>([]);
     const [error, setError] = React.useState<null | string>(null);
     const [loading, setLoading] = React.useState(false);
 
@@ -40,4 +40,4 @@ const usePartidosJugador = ({ id }: Props) => {
     }
 }
 
-export default usePartidosJugador
+export default usePlayerMatches
