@@ -133,7 +133,7 @@ const useModalMatch: UseModalMatch = (handleOk, match) => {
     );
     setModal(newModal);
     console.log('new match: ', match);
-  }, [match, openModal]);
+  }, [match, openModal, error]);
 
 
   const dateFormat = 'YYYY/MM/DD';

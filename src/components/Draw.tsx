@@ -13,7 +13,7 @@ import { useMatches } from '../store/matches';
 import { Result } from 'antd';
 import { useTournament } from '../hooks/useTournament';
 import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
-import { RONDAS, getRondas } from '../constantes';
+import { getRondas } from '../constantes';
 
 
 
@@ -65,7 +65,7 @@ const Draw: React.FC = () => {
                                             const partido = findPartido(orden, jugadoresPorRonda)
                                             if (partido) {
                                                 return (
-                                                    <CardMatch p={partido} key={`${partido.id}`} />
+                                                    <CardMatch match={partido} key={`${partido.id}`} />
                                                 )
                                             }
                                             return (

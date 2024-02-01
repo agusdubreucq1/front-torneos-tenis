@@ -54,3 +54,18 @@ export const getMatchById = async (id: string | number) => {
   const data = await response.json();
   return data as Match;
 };
+
+export const deleteMatch = async (id: string | number, token: string) => {
+  const response = await fetch(`${URLBACK}/admin/torneo/partidos/${id}`, {
+    headers: {
+      Authorization: token!,
+    },
+    method: "DELETE"
+  })
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error("Error al eliminar el partido");
+  }
+  
+  return data
+}
