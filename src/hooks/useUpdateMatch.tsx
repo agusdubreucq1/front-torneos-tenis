@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { Match } from '../vite-env';
+import React from 'react';
 import { updateMatch } from '../services/partido';
 import useModalMatch from './useModalMatch';
 import { message } from 'antd';
