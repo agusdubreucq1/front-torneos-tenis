@@ -1,7 +1,7 @@
 import React from 'react';
-import CardPartido from './CardMatch';
 import usePartidosJugador from '../hooks/usePlayerMatches';
 import styles from '../styles/partidoJugador.module.css'
+import InfoMatch from './InfoMatch';
 
 interface Props {
     id: string | number
@@ -17,7 +17,7 @@ const PlayerMatches: React.FC<Props> = ({ id }) => {
             {error && <p className='error'>{error}</p>}
             {
                 partidos.filter(p=> p.resultado != null).map((p) =>{
-                    return <CardPartido key={p.id} p={p} />
+                    return <InfoMatch key={p.id} match={p} />
                 })
                     
             }

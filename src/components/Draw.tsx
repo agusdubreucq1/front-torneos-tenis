@@ -65,7 +65,7 @@ const Draw: React.FC = () => {
                                             const partido = findPartido(orden, jugadoresPorRonda)
                                             if (partido) {
                                                 return (
-                                                    <CardMatch match={partido} key={`${partido.id}`} />
+                                                    <CardMatch match={partido} key={`${partido.id}`} isAdmin={isAdmin} />
                                                 )
                                             }
                                             return (

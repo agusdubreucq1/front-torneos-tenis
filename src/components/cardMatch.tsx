@@ -4,7 +4,7 @@ import { Match } from "../vite-env"
 
 import styles from '../styles/cardMatch.module.css'
 
-import tick from '/icons/tick.svg'
+// import tick from '/icons/tick.svg'
 import { Modal, message } from "antd"
 import { useUser } from "../store/user"
 import { useMatches } from "../store/matches"
@@ -12,10 +12,11 @@ import useModalMatch from "../hooks/useModalMatch"
 import { deleteMatch, updateMatch } from "../services/partido"
 import IconEdit from "./IconEdit"
 import IconDelete from "./IconDelete"
+import InfoMatch from "./InfoMatch"
 
 
 
-const CardMatch: React.FC<{ match: Match }> = ({ match }) => {
+const CardMatch: React.FC<{ match: Match, isAdmin?: boolean }> = ({ match, isAdmin = false }) => {
     const [messageAPI, contextHolder] = message.useMessage();
     const token = useUser((state) => state.token);
     const getMatches = useMatches((state) => state.getMatches);
@@ -62,41 +63,27 @@ const CardMatch: React.FC<{ match: Match }> = ({ match }) => {
         setOpenModalDelete(false);
     }
 
-    
-
-
 
     const { modal, form, handleOpenModal, setLoading, setError, handleCloseModal } = useModalMatch(handleOk, match);
 
+    console.log(isAdmin)
     return (
         <>
-            {contextHolder}
-            {modal}
-            <Modal title="Eliminar partido" open={openModalDelete} okText="Confirmar" onOk={handleDelete} onCancel={handleCloseModalDelete}>
-                <p>¿Desea eliminar el partido?</p>
-            </Modal>
+            {isAdmin && contextHolder}
+            {isAdmin && modal}
+            {isAdmin &&
+                <Modal title="Eliminar partido" open={openModalDelete} okText="Confirmar" onOk={handleDelete} onCancel={handleCloseModalDelete}>
+                    <p>¿Desea eliminar el partido?</p>
+                </Modal>}
             <div className={styles_draw.container_match}>
-                <div key={match?.id} className={styles.match}>
-                    <div className={styles.jugadores}>
-                        <div className={styles.jugador}>
-                            <p>{match?.Pareja1.user.apellido + '.' + match?.Pareja1.user.nombre.slice(0, 1).toUpperCase()}</p>
-                            {match?.ganador == 1 && <img src={tick}></img>}
-                        </div>
-                        <div className={styles.jugador}>
-                            <p>{match?.Pareja2.user.apellido + '.' + match?.Pareja2.user.nombre.slice(0, 1).toUpperCase()}</p>
-                            {match?.ganador == 2 && <img src={tick}></img>}
-                        </div>
-                    </div>
-                    <div className={styles.resultado}>
-                        <p>{match?.resultado ? match?.resultado : '-'}</p>
-                    </div>
-
-                    <div className={styles.edit}>
-                        <button className={styles.button} onClick={() => { handleOpenModal() }}><IconEdit/></button>
-                        <button className={styles.button} onClick={handleOpenModalDelete}><IconDelete /></button>
-                    </div>
+                <div className={styles.card}>
+                    <InfoMatch match={match} />
+                    {isAdmin &&
+                        <div className={styles.edit}>
+                            <button className={styles.button} onClick={() => { handleOpenModal() }}><IconEdit /></button>
+                            <button className={styles.button} onClick={handleOpenModalDelete}><IconDelete /></button>
+                        </div>}
                 </div>
-
             </div>
         </>
     )
