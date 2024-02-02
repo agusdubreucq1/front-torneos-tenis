@@ -3,6 +3,8 @@ import { useUser } from '../store/user';
 import { Link } from 'react-router-dom';
 import { ConfigProvider, Descriptions, DescriptionsProps, Result, Tabs } from 'antd';
 import styles from '../styles/perfil.module.css'
+import PlayerMatches from '../components/PlayerMatches';
+import TournamentsUser from '../components/TournamentsUser';
 
 const Perfil: React.FC = () => {
 
@@ -62,12 +64,15 @@ const Perfil: React.FC = () => {
             key: '2',
             label: 'Apellido',
             children: user?.apellido,
-        },
-        {
-            key: '3',
-            label: 'torneos creados',
-            children: 10,
         }
+    ]
+
+    const tabs_player = [
+        { key: '1', label: 'Partidos', children: <div></div> }, { key: '2', label: 'Torneos', children: <div></div> }
+    ]
+
+    const tabs_admin = [
+        { key: '1', label: 'Torneos', children: <TournamentsUser /> },
     ]
 
     return (
@@ -93,7 +98,7 @@ const Perfil: React.FC = () => {
                         defaultActiveKey="1"
                         centered
 
-                        items={[{ key: '1', label: 'Partidos', children: <div></div> }, { key: '2', label: 'Torneos', children: <div></div> }]}
+                        items={user.isAdmin ? tabs_admin : tabs_player}
                     />
                 </ConfigProvider>
             </section>

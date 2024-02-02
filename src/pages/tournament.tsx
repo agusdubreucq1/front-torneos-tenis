@@ -12,8 +12,11 @@ const Tournament: React.FC = () => {
     const { id } = useParams();
 
     const user = useUser((state) => state.user);
-
+    
     const {tournament} = useTournament({id})
+
+    const isAdminOfTournament = tournament?.users.map((u) => u.dni).includes(user?.dni ?? 0)
+    const isJugador = user?.isAdmin === false
 
     if(!tournament){
         return (
@@ -35,7 +38,8 @@ const Tournament: React.FC = () => {
                         <Link to={`/tournament/${id}/details`} className={location.pathname === `/tournament/${id}/details` ? `${styles.selected} ${styles.link_opciones}` : `${styles.link_opciones}`}>Detalles</Link>
                         <Link to={`/tournament/${id}/draw`} className={location.pathname === `/tournament/${id}/draw` ? `${styles.selected} ${styles.link_opciones}` : `${styles.link_opciones}`}>Cuadro</Link>
                     </div>
-                    {tournament?.users.map((u) => u.dni).includes(user?.dni ?? 0) ? <Link to={`/tournament/${id}/inscripcion`} className={styles.btn}>Inscribir jugador</Link> : null}
+                    {isJugador && <Link to={`/tournament/${id}/inscripcion`} className={styles.btn}>Inscribirse</Link>}
+                    {isAdminOfTournament && <Link to={`/tournament/${id}/inscripcion`} className={styles.btn}>Inscribir jugador</Link>}
                 </div>
                 <Outlet></Outlet>
             </section>

@@ -49,3 +49,22 @@ export const getInscripciones = async (id: string | number) => {
     const data = await response.json();
     return data as InscripcionesOfTournament;
 };
+
+export const autoInscribirse = async (id: string | number, token: string) => {
+    const response = await fetch(`${URLBACK}/admin/torneo/${id}/autoInscripcion`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+        },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        if(response.status === 403) {
+            throw new Error("No tienes permiso para inscribir");
+        }
+        throw new Error("Error al inscribir al jugador");
+    }
+    
+    return data;
+}

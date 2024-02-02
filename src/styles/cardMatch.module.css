@@ -1,3 +1,10 @@
+.card{
+    display: flex;
+    width: 200px;
+    height: 80px;
+    position: relative;
+}
+
 .match{
     display: grid;
     grid-template-columns: 145px 45px;
@@ -79,7 +86,7 @@
     align-items: center;
 }
 
-.match:hover > .edit{
+.card:hover  .edit{
 
     display: flex;
 }
