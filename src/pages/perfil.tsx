@@ -5,6 +5,7 @@ import { ConfigProvider, Descriptions, DescriptionsProps, Result, Tabs } from 'a
 import styles from '../styles/perfil.module.css'
 import PlayerMatches from '../components/PlayerMatches';
 import TournamentsUser from '../components/TournamentsUser';
+import InscripcionesJugador from '../components/InscripcionesJugador';
 
 const Perfil: React.FC = () => {
 
@@ -68,7 +69,7 @@ const Perfil: React.FC = () => {
     ]
 
     const tabs_player = [
-        { key: '1', label: 'Partidos', children: <div></div> }, { key: '2', label: 'Torneos', children: <div></div> }
+        { key: '1', label: 'Partidos', children: <PlayerMatches id={user.jugador?.id ?? ''}  /> }, { key: '2', label: 'Torneos', children: <InscripcionesJugador id={user.jugador?.id ?? ''} />  }
     ]
 
     const tabs_admin = [

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { Player } from "../vite-env";
 
 interface UserFromLogin{
   dni: number;
@@ -6,6 +7,7 @@ interface UserFromLogin{
   token: string;
   nombre : string;
   apellido : string;
+  jugador: Player | null;
 }
 
 type UserState = {

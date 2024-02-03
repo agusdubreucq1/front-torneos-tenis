@@ -30,7 +30,7 @@ export type User = {
   nombre: string;
   apellido: string;
   dni: number;
-  Jugador: Player
+  Jugador?: Player
 };
 
 export type Player = {
