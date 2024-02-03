@@ -21,6 +21,17 @@ const Draw: React.FC = () => {
 
     const { id } = useParams()
     const { tournament } = useTournament({ id })
+    
+    const getJugadoresInscriptos = useJugadoresInscriptos((state) => state.getJugadoresInscriptos);
+    const [matches, getMatches] = useMatches(state => [state.matches, state.getMatches]);
+
+    useEffect(() => {
+        getMatches(id ?? 0)
+        getJugadoresInscriptos(id ?? 0)
+    }, [])
+    
+    const user = useUser((state) => state.user);
+    const isAdmin = tournament?.users?.map((u) => u.dni)?.includes(user?.dni ?? 0);
 
     if (!tournament?.cant_jugadores) {
         return (
@@ -32,17 +43,10 @@ const Draw: React.FC = () => {
             />
         )
     }
+    
 
-    const user = useUser((state) => state.user);
-    const isAdmin = tournament?.users?.map((u) => u.dni)?.includes(user?.dni ?? 0);
 
-    const [matches, getMatches] = useMatches(state => [state.matches, state.getMatches]);
-    const getJugadoresInscriptos = useJugadoresInscriptos((state) => state.getJugadoresInscriptos);
 
-    useEffect(() => {
-        getMatches(id ?? 0)
-        getJugadoresInscriptos(id ?? 0)
-    }, [])
 
     const findPartido = (orden: number, jugadoresXRonda: number) => {
         return matches.find((p) => p.orden == orden && p.jugadoresXRonda == jugadoresXRonda)

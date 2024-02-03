@@ -16,6 +16,7 @@ export const useMatches = create<UseMatches>((set, _get) => ({
   getMatches: async (id) => {
     set({ error: null });
     set({ loading: true });
+    set({ matches: [] });
     try {
       const data = await getPartidosByTorneo(id!);
       set({ matches: data });

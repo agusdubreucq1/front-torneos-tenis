@@ -17,6 +17,23 @@ export const createTournament = async (body: any, token: string) => {
     return data;
 }
 
+export const updateTournament = async (id: (string | number), body: any, token: string) => {
+    const response = await fetch(URLBACK + '/admin/torneo/' + id, {
+        headers: {
+            Authorization: token!,
+            'Content-Type': 'application/json'
+
+        }
+        , method: 'PUT'
+        , body: JSON.stringify(body)
+    })
+    if (!response.ok) {
+        throw new Error('Error al actualizar el torneo');
+    }
+    const data = await response.json();
+    return data;
+}
+
 export const getTournaments = async () => {
     const response = await fetch(URLBACK + '/torneos');
     if (!response.ok) {

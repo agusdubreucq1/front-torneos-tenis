@@ -22,17 +22,24 @@ const useAutoInscripcion: Function = ({id}) => {
     const [openModal, setOpenModal] = React.useState(false);
     const [messageAPI, contextHolder] = message.useMessage();
 
-    console.log('token:',token)
-
     const inscribirse = async () => {
         try{
             await autoInscribirse(id ?? 0, token ?? 'token')
             setOpenModal(false)
-            messageAPI.success('Inscripcion exitosa')
+            // messageAPI.success('Inscripcion exitosa')
+            messageAPI.open({
+                type: 'success',
+                content: 'Inscripcion exitosa',
+                key: 'inscribirse',
+            })
             getJugadoresInscriptos(id)
         } catch (error){
             console.log(error)
-            messageAPI.error('Error al inscribirse')
+            messageAPI.error({
+                type: 'error',
+                content: 'Error al inscribirse',
+                key: 'inscribirse',
+            })
             setOpenModal(false)
         }
     }
