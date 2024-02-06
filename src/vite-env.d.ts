@@ -75,3 +75,11 @@ export interface MatchToBack {
   ganador: number | null //id de un jugador,
   orden: number // 0<number<jugadoresXRonda
 }
+
+// iconos
+
+export type Color = `#${string}`
+
+export interface PropsIcon {
+    color?: Color
+}

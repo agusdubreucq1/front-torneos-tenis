@@ -6,6 +6,10 @@
     background-color: var(--bg-header);
 }
 
+.burger{
+    display: none;
+}
+
 .header a{
     user-select: none;
 }
@@ -39,9 +43,11 @@
     display: flex;
     font-size: 1.8rem;
     color: #fff;
-    align-items: center;
     transition: scale 0.1s ease;
-    gap: 10px;
+}
+
+.li svg{
+    height: 30px;
 }
 
 .register a{
@@ -59,6 +65,9 @@
 .li a{
     text-decoration: none;
     color: #fff;
+    display: flex;
+    gap: 6px;
+    align-items: center;
 }
 
 .li img{
@@ -119,4 +128,53 @@
 .link_user_popover:visited, .link_user_popover:active, .link_user_popover:hover{
     color: #000;
     text-decoration: none;
+}
+
+
+@media screen and (max-width: 600px) {
+    .burger{
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .burger svg{
+        height: 60%;
+    }
+
+    .nav .ul{
+        display: none;
+    }
+
+    .ul_drawer{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .ul_drawer .li{
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+        outline: 1px solid #000;
+    }
+
+    .li:hover{
+        scale: 1;
+    }
+
+    .ul_drawer .li a{
+        width: 100%;
+        padding: 15px;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+    }
 }
