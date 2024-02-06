@@ -5,6 +5,7 @@ import { getTournaments } from "../services/tournament";
 
 interface TournamentsState {
     tournaments: Tournament[],
+    loading: boolean,
     error: null | String,
     setTournaments: (tournaments: Tournament[]) => void;
     getTournaments: () => void
@@ -12,11 +13,13 @@ interface TournamentsState {
 
 export const useTournaments = create<TournamentsState>((set) => ({
     tournaments: [],
+    loading: false,
     error: null,
     setTournaments: (tournaments) => set({ tournaments }),
     getTournaments: async () => {
         set({ error: null })
         try{
+            set({ loading: true })
             const data = await getTournaments()
             set({ tournaments: data })
         } catch (error: any) {
@@ -25,6 +28,8 @@ export const useTournaments = create<TournamentsState>((set) => ({
             } else {
                 set({ error: 'Error de conexion' })
             }
+        }finally{
+            set({ loading: false })
         }
     }
 }))
