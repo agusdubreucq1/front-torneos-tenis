@@ -14,30 +14,47 @@
     margin-top: 20px;
 }
 
-.form{
-    display: flex;
-    margin-top: 30px;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-    border-radius: 20px;
-    gap: 20px;
-    padding: 20px;
-    background-color: #dfdfdf;
+.form {
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  position: relative;
+  height: fit-content;
+  top: -30px;
 }
 
-.btn{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    background-color: var(--bg-header);
-    color: #fff;
+.container_form{
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  background-color: #E8EDFF;
+  width: 560px;
+  margin-top: 30px;
 }
 
-.btn:hover{
-    color: #fff !important;
-    border-color: #fff;
-    cursor: pointer;
+.input{
+  /* width: 100%; */
+  height: 40px;
+  border-radius: 0;
+}
+
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--azul);
+  color: #fff;
+  width: 100%;
+  font-weight: 500;
+  transition: opacity 0.2s ease scale 0.2s ease;
+}
+
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.9;
+  scale: 0.99;
 }
 

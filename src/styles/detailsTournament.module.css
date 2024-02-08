@@ -13,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.6rem;
-    background-color: var(--azul);
+    background: var(--azul);
     color: #fff;
     position: relative;
     gap: 10px;
@@ -37,7 +37,7 @@
     padding: 15px 10px;
     justify-content: space-between;
     font-size: 1.6rem;
-    background-color: var(--azul);
+    background: var(--azul);
     color: #fff;
     grid-column: span 3;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Match } from '../vite-env';
-import styles from '../styles/cardMatch.module.css'
+import { Match } from '../../vite-env';
+import styles from '../../styles/cardMatch.module.css'
 import tick from '/icons/tick.svg'
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Match } from '../../vite-env';
-import InfoMatch from '../InfoMatch';
+import InfoMatch from './InfoMatch';
 import styles from '../../styles/cardMatchWithInfo.module.css'
 import { getRondas } from '../../constantes';
 import { useTournaments } from '../../store/tournaments';

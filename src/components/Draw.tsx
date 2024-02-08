@@ -5,8 +5,8 @@ import { Link,  useParams } from 'react-router-dom';
 import styles from '../styles/drawTournament.module.css'
 import { potenciasDe2 } from '../services/tools';
 import { arrayDeNumbers } from '../services/tools';
-import CardMatchEmpty from './CardMatchEmpty';
-import CardMatch from './CardMatch';
+import CardMatchEmpty from './CardMatch/CardMatchEmpty';
+import CardMatch from './CardMatch/CardMatch';
 import { useUser } from '../store/user';
 import { useMatches } from '../store/matches';
 import { Result } from 'antd';

@@ -49,6 +49,8 @@ const useModalMatch: UseModalMatch = (handleOk, match) => {
           </Form.Item>
         )}
 
+        <h1 style={{ textAlign: 'center', marginBottom: 20 }}>Crear partido</h1>
+
         <Form form={form}>
           <Form.Item
             label={'Jugador 1'}

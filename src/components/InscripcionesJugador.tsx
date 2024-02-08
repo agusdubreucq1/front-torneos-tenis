@@ -1,7 +1,5 @@
 import React from 'react';
-import CardTournament from './CardTournament';
 import useInscripcionesJugador from '../hooks/useRegistrationsPlayer';
-import styles from '../styles/inscripcionesJugador.module.css'
 import ListTournaments from './ListTournaments';
 
 interface Props{
@@ -9,18 +7,10 @@ interface Props{
 }
 
 const InscripcionesJugador: React.FC<Props> = ({id}) => {
-    const {inscripciones, error: _, loading: __} = useInscripcionesJugador({id});
+    const {inscripciones, error, loading} = useInscripcionesJugador({id});
 
   return (
-    // <div className={styles.container}>
-    //     {
-    //         inscripciones.map(t => 
-    //             <CardTournament key={t.id} tournament={t}/>
-    //             )
-    //     }
-
-    // </div>
-    <ListTournaments tournaments={inscripciones}></ListTournaments>
+    <ListTournaments tournaments={inscripciones} loading={loading} error={error}></ListTournaments>
   );
 };
 

@@ -1,6 +1,6 @@
 .card{
     display: flex;
-    width: 200px;
+    width: 220px;
     height: 80px;
     position: relative;
 }
@@ -8,10 +8,7 @@
 .match{
     display: grid;
     grid-template-columns: 170px 50px;
-    /* gap: 10px; */
-    /* padding: 10px; */
-    /* border-radius: 10px; */
-    /* border: 1px solid #000; */
+    border: 1px solid #000;
     align-items: center;
     width: 220px;
     justify-content: space-between;
@@ -21,7 +18,6 @@
 
 .jugadores{
     display: flex;
-    /* gap: 15px; */
     flex-direction: column;
     height: 100%;
 }
@@ -101,7 +97,6 @@
 .edit{
     position: absolute;
     background-color: #0003;
-    border-radius: 10px;
     top: 0;
     right: 0;
     width: 100%;
@@ -113,6 +108,5 @@
 }
 
 .card:hover  .edit{
-
     display: flex;
 }

@@ -1,17 +1,16 @@
 import React from "react"
-import styles_draw from "../styles/drawTournament.module.css"
-import { Match } from "../vite-env"
+import styles_draw from "../../styles/drawTournament.module.css"
+import { Match } from "../../vite-env"
 
-import styles from '../styles/cardMatch.module.css'
+import styles from '../../styles/cardMatch.module.css'
 
-// import tick from '/icons/tick.svg'
 import { Modal, message } from "antd"
-import { useUser } from "../store/user"
-import { useMatches } from "../store/matches"
-import useModalMatch from "../hooks/useModalMatch"
-import { deleteMatch, updateMatch } from "../services/partido"
-import IconEdit from "./icons/IconEdit"
-import IconDelete from "./icons/IconDelete"
+import { useUser } from "../../store/user"
+import { useMatches } from "../../store/matches"
+import useModalMatch from "../../hooks/useModalMatch"
+import { deleteMatch, updateMatch } from "../../services/partido"
+import IconEdit from "../icons/IconEdit"
+import IconDelete from "../icons/IconDelete"
 import InfoMatch from "./InfoMatch"
 
 

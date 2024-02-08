@@ -15,33 +15,37 @@ const InscripcionJugador: React.FC = () => {
     return (
         <section className={styles.section}>
             {contextHolder}
-            <Form
-                form={form}
-                onFinish={handleFinish}
-                layout="vertical" className={styles.form}
-            >
-                {error && <Alert style={{ marginBottom: 10 }} message={error} type="error" showIcon />}
-
-                <Form.Item
-                    label="Elige un jugador"
-                    name="id_jugador"
-                    rules={[{ required: true, message: 'selecciona un jugador!' }]}
+            <div className={styles.container_form}>
+                <Form
+                    form={form}
+                    onFinish={handleFinish}
+                    layout="vertical" className={styles.form}
                 >
-                    <Select
-                        placeholder="Selecciona el jugador a inscribir"
-                        allowClear={true}
-                        options={jugadoresNoInscriptos.map((jugador) => ({
-                            value: jugador.id,
-                            label: `${jugador.user?.nombre} ${jugador.user?.apellido}`,
-                            key: jugador.user?.dni
-                        }))}
-                    />
-                </Form.Item>
+                    {error && <Alert style={{ marginBottom: 10 }} message={error} type="error" showIcon />}
 
-                <Form.Item>
-                    <Button size='large' loading={loading} htmlType="submit" className={styles.btn}>Inscribir</Button>
-                </Form.Item>
-            </Form>
+                    <Form.Item
+                        label="Elige un jugador"
+                        name="id_jugador"
+                        rules={[{ required: true, message: 'selecciona un jugador!' }]}
+                    >
+                        <Select
+                            style={{borderRadius: 0, height: 40, marginBottom: 10}}
+                            placeholder="Selecciona el jugador a inscribir"
+                            allowClear={true}
+                            options={jugadoresNoInscriptos.map((jugador) => ({
+                                value: jugador.id,
+                                label: `${jugador.user?.nombre} ${jugador.user?.apellido}`,
+                                key: jugador.user?.dni
+                            }))}
+                        />
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button size='large' loading={loading} htmlType="submit" className={styles.btn}>Inscribir</Button>
+                    </Form.Item>
+                </Form>
+            </div>
+
         </section>
     );
 };

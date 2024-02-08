@@ -8,6 +8,13 @@
   --bg-input: #fff;
   --color-label: #000;
   --azul: #0500FF;
+  --azul: linear-gradient(0deg, #0500FF  0%, #23226C 100%);
+  /* --azul: linear-gradient(0deg, #3B8CDE 0%, #0500FF 100%); */
+  /* --azul: #000; */
+  /* --azul: #3b8cde; */
+  /* --azul: #a263ef; */
+  /* --azul: #ffd700; */
+
   --shadow_buttons: var(--shadow_buttons);
 }
 

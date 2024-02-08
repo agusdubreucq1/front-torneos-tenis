@@ -1,7 +1,7 @@
 import React from 'react';
 import usePartidosJugador from '../hooks/usePlayerMatches';
 import styles from '../styles/partidoJugador.module.css'
-import InfoMatch from './InfoMatch';
+import InfoMatch from './CardMatch/InfoMatch';
 import CardMatchWithInfo from './CardMatch/CardMatchWithInfo';
 
 interface Props {

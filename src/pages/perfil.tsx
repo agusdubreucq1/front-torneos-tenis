@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from '../store/user';
 import { Link } from 'react-router-dom';
-import { ConfigProvider, Descriptions, DescriptionsProps, Result, Tabs } from 'antd';
+import { ConfigProvider, Result, Tabs } from 'antd';
 import styles from '../styles/perfil.module.css'
 import PlayerMatches from '../components/PlayerMatches';
 import TournamentsUser from '../components/TournamentsUser';
@@ -22,52 +22,6 @@ const Perfil: React.FC = () => {
         )
     }
 
-    const items_jugador: DescriptionsProps['items'] = [
-        {
-            key: '1',
-            label: 'Nombre',
-            children: user?.nombre,
-        },
-        {
-            key: '2',
-            label: 'Apellido',
-            children: user?.apellido,
-        },
-        {
-            key: '3',
-            label: 'torneos jugados',
-            children: 10,
-        },
-        {
-            key: '4',
-            label: 'Torneos ganados',
-            children: 3,
-        },
-        {
-            key: '5',
-            label: 'Partidos jugados',
-            children: 16,
-        },
-        {
-            key: '6',
-            label: 'Partidos ganados',
-            children: 8,
-        }
-    ]
-
-    const items_admin: DescriptionsProps['items'] = [
-        {
-            key: '1',
-            label: 'Nombre',
-            children: user?.nombre,
-        },
-        {
-            key: '2',
-            label: 'Apellido',
-            children: user?.apellido,
-        }
-    ]
-
     const tabs_player = [
         { key: '1', label: 'Partidos', children: <PlayerMatches id={user.jugador?.id ?? ''}  /> }, { key: '2', label: 'Torneos', children: <InscripcionesJugador id={user.jugador?.id ?? ''} />  }
     ]
@@ -82,23 +36,19 @@ const Perfil: React.FC = () => {
                 <ConfigProvider
                     theme={{
                         token: {
-                            colorPrimary: '#ef2219',
+                            colorPrimary: '#000',
                             fontSizeLG: 30
                         },
                     }}
                 >
-                    <Descriptions
-                        items={user.isAdmin ? items_admin : items_jugador}
-                        title="PERFIL"
-                        bordered={true}
-                        labelStyle={{ background: '#ef2219ee', color: '#fff' }}
-                        contentStyle={{ background: '#eee' }}
-                    />
+                    <div className={styles.container_nombre}>
+                        <h1 className={styles.title}>{user?.nombre + ' ' + user?.apellido}</h1>
+                        <h2 className={styles.subtitle}>{user.isAdmin ? 'Administrador' : 'Jugador'}</h2>
+                    </div>
 
                     <Tabs
                         defaultActiveKey="1"
                         centered
-
                         items={user.isAdmin ? tabs_admin : tabs_player}
                     />
                 </ConfigProvider>

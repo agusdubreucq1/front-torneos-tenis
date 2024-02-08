@@ -12,32 +12,39 @@ const Login: React.FC = () => {
     return (
         <main className={styles.main}>
             <section className={styles.section}>
-                <Form
-                    className="login-form"
-                    onFinish={handleSubmit}>
-                    {error &&
+                <div className={styles.container_form}>
+                    <Form
+                        className={styles.form}
+                        onFinish={handleSubmit}
+                        layout='vertical'
+                    >
+                        {error &&
+                            <Form.Item>
+                                <Alert message={error} type="error" showIcon />
+                            </Form.Item>}
+                        <Form.Item
+                            label="DNI"
+                            rules={[{ required: true, message: 'Ingresa el dni!' }]}
+                            name={'dni'}>
+                            <InputNumber style={{ width: '100%' }} className={styles.input} name='dni' type='number' prefix={<img style={{ width: 20, height: 20 }} src={userImg}></img>}></InputNumber>
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Password"
+                            rules={[{ required: true, message: 'Ingresa la contraseña!' }]}
+                            name={'password'}>
+                            <Input.Password name='password' className={styles.input} prefix={<img style={{ width: 20, height: 20 }} src={padlock}></img>}></Input.Password>
+                        </Form.Item>
+
                         <Form.Item>
-                            <Alert message={error} type="error" showIcon />
-                        </Form.Item>}
-                    <Form.Item
-                        rules={[{ required: true, message: 'Ingresa el dni!' }]}
-                        name={'dni'}>
-                        <InputNumber style={{ width: '100%' }} name='dni' type='number' prefix={<img style={{ width: 20, height: 20 }} src={userImg}></img>}></InputNumber>
-                    </Form.Item>
+                            <Button htmlType="submit" className={styles.btn} style={{padding: 20}} loading={loading}>
+                                Log in
+                            </Button>
+                            O <Link to={'/register'}>registrarse</Link>
+                        </Form.Item>
+                    </Form>
+                </div>
 
-                    <Form.Item
-                        rules={[{ required: true, message: 'Ingresa la contraseña!' }]}
-                        name={'password'}>
-                        <Input.Password name='password' prefix={<img style={{ width: 20, height: 20 }} src={padlock}></img>}></Input.Password>
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button htmlType="submit" className={styles.button} loading={loading}>
-                            Log in
-                        </Button>
-                        O <Link to={'/register'}>registrarse</Link>
-                    </Form.Item>
-                </Form>
             </section>
         </main>
     );
