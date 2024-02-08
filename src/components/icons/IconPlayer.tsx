@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropsIcon } from '../vite-env';
+import { PropsIcon } from '../../vite-env';
 
 const IconPlayer: React.FC<PropsIcon> = ({ color = '#fff' }) => {
 

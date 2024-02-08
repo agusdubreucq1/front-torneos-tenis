@@ -2,10 +2,12 @@
 import React, { useEffect } from 'react';
 import { useUser } from '../store/user';
 import { updateTournament } from '../services/tournament';
-import { Alert, Button, DatePicker, Form, Input, Modal, Select, message } from 'antd';
+import { Alert, DatePicker, Form, Input, Modal, Select, message } from 'antd';
 import { useTournaments } from '../store/tournaments';
 import { useTournament } from './useTournament';
 import dayjs from 'dayjs';
+import { ESTADOS_TORNEOS } from '../constantes';
+import { useMatches } from '../store/matches';
 
 interface Props {
     id: string | number,
@@ -24,30 +26,32 @@ const useUpdateTournament: Function = ({ id }) => {
     const [token, getToken] = useUser((state) => [state.token, state.getToken])
     const [error, setError] = React.useState<null | String>(null);
     const [loading, setLoading] = React.useState(false);
-    // message.config({ key: 'updateTournament' })
     const [messageAPI, contextHolder] = message.useMessage();
     const [openModal, setOpenModal] = React.useState(false);
     const [form] = Form.useForm();
     const getTournaments = useTournaments((state) => state.getTournaments);
-    const {tournament} = useTournament({id})
+    const { tournament } = useTournament({ id })
+
+    const matches = useMatches((state) => state.matches)
 
     const handleOpenModal = () => {
         setOpenModal(true)
     }
 
-
     useEffect(() => {
         getToken();
     }, [])
 
-    const handleSubmit = async (body: any) => {
+    const handleSubmit = async () => {
         setError(null)
         try {
             await form.validateFields()
-            const values = await form.getFieldsValue();
+            let values = await form.getFieldsValue();
+            if(matches.length > 0){
+                delete values.cant_jugadores
+            }
             setLoading(true)
             await updateTournament(id, values, token!)
-            // messageAPI.success('Torneo editado con exito');
             messageAPI.open({
                 type: 'success',
                 content: 'Torneo editado con exito',
@@ -70,13 +74,16 @@ const useUpdateTournament: Function = ({ id }) => {
 
     const modal = (
         <Modal
-            style={{ width: 500, padding: 30, background: '#dfdfdf', borderRadius: 20 }}
+            // style={{ width: 600, background: '#dfdfdf', borderRadius: 20 }}
             open={openModal}
             title="Editar Torneo"
+            centered
+            styles={{}}
             okText="Confirmar"
             onOk={handleSubmit}
             onCancel={() => setOpenModal(false)}>
             <Form
+                // style={{ background: '#dfdfdf'}}
                 form={form}
                 labelCol={{ span: 4 }}
                 layout="horizontal"
@@ -129,26 +136,43 @@ const useUpdateTournament: Function = ({ id }) => {
                 <Form.Item
                     label="Jugadores"
                     initialValue={tournament?.cant_jugadores}
+                    tooltip="Solo se puede editar, si no se crearon partidos"
                     name={'cant_jugadores'}>
-                    <Select options={[
-                        {
-                            value: 0,
-                            label: 'seleccionar mas tarde',
-                            selected: true
-                        },
-                        {
-                            value: 32,
-                            label: '32'
-                        },
-                        {
-                            value: 16,
-                            label: '16'
-                        },
-                        {
-                            value: 8,
-                            label: '8'
-                        }
-                    ]} />
+                    <Select
+                        disabled={matches.length > 0}
+                        options={[
+                            {
+                                value: 0,
+                                label: 'seleccionar mas tarde',
+                                selected: true
+                            },
+                            {
+                                value: 32,
+                                label: '32'
+                            },
+                            {
+                                value: 16,
+                                label: '16'
+                            },
+                            {
+                                value: 8,
+                                label: '8'
+                            }
+                        ]} />
+                </Form.Item>
+
+                <Form.Item
+                    label='Estado'
+                    initialValue={tournament?.estado}
+                    name={'estado'}>
+                    <Select
+                        options={[
+                            { value: ESTADOS_TORNEOS.EN_CURSO, label: 'En curso' },
+                            { value: ESTADOS_TORNEOS.SUSPENDIDO, label: 'Suspendido' },
+                            { value: ESTADOS_TORNEOS.FINALIZADO, label: 'Finalizado' }
+                        ]}>
+
+                    </Select>
                 </Form.Item>
             </Form>
         </Modal>

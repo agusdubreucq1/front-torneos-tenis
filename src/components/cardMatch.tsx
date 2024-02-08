@@ -10,8 +10,8 @@ import { useUser } from "../store/user"
 import { useMatches } from "../store/matches"
 import useModalMatch from "../hooks/useModalMatch"
 import { deleteMatch, updateMatch } from "../services/partido"
-import IconEdit from "./IconEdit"
-import IconDelete from "./IconDelete"
+import IconEdit from "./icons/IconEdit"
+import IconDelete from "./icons/IconDelete"
 import InfoMatch from "./InfoMatch"
 
 

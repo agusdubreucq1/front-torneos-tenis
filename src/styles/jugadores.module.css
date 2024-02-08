@@ -2,8 +2,6 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    /* min-height: 100dvh; */
-
 }
 
 .section{
@@ -16,22 +14,15 @@
 }
 
 .title{
+    padding: 0;
+    margin: 0;
     text-align: center;
     font-size: 2.6rem;
 }
 
-.error{
-    color: red;
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.6rem;
-    margin-top: 20px;
-    
-}
 
 .btn{
     padding: 8px 15px;
-    align-self: flex-end;
     border-radius: 10px;
     background-color: var(--bg-header);
     color: #fff;
@@ -43,6 +34,10 @@
     gap: 10px;
     align-items: center;
     transition: opacity 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: var(--shadow_buttons);
 }
 
 .btn img{
@@ -51,6 +46,7 @@
 
 .btn:hover{
     opacity: 0.8;
+    box-shadow: none;
 }
 
 
@@ -64,7 +60,7 @@
 .tabla > div{
     background-color: #fff;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, minmax(130px, 1fr)) 80px;
     justify-items: center;
     align-items: center;
 }
@@ -94,7 +90,29 @@
     color: #fff;
     padding: 5px 8px;
     border-radius: 10px;
-    background-color: var(--bg-header);
+    background-color: #000;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    width: fit-content;
     height: fit-content;
-    font-size: 1.4rem;
+}
+
+.link_ver:hover{
+    background-color: var(--bg-header);
+    cursor: pointer;
+}
+
+.link_ver svg{
+    height: 20px;
+}
+
+@media screen and (max-width: 560px) {
+
+    .tabla > div{
+        grid-template-columns: repeat(2, minmax(100px, 1fr)) 80px;
+    }
+    .tabla > div > p:nth-child(3) {
+        display: none;
+    }
 }

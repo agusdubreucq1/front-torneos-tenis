@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/header.module.css'
 
 import logo from '/logo.png'
-import IconUser from './IconUser';
+import IconUser from './icons/IconUser';
 import { Drawer, Modal, Popover } from 'antd';
-import IconLogout from './IconLogout';
-import IconHome from './IconHome';
-import IconPlayer from './IconPlayer';
-import IconBurger from './IconBurger';
+import IconLogout from './icons/IconLogout';
+import IconHome from './icons/IconHome';
+import IconPlayer from './icons/IconPlayer';
+import IconBurger from './icons/IconBurger';
 
 const Header: React.FC = () => {
     const [user, logout] = useUser((state) => [state.user, state.logout])

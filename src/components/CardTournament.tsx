@@ -17,7 +17,7 @@ const CardTournament: React.FC<Props> = ({ tournament }) => {
     <Link to={`/tournament/${tournament.id}/details`} className={styles.link}>
       <article className={styles.card}>
         <div className={styles.head}>
-        <div className={`${styles.estado} ${tournament.estado === ESTADOS_TORNEOS.EN_CURSO ? styles.disponible : styles.close}`}></div>
+        <div className={`${styles.estado} ${tournament.estado === ESTADOS_TORNEOS.EN_CURSO ? styles.disponible : (tournament.estado === ESTADOS_TORNEOS.FINALIZADO ? styles.finalizado : styles.suspendido)}`}></div>
         <p >{tournament.nombre}</p>
       </div>
       <div className={styles.info}>

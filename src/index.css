@@ -7,10 +7,14 @@
   --bg-form: #fff;
   --bg-input: #fff;
   --color-label: #000;
+  --azul: #0500FF;
+  --shadow_buttons: var(--shadow_buttons);
 }
 
 *{
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html{
@@ -34,4 +38,10 @@ body{
   background-color: var(--bg);
   margin: 0;
   padding: 0;
+}
+
+@media screen and (max-width: 680px) {
+  html{
+    font-size: 8px;
+  }
 }

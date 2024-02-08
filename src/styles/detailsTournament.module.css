@@ -1,22 +1,30 @@
 .detalles{
     margin-top: 30px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
 }
 
 .dato{
     display: flex;
     width: 100%;
     border-radius: 10px;
-    padding: 10px;
-    /* border: 1px solid #000; */
+    padding: 15px 10px;
     justify-content: space-between;
+    align-items: center;
     font-size: 1.6rem;
-    background-color: #eef;
+    background-color: var(--azul);
+    color: #fff;
+    position: relative;
+    gap: 10px;
 }
 
-.dato > p:first-child, .descripcion > p:first-child{
+
+.dato svg{
+    width: 20px;
+}
+
+.descripcion > p:first-child{
     font-weight: bold;
 }
 
@@ -26,14 +34,37 @@
     flex-direction: column;
     width: 100%;
     border-radius: 10px;
-    padding: 10px;
-    /* border: 1px solid #000; */
+    padding: 15px 10px;
     justify-content: space-between;
     font-size: 1.6rem;
-    background-color: #eef;
-    grid-column: span 2;
+    background-color: var(--azul);
+    color: #fff;
+    grid-column: span 3;
 }
 
-p{
-    margin: 0;
+.jugadores{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+.jugador{
+    display: flex;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    align-items: center;
+    position: relative;
+    background-color: #D9D9D9;
+    color: #000;
+}
+
+@media screen and (max-width: 680px) {
+    .detalles{
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+    }
 }

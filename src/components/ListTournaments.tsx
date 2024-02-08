@@ -12,9 +12,15 @@ type Filters = {
   state: string
 }
 
-const ListTournaments: React.FC = () => {
+interface Props {
+  tournaments: Tournament[],
+  loading?: boolean,
+  error?: string | null
+}
 
-  const [tournaments, error, loading] = useTournaments((state) => [state.tournaments, state.error, state.loading]);
+const ListTournaments: React.FC<Props> = ({ tournaments, loading = false, error = null}) => {
+
+  // const [tournaments, error, loading] = useTournaments((state) => [state.tournaments, state.error, state.loading]);
   const [filteredTournaments, setFilteredTournaments] = React.useState<Tournament[]>(tournaments);
   const [filters, setFilters] = React.useState<Filters>({
     name: '',
@@ -45,7 +51,7 @@ const ListTournaments: React.FC = () => {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilters({ ...filters, state: event.target.value })
+    setFilters({ ...filters, name: event.target.value })
   }
 
 

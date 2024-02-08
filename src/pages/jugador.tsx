@@ -62,17 +62,22 @@ const Jugador: React.FC = () => {
                 <ConfigProvider
                     theme={{
                         token: {
-                            colorPrimary: '#ef2219',
+                            // colorPrimary: '#ef2219',
+                            colorPrimary: '#000',
                             fontSizeLG: 30
                         },
                     }}
                 >
-                    <Descriptions
+                    {/* <Descriptions
                         items={items}
                         title="Informacion del jugador"
                         bordered={true}
                         labelStyle={{ background: '#ef2219ee', color: '#fff' }}
-                        contentStyle={{ background: '#eee' }} />
+                        contentStyle={{ background: '#eee' }} /> */}
+                    <div className={styles.container_nombre}>
+                        <h1 className={styles.title}>{jugador.user?.nombre + ' ' + jugador.user?.apellido}</h1>
+                        <h2 className={styles.subtitle}>Jugador</h2>
+                    </div>
 
                     <Tabs
                         defaultActiveKey="1"

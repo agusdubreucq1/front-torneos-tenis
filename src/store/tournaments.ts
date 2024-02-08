@@ -6,7 +6,7 @@ import { getTournaments } from "../services/tournament";
 interface TournamentsState {
     tournaments: Tournament[],
     loading: boolean,
-    error: null | String,
+    error: null | string,
     setTournaments: (tournaments: Tournament[]) => void;
     getTournaments: () => void
 }

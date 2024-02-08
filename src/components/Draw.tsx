@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 // import { useTournaments } from '../store/tournaments';
 import { Link,  useParams } from 'react-router-dom';
-
 
 import styles from '../styles/drawTournament.module.css'
 import { potenciasDe2 } from '../services/tools';
@@ -12,7 +11,7 @@ import { useUser } from '../store/user';
 import { useMatches } from '../store/matches';
 import { Result } from 'antd';
 import { useTournament } from '../hooks/useTournament';
-import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
+// import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
 import { getRondas } from '../constantes';
 
 
@@ -22,14 +21,8 @@ const Draw: React.FC = () => {
     const { id } = useParams()
     const { tournament } = useTournament({ id })
     
-    const getJugadoresInscriptos = useJugadoresInscriptos((state) => state.getJugadoresInscriptos);
-    const [matches, getMatches] = useMatches(state => [state.matches, state.getMatches]);
+    const matches = useMatches(state => state.matches);
 
-    useEffect(() => {
-        getMatches(id ?? 0)
-        getJugadoresInscriptos(id ?? 0)
-    }, [])
-    
     const user = useUser((state) => state.user);
     const isAdmin = tournament?.users?.map((u) => u.dni)?.includes(user?.dni ?? 0);
 
@@ -43,10 +36,6 @@ const Draw: React.FC = () => {
             />
         )
     }
-    
-
-
-
 
     const findPartido = (orden: number, jugadoresXRonda: number) => {
         return matches.find((p) => p.orden == orden && p.jugadoresXRonda == jugadoresXRonda)

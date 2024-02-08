@@ -68,3 +68,41 @@ export const autoInscribirse = async (id: string | number, token: string) => {
     
     return data;
 }
+
+export const deleteInscripcion = async (idTorneo: string | number, idJugador: string | number, token: string) => {
+    const response = await fetch(`${URLBACK}/admin/torneo/${idTorneo}/inscripciones/${idJugador}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+        },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        if(response.status === 403) {
+            throw new Error("No tienes permiso para inscribir");
+        }
+        throw new Error("Error al desinscribir al jugador");
+    }
+    
+    return data;
+}
+
+export const autoDesinscrirse = async (id: string | number, token: string) => {
+    const response = await fetch(`${URLBACK}/admin/torneo/${id}/inscripciones`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+        },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        if(response.status === 403) {
+            throw new Error("No tienes permiso para inscribir");
+        }
+        throw new Error("Error al eliminar la inscripción");
+    }
+    
+    return data;
+}
