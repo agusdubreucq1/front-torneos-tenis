@@ -3,6 +3,7 @@ import { inscribirJugador } from '../services/inscripciones';
 import { useUser } from '../store/user';
 import { FormInstance, message } from 'antd';
 import { getJugadoresNoInscriptos } from '../services/inscripciones';
+import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
 
 const useInscripcion = ({id, form}: {id: string | number, form?: FormInstance<any>}) => {
   const [error, setError] = React.useState<null | String>(null);
@@ -10,12 +11,13 @@ const useInscripcion = ({id, form}: {id: string | number, form?: FormInstance<an
   const token = useUser((state) => state.token);
   const [messageAPI, contextHolder] = message.useMessage();
 
+  const getJugadoresInscriptos = useJugadoresInscriptos((state) =>state.getJugadoresInscriptos);
+
   const [jugadoresNoInscriptos, setJugadoresNoInscriptos] = React.useState<any[]>([]);
 
   const fetchJugadores = async () => {
     try {
       setError(null);
-      // setLoading(true);
       const data = await getJugadoresNoInscriptos(id);
       setJugadoresNoInscriptos(data);
     } catch (e: any) {
@@ -24,9 +26,7 @@ const useInscripcion = ({id, form}: {id: string | number, form?: FormInstance<an
       } else {
         setError('Error de conexion');
       }
-    } finally {
-      // setLoading(false);
-    }
+    } 
   }
 
   React.useEffect(() => {
@@ -41,6 +41,7 @@ const useInscripcion = ({id, form}: {id: string | number, form?: FormInstance<an
       await inscribirJugador(id , token!, body);
       messageAPI.success('Jugador inscripto con exito');
       fetchJugadores();
+      getJugadoresInscriptos(id);
       form?.resetFields();
     } catch (e: any) {
       if (e.name === 'Error') {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/login.module.css';
+import styleForm from '../styles/form.module.css'
 
 import userImg from '/icons/user.svg'
 import padlock from '/icons/padlock.svg'
@@ -12,9 +13,9 @@ const Login: React.FC = () => {
     return (
         <main className={styles.main}>
             <section className={styles.section}>
-                <div className={styles.container_form}>
+                <div className={styleForm.container_form}>
                     <Form
-                        className={styles.form}
+                        className={styleForm.form}
                         onFinish={handleSubmit}
                         layout='vertical'
                     >
@@ -26,18 +27,18 @@ const Login: React.FC = () => {
                             label="DNI"
                             rules={[{ required: true, message: 'Ingresa el dni!' }]}
                             name={'dni'}>
-                            <InputNumber style={{ width: '100%' }} className={styles.input} name='dni' type='number' prefix={<img style={{ width: 20, height: 20 }} src={userImg}></img>}></InputNumber>
+                            <InputNumber style={{ width: '100%' }} className={styleForm.input} name='dni' type='number' prefix={<img style={{ width: 20, height: 20 }} src={userImg}></img>}></InputNumber>
                         </Form.Item>
 
                         <Form.Item
                             label="Password"
                             rules={[{ required: true, message: 'Ingresa la contraseña!' }]}
                             name={'password'}>
-                            <Input.Password name='password' className={styles.input} prefix={<img style={{ width: 20, height: 20 }} src={padlock}></img>}></Input.Password>
+                            <Input.Password name='password' className={styleForm.input} prefix={<img style={{ width: 20, height: 20 }} src={padlock}></img>}></Input.Password>
                         </Form.Item>
 
                         <Form.Item>
-                            <Button htmlType="submit" className={styles.btn} style={{padding: 20}} loading={loading}>
+                            <Button htmlType="submit" className={styleForm.btn} style={{padding: 20}} loading={loading}>
                                 Log in
                             </Button>
                             O <Link to={'/register'}>registrarse</Link>

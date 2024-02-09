@@ -62,7 +62,7 @@
     padding: 20px;
 }
 
-.info > p{
+.dato{
     display: flex;
     width: 100%;
     margin: 0;
@@ -73,7 +73,16 @@
     gap: 20px;
 }
 
-.info > p > img{
+.dato > p{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+}
+
+.dato > img{
     width: 30px;
 }
 
@@ -104,8 +113,11 @@
         padding: 15px;
     }
     
+    .dato{
+        gap: 15px;
+    }
     
-    .info > p > img{
+    .dato > img{
         width: 20px;
     }
 }
@@ -128,11 +140,13 @@
     
     .info{
         gap: 8px;
-        padding: 10px;
+        padding: 8px;
     }
     
-    
-    .info > p > img{
+    .dato{
+        gap: 10px;
+    }
+    .dato > img{
         width: 15px;
     }
     

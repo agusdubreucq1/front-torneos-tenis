@@ -15,8 +15,6 @@ const Tournament: React.FC = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    console.log(location)
-
     const [pathname, setPathname] = React.useState(location.pathname)
 
     const { id } = useParams();
@@ -53,15 +51,15 @@ const Tournament: React.FC = () => {
 
     const itemsAdmin: TabsProps['items'] = [
         {
-            key: 'details',
+            key: `/tournament/${id}/details`,
             label: 'Detalles',
         },
         {
-            key: 'draw',
+            key: `/tournament/${id}/draw`,
             label: 'Cuadro',
         },
         {
-            key: 'inscripcion',
+            key: `/tournament/${id}/inscripcion`,
             label: 'Inscribir',
         }
     ]
@@ -75,7 +73,6 @@ const Tournament: React.FC = () => {
             key: `/tournament/${id}/draw`,
             label: 'Cuadro',
             active: pathname === `/tournament/${id}/draw`,
-
         }
     ]
 

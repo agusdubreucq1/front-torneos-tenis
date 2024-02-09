@@ -68,12 +68,6 @@ const Jugador: React.FC = () => {
                         },
                     }}
                 >
-                    {/* <Descriptions
-                        items={items}
-                        title="Informacion del jugador"
-                        bordered={true}
-                        labelStyle={{ background: '#ef2219ee', color: '#fff' }}
-                        contentStyle={{ background: '#eee' }} /> */}
                     <div className={styles.container_nombre}>
                         <h1 className={styles.title}>{jugador.user?.nombre + ' ' + jugador.user?.apellido}</h1>
                         <h2 className={styles.subtitle}>Jugador</h2>

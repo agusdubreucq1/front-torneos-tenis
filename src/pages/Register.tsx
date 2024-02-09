@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/register.module.css'
+import styleForm from '../styles/form.module.css'
 import { Alert, Button, Form, Input, Switch } from 'antd';
 import useRegister from '../hooks/useRegister';
 
@@ -10,8 +11,8 @@ const Register: React.FC = () => {
     return (
         <main className={styles.main}>
             <section className={styles.section}>
-                <div className={styles.container_form}>
-                    <Form className={styles.form} layout='vertical' onFinish={handleSubmit}
+                <div className={styleForm.container_form}>
+                    <Form className={styleForm.form} layout='vertical' onFinish={handleSubmit}
                         labelCol={{ span: 7 }}>
                         {error &&
                             <Form.Item>
@@ -22,35 +23,35 @@ const Register: React.FC = () => {
                             rules={[{ required: true, message: 'Ingresa el nombre!' }]}
                             name={"nombre"}
                             label="Nombre" >
-                            <Input className={styles.input} name='nombre' onChange={handleChange} />
+                            <Input className={styleForm.input} name='nombre' onChange={handleChange} />
                         </Form.Item>
 
                         <Form.Item
                             rules={[{ required: true, message: 'Ingresa el apellido!' }]}
                             name={"apellido"}
                             label="Apellido" >
-                            <Input className={styles.input} name='apellido' onChange={handleChange} />
+                            <Input className={styleForm.input} name='apellido' onChange={handleChange} />
                         </Form.Item>
 
                         <Form.Item
                             rules={[{ required: true, message: 'Ingresa el dni!' }]}
                             name={"dni"}
                             label="DNI" >
-                            <Input className={styles.input} name='dni' type='number' onChange={handleChange} />
+                            <Input className={styleForm.input} name='dni' type='number' onChange={handleChange} />
                         </Form.Item>
 
                         <Form.Item
                             rules={[{ required: true, message: 'Ingresa la contraseña!' }]}
                             name={"password"}
                             label="Password" >
-                            <Input.Password className={styles.input} name='password' onChange={handleChange} />
+                            <Input.Password className={styleForm.input} name='password' onChange={handleChange} />
                         </Form.Item>
 
                         <Form.Item
                             rules={[{ required: true, message: 'Confirma la contraseña!' }]}
                             name={"confirmPassword"}
                             label="Confirm Password" >
-                            <Input.Password className={styles.input} name='confirmPassword' onChange={handleChange} />
+                            <Input.Password className={styleForm.input} name='confirmPassword' onChange={handleChange} />
                         </Form.Item>
 
                         <Form.Item
@@ -62,7 +63,7 @@ const Register: React.FC = () => {
                         </Form.Item>
 
                         <Form.Item>
-                            <Button className={styles.btn} style={{padding: 20}} htmlType="submit" loading={loading}>
+                            <Button className={styleForm.btn} style={{padding: 20}} htmlType="submit" loading={loading}>
                                 Registrarse
                             </Button>
                         </Form.Item>

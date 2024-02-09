@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from '../styles/inscripcionJugador.module.css'
+import styleForm from '../styles/form.module.css'
 import { Alert, Button, Form, Select } from 'antd';
 import useInscripcion from '../hooks/useInscripcion';
 
@@ -15,11 +16,11 @@ const InscripcionJugador: React.FC = () => {
     return (
         <section className={styles.section}>
             {contextHolder}
-            <div className={styles.container_form}>
+            <div className={styleForm.container_form}>
                 <Form
                     form={form}
                     onFinish={handleFinish}
-                    layout="vertical" className={styles.form}
+                    layout="vertical" className={styleForm.form}
                 >
                     {error && <Alert style={{ marginBottom: 10 }} message={error} type="error" showIcon />}
 
@@ -41,7 +42,7 @@ const InscripcionJugador: React.FC = () => {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button size='large' loading={loading} htmlType="submit" className={styles.btn}>Inscribir</Button>
+                        <Button size='large' loading={loading} htmlType="submit" className={styleForm.btn}>Inscribir</Button>
                     </Form.Item>
                 </Form>
             </div>

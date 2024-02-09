@@ -1,142 +1,173 @@
-:root{
-    --separacionRondas: 40px;
+:root {
+  --separacionRondas: 40px;
 }
 
-.cuadro{
-    display: flex;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: auto;
-    gap: var(--separacionRondas);
-    margin-top: 50px;
+.container {
+  position: relative;
+  display: flex;
+  margin-top: 50px;
 }
 
-.container_match{
-    display: block;
-    margin: 10px 0;
-    height: 80px;
-    position: relative;
+.cuadro {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: auto;
+  gap: var(--separacionRondas);
+  position: relative;
+  overflow-x: scroll;
 }
 
-.container_ronda{
-    display: flex;
-    position: relative;
-    padding-top: 20px;
+.container_match {
+  display: block;
+  margin: 10px 0;
+  height: 80px;
+  position: relative;
 }
 
-
-.ronda{
-    display: flex;
-    flex-direction: column;
-    /* gap: 15px; */
-    justify-content: space-around;
-    position: relative;
+.container_ronda {
+  display: flex;
+  position: relative;
+  padding-top: 20px;
 }
 
-.nameRonda{
-    position: absolute;
-    font-size: 1.6rem;
-    font-weight: bold;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
+.ronda {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+}
+
+.btn_scroll {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size:18px;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff7;
+  border: 1px solid #999;
+  z-index: 10;
+}
+
+.btn_scroll_left {
+  left: 20px;
+}
+
+.btn_scroll_right {
+  right: 20px;
+}
+.nameRonda {
+  position: absolute;
+  font-size: 1.6rem;
+  font-weight: bold;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 /* before de los partidos */
-.container_ronda:not(:first-of-type) .ronda .container_match::before{
-    content: "";
-    border-color: #999;
-    display: block;
-    width: calc(var(--separacionRondas) / 2);
-    left: calc((var(--separacionRondas) / 2)*-1);
-    position: absolute;
-    border-top: 1px solid #999;
-    top: 49%;
+.container_ronda:not(:first-of-type) .ronda .container_match::before {
+  content: "";
+  border-color: #999;
+  display: block;
+  width: calc(var(--separacionRondas) / 2);
+  left: calc((var(--separacionRondas) / 2) * -1);
+  position: absolute;
+  border-top: 1px solid #999;
+  top: 49%;
 }
 /* after de los partidos */
 
 .container_ronda .ronda .container_match::after {
-    position: relative;
-    width: calc(var(--separacionRondas) / 2);
-    border-right-style: solid;
-    content: "";
-    border-color: #999;
-    display: block;
-    border-width: 1px;
-    left: 100%;
+  position: relative;
+  width: calc(var(--separacionRondas) / 2);
+  border-right-style: solid;
+  content: "";
+  border-color: #999;
+  display: block;
+  border-width: 1px;
+  left: 100%;
 }
 
-.container_ronda:not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after{
-    border-top-style: solid;
-    top: -50%;
+.container_ronda:not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
+  border-top-style: solid;
+  top: -50%;
 }
 
 /* primera ronda */
 
 .container_ronda:nth-of-type(1) .ronda .container_match:nth-of-type(odd)::after {
-    --height: 64px;
-    height: var(--height);
+  --height: 64px;
+  height: var(--height);
 }
 
 .container_ronda:nth-of-type(1) .ronda .container_match:nth-of-type(even)::after {
-    --height: 64px;
-    height: var(--height);
-    border-bottom-style: solid;
-    top: calc(-50% - var(--height));
+  --height: 64px;
+  height: var(--height);
+  border-bottom-style: solid;
+  top: calc(-50% - var(--height));
 }
 /* segunda ronda */
 
 .container_ronda:nth-of-type(2):not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
-    --height: 128px;
-    height: var(--height);
+  --height: 128px;
+  height: var(--height);
 }
 
 .container_ronda:nth-of-type(2):not(:last-of-type) .ronda .container_match:nth-of-type(even)::after {
-    --height: 128px;
-    height: var(--height);
-    border-bottom-style: solid;
-    top: calc(-50% - var(--height));
+  --height: 128px;
+  height: var(--height);
+  border-bottom-style: solid;
+  top: calc(-50% - var(--height));
 }
 
 /* tercera ronda */
 
 .container_ronda:nth-of-type(3):not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
-    --height: 256px;
-    height: var(--height);
+  --height: 256px;
+  height: var(--height);
 }
 
 .container_ronda:nth-of-type(3):not(:last-of-type) .ronda .container_match:nth-of-type(even)::after {
-    --height: 256px;
-    height: var(--height);
-    border-bottom-style: solid;
-    top: calc(-50% - var(--height));
+  --height: 256px;
+  height: var(--height);
+  border-bottom-style: solid;
+  top: calc(-50% - var(--height));
 }
 
 /* cuarta ronda */
 
 .container_ronda:nth-of-type(4):not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
-    --height: 512px;
-    height: var(--height);
+  --height: 512px;
+  height: var(--height);
 }
 
 .container_ronda:nth-of-type(4):not(:last-of-type) .ronda .container_match:nth-of-type(even)::after {
-    --height: 512px;
-    height: var(--height);
-    border-bottom-style: solid;
-    top: calc(-50% - var(--height));
+  --height: 512px;
+  height: var(--height);
+  border-bottom-style: solid;
+  top: calc(-50% - var(--height));
 }
 
 /* quinta ronda */
 
 .container_ronda:nth-of-type(5):not(:last-of-type) .ronda .container_match:nth-of-type(odd)::after {
-    --height: 1024px;
-    height: var(--height);
+  --height: 1024px;
+  height: var(--height);
 }
 
 .container_ronda:nth-of-type(5):not(:last-of-type) .ronda .container_match:nth-of-type(even)::after {
-    --height: 1024px;
-    height: var(--height);
-    border-bottom-style: solid;
-    top: calc(-50% - var(--height));
+  --height: 1024px;
+  height: var(--height);
+  border-bottom-style: solid;
+  top: calc(-50% - var(--height));
 }

@@ -21,9 +21,9 @@ const CardTournament: React.FC<Props> = ({ tournament }) => {
         <p >{tournament.nombre}</p>
       </div>
       <div className={styles.info}>
-        <p><img src={map} alt="" />{tournament.lugar ? tournament.lugar : '-'}</p>
-        <p><img src={date} alt="" /> {tournament.fecha.slice(0, 10)}</p>
-        <p><img src={category} alt="" /> {tournament.categoria}</p>
+        <div className={styles.dato}><img src={map} alt="" /><p>{tournament.lugar ? tournament.lugar : '-'}</p></div>
+        <div className={styles.dato}><img src={date} alt="" /> <p>{tournament.fecha.slice(0, 10)}</p></div>
+        <div className={styles.dato}><img src={category} alt="" /><p>{tournament.categoria}</p></div>
       </div>
     </article>
     </Link >

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/createPlayer.module.css'
+import styleForm from '../styles/form.module.css'
 import { Alert, Form, Input, Spin } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
@@ -14,11 +15,10 @@ const CreateJugador: React.FC = () => {
             <section className={styles.section}>
 
                 {contextHolder}
-                <div className={styles.container_form}>
+                <div className={styleForm.container_form}>
                     <Form
-                        // style={{ backgroundColor: "#dfdfdf", padding: 30, width: 400, borderRadius: 10 }}
                         name="normal_login"
-                        className={styles.form}
+                        className={styleForm.form}
                         initialValues={{ remember: true }}
                         onFinish={onFinish}
                     >
@@ -33,14 +33,14 @@ const CreateJugador: React.FC = () => {
                             name="nombre"
                             rules={[{ required: true, message: 'Ingresa el nombre!' }]}
                         >
-                            <Input className={styles.input} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Nombre" />
+                            <Input className={styleForm.input} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Nombre" />
                         </Form.Item>
 
                         <Form.Item
                             name="apellido"
                             rules={[{ required: true, message: 'Ingresa el apellido!' }]}
                         >
-                            <Input className={styles.input} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Apellido" />
+                            <Input className={styleForm.input} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Apellido" />
                         </Form.Item>
 
                         <Form.Item
@@ -49,9 +49,8 @@ const CreateJugador: React.FC = () => {
                             rules={[{ required: true, message: 'Ingresa el dni!' },
                             { min: 0, max: 99999999, message: 'DNI no valido' }]}
                         >
-                            <Input className={styles.input}
+                            <Input className={styleForm.input}
                                 prefix={
-                                    // <LockOutlined className="site-form-item-icon" />
                                     <img src={dni_img} style={{ width: 20, height: 20 }} alt="dni" />
                                 }
                                 type="number"
@@ -61,7 +60,7 @@ const CreateJugador: React.FC = () => {
 
                         </Form.Item>
                         <div style={{ textAlign: "center" }}>
-                            <button type="submit" className={styles.btn}>Crear</button>
+                            <button type="submit" className={styleForm.btn}>Crear</button>
                         </div>
                     </Form>
                 </div>

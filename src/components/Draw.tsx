@@ -1,6 +1,5 @@
-import React from 'react';
-// import { useTournaments } from '../store/tournaments';
-import { Link,  useParams } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import styles from '../styles/drawTournament.module.css'
 import { potenciasDe2 } from '../services/tools';
@@ -11,7 +10,6 @@ import { useUser } from '../store/user';
 import { useMatches } from '../store/matches';
 import { Result } from 'antd';
 import { useTournament } from '../hooks/useTournament';
-// import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
 import { getRondas } from '../constantes';
 
 
@@ -19,8 +17,9 @@ import { getRondas } from '../constantes';
 const Draw: React.FC = () => {
 
     const { id } = useParams()
+    const drawRef = useRef<HTMLDivElement>(null)
     const { tournament } = useTournament({ id })
-    
+
     const matches = useMatches(state => state.matches);
 
     const user = useUser((state) => state.user);
@@ -45,31 +44,36 @@ const Draw: React.FC = () => {
 
     return (
         <>
-            <div className={styles.cuadro}>
-                {
-                    rondas.map((jugadoresPorRonda: number) => {
-                        const arrayPartidos = arrayDeNumbers(jugadoresPorRonda)
-                        return (
-                            <div className={styles.container_ronda} key={jugadoresPorRonda}>
-                                <span className={styles.nameRonda}>{getRondas(jugadoresPorRonda)}</span>
-                                <div className={styles.ronda} key={jugadoresPorRonda}>
-                                    {
-                                        arrayPartidos.map((orden) => {
-                                            const partido = findPartido(orden, jugadoresPorRonda)
-                                            if (partido) {
+            <div className={styles.container} >
+                <span className={[styles.btn_scroll_left, styles.btn_scroll].join(' ')} onClick={() => drawRef?.current?.scrollTo({ left: drawRef?.current.scrollLeft - 240, behavior: 'smooth' })}>{'<'}</span>
+                <span className={[styles.btn_scroll_right, styles.btn_scroll].join(' ')} onClick={() => drawRef?.current?.scrollTo({ left: drawRef?.current.scrollLeft + 240, behavior: 'smooth' })}>{'>'}</span>
+                <div className={styles.cuadro} ref={drawRef}>
+                    {
+                        rondas.map((jugadoresPorRonda: number) => {
+                            const arrayPartidos = arrayDeNumbers(jugadoresPorRonda)
+                            return (
+                                <div className={styles.container_ronda} key={jugadoresPorRonda}>
+                                    <span className={styles.nameRonda}>{getRondas(jugadoresPorRonda)}</span>
+
+                                    <div className={styles.ronda} key={jugadoresPorRonda}>
+                                        {
+                                            arrayPartidos.map((orden) => {
+                                                const partido = findPartido(orden, jugadoresPorRonda)
+                                                if (partido) {
+                                                    return (
+                                                        <CardMatch match={partido} key={`${partido.id}`} isAdmin={isAdmin} />
+                                                    )
+                                                }
                                                 return (
-                                                    <CardMatch match={partido} key={`${partido.id}`} isAdmin={isAdmin} />
+                                                    <CardMatchEmpty key={`${orden}-${jugadoresPorRonda}`} isAdmin={isAdmin} jugadoresXRonda={jugadoresPorRonda} orden={orden} idTorneo={id ?? 0} />
                                                 )
-                                            }
-                                            return (
-                                                <CardMatchEmpty key={`${orden}-${jugadoresPorRonda}`} isAdmin={isAdmin} jugadoresXRonda={jugadoresPorRonda} orden={orden} idTorneo={id ?? 0} />
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </div>)
-                    })
-                }
+                                            })
+                                        }
+                                    </div>
+                                </div>)
+                        })
+                    }
+                </div>
             </div>
         </>
     );

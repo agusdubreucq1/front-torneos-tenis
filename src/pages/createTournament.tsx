@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/createTournament.module.css'
+import styleForm from '../styles/form.module.css'
 import useCreateTournament from '../hooks/useCreateTournament';
 import { Alert, Button, DatePicker, Form, Input, Select } from 'antd';
 import { getRondas } from '../constantes';
@@ -14,9 +15,9 @@ const CreateTournament: React.FC = () => {
             <section className={styles.section}>
 
                 {contextHolder}
-                <div className={styles.container_form}>
+                <div className={styleForm.container_form}>
                     <Form
-                        className={styles.form}
+                        className={styleForm.form}
                         labelCol={{ span: 4 }}
                         layout="vertical"
                         onFinish={handleSubmit}
@@ -32,7 +33,7 @@ const CreateTournament: React.FC = () => {
                             rules={[{ required: true, message: 'Ingresa el nombre!' }]}
                             name={'nombre'}
                             label="Nombre">
-                            <Input name='nombre' className={styles.input}  ></Input>
+                            <Input name='nombre' className={styleForm.input}  ></Input>
                         </Form.Item>
 
 
@@ -41,33 +42,33 @@ const CreateTournament: React.FC = () => {
                             rules={[{ required: true, message: 'Ingresa la fecha!' }]}
                             label="Fecha"
                             name={'fecha'}>
-                            <DatePicker name='fecha' className={styles.input} ></DatePicker>
+                            <DatePicker name='fecha' className={styleForm.input} ></DatePicker>
                         </Form.Item>
 
                         <Form.Item
                             rules={[{ required: true, message: 'Ingresa la categoria!' }]}
                             name={'categoria'}
                             label="Categoria">
-                            <Input name='categoria' className={styles.input}  ></Input>
+                            <Input name='categoria' className={styleForm.input}  ></Input>
                         </Form.Item>
 
 
                         <Form.Item
                             label="Descripción"
                             name={'descripcion'}>
-                            <Input name='descripcion' className={styles.input} ></Input>
+                            <Input name='descripcion' className={styleForm.input} ></Input>
                         </Form.Item>
 
                         <Form.Item
                             label="Lugar"
                             name={'lugar'}>
-                            <Input name='lugar' className={styles.input}  ></Input>
+                            <Input name='lugar' className={styleForm.input}  ></Input>
                         </Form.Item>
 
                         <Form.Item
                             label="Rondas"
                             name={'cant_jugadores'}>
-                            <Select style={{ borderRadius: 0 }} className={styles.input} options={[
+                            <Select style={{ borderRadius: 0 }} className={styleForm.input} options={[
                                 {
                                     value: 0,
                                     label: 'seleccionar mas tarde',
@@ -87,9 +88,7 @@ const CreateTournament: React.FC = () => {
                                 }
                             ]} />
                         </Form.Item>
-                        {/* <div style={{ display: 'flex', justifyContent: 'center' }}> */}
-                        <Button size='large' style={{ borderRadius: 5, padding: 10, height: 60 }} htmlType="submit" loading={loading} className={styles.btn} >Crear Torneo</Button>
-                        {/* </div> */}
+                        <Button size='large' style={{ borderRadius: 5, padding: 10, height: 60 }} htmlType="submit" loading={loading} className={styleForm.btn} >Crear Torneo</Button>
                     </Form>
                 </div>
 
