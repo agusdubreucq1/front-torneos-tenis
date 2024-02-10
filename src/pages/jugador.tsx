@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import styles from '../styles/jugador.module.css'
 import useJugador from '../hooks/usePlayer';
-import { DescriptionsProps, Result, Descriptions, Tabs, ConfigProvider } from 'antd';
+import {  Result,  Tabs, ConfigProvider } from 'antd';
 import PlayerMatches from '../components/PlayerMatches';
 import InscripcionesJugador from '../components/InscripcionesJugador';
 
@@ -23,38 +23,6 @@ const Jugador: React.FC = () => {
         )
     }
 
-    const items: DescriptionsProps['items'] = [
-        {
-            key: '1',
-            label: 'Nombre',
-            children: jugador.user?.nombre,
-        },
-        {
-            key: '2',
-            label: 'Apellido',
-            children: jugador.user?.apellido,
-        },
-        {
-            key: '3',
-            label: 'Torneos jugados',
-            children: 10,
-        },
-        {
-            key: '4',
-            label: 'Torneos ganados',
-            children: 3,
-        },
-        {
-            key: '5',
-            label: 'Partidos jugados',
-            children: 16,
-        },
-        {
-            key: '6',
-            label: 'Partidos ganados',
-            children: 8,
-        },
-    ]
 
     return (
         <main className={styles.main}>

@@ -9,12 +9,14 @@ import { Result, Spin } from 'antd';
 import { Player } from '../vite-env';
 import Search from 'antd/es/input/Search';
 import IconEye from '../components/icons/IconEye';
+import { useUser } from '../store/user';
 
 const Jugadores: React.FC = () => {
 
     const { players, error, loading: loading } = usePlayers()
     const [filteredPlayers, setFilteredPlayers] = React.useState<Player[]>(players);
     const [search, setSearch] = React.useState('');
+    const user = useUser((state) => state.user)
 
     useEffect(() => {
         let newPlayers = players;
@@ -28,14 +30,16 @@ const Jugadores: React.FC = () => {
     }, [players, search])
 
 
-    
+
     return (
         <main className={styles.main}>
             <section className={styles.section}>
                 <h1 className={styles.title}>Jugadores</h1>
-                <Search value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar por nombre o apellido"></Search>
+                <div className={styles.filters}>
+                    <Search value={search} style={{maxWidth: 300}} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar por nombre o apellido"></Search>
+                </div>
 
-                <Link to={'/create/jugador'} className={styles.btn}><img src={plus}></img>Crear Jugador</Link>
+                {user?.isAdmin && <Link to={'/create/jugador'} className={styles.btn}><img src={plus}></img>Crear Jugador</Link>}
                 {
                     error ? <Result status="error" title="Error" subTitle={error} /> :
                         <div className={styles.tabla}>
@@ -46,15 +50,15 @@ const Jugadores: React.FC = () => {
                                 <p></p>
                             </div>
                             {
-                                loading 
-                                    ? <Spin style={{padding: 40}}></Spin>
+                                loading
+                                    ? <Spin style={{ padding: 40 }}></Spin>
                                     : filteredPlayers.map(j =>
-                                    <div key={j.user?.dni} className={styles.fila}>
-                                        <p>{j.user?.nombre}</p>
-                                        <p>{j.user?.apellido}</p>
-                                        <p>{j.user?.dni}</p>
-                                        <Link className={styles.link_ver} to={`/jugador/${j.id}`}><IconEye /></Link>
-                                    </div>)
+                                        <div key={j.user?.dni} className={styles.fila}>
+                                            <p>{j.user?.nombre}</p>
+                                            <p>{j.user?.apellido}</p>
+                                            <p>{j.user?.dni}</p>
+                                            <Link className={styles.link_ver} to={`/jugador/${j.id}`}><IconEye /></Link>
+                                        </div>)
                             }
 
                         </div>

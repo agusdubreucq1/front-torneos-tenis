@@ -17,3 +17,7 @@ export function potenciasDe2(numero: number) {
   // Usar la función para crear un array con las potencias de 2 menores que 16
   // const arrayPotencias = potenciasDe2(16);
  // [16, 8, 4, 2, 1]
+
+ export const max: (a: number, b: number) => number = (a, b) => {
+    return b < a ? a : b
+  }

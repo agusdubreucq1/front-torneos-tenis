@@ -49,6 +49,12 @@
     box-shadow: none;
 }
 
+.filters{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 
 .tabla{
     display: grid;

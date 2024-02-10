@@ -10,6 +10,8 @@ import IconLogout from './icons/IconLogout';
 import IconHome from './icons/IconHome';
 import IconPlayer from './icons/IconPlayer';
 import IconBurger from './icons/IconBurger';
+import IconLogIn from './icons/IconLogIn';
+import IconRegister from './icons/IconRegister';
 
 const Header: React.FC = () => {
     const [user, logout] = useUser((state) => [state.user, state.logout])
@@ -32,8 +34,8 @@ const Header: React.FC = () => {
 
     const content = (
         <div className={styles.popover}>
-            <Link to={'/perfil'} className={styles.link_user_popover}>Ver Perfil</Link>
-            <div onClick={() => setModalOpen(true)} className={styles.logout_popover}><IconLogout color='#000' />Logout</div>
+            <Link to={'/perfil'} onClick={handleClose} className={styles.link_user_popover}>Ver Perfil</Link>
+            <div onClick={() => { setModalOpen(true); handleClose() }} className={styles.logout_popover}><IconLogout color='#000' />Logout</div>
         </div>
     )
 
@@ -68,27 +70,29 @@ const Header: React.FC = () => {
             <Drawer
                 title="Menu"
                 placement={'left'}
-                // width={500}
                 onClose={handleClose}
                 open={openDrawer}
-                styles={{body: {padding: 0}}}
+                styles={{ body: { padding: 0 } }}
             >
                 <ul className={styles.ul_drawer}>
                     <li className={styles.li} onClick={handleClose}><Link to="/"><IconHome color='#000' />Home</Link></li>
                     <li className={styles.li} onClick={handleClose}><Link to="/jugadores"><IconPlayer color='#000' /> Jugadores</Link></li>
                     {user
                         ?
-                        <li onClick={handleClose} className={styles.li}><Popover placement="bottomRight" content={content} trigger="hover"><div className={styles.link_user}><IconUser color='#000' />{user.nombre}</div></Popover></li>
+                        <>
+                            <li className={styles.li}><Link to={'/perfil'} onClick={handleClose} ><div className={styles.link_user}> <IconUser color='#000' />ver perfil</div></Link></li>
+                            <li onClick={() => { setModalOpen(true); handleClose() }} className={styles.li}><div style={{ padding: 15, display: 'flex', alignItems: 'center', gap: 10 }}><IconLogout color='#000' />Logout</div></li>
+                        </>
                         :
                         <>
-                            <li onClick={handleClose} className={styles.li}><Link to="/login">Login</Link></li>
-                            <li onClick={handleClose} className={[styles.li, styles.register].join(" ")}><Link to="/register">Register</Link></li>
+                            <li onClick={handleClose} className={styles.li}><Link to="/login"><IconLogIn color='#000' />Login</Link></li>
+                            <li onClick={handleClose} className={[styles.li, styles.register].join(" ")}><Link to="/register"><IconRegister></IconRegister>Register</Link></li>
                         </>
                     }
                 </ul>
 
             </Drawer>
-        </header>
+        </header >
     );
 };
 

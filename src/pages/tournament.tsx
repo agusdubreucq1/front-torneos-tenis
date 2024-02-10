@@ -10,12 +10,11 @@ import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
 import useUpdateTournament from '../hooks/useUpdateTournament';
 import { useMatches } from '../store/matches';
 import IconEdit from '../components/icons/IconEdit';
+import useAutoDesinscribirse from '../hooks/useAutoDesinscribirse';
 
 const Tournament: React.FC = () => {
     const navigate = useNavigate()
     const location = useLocation()
-
-    const [pathname, setPathname] = React.useState(location.pathname)
 
     const { id } = useParams();
 
@@ -23,6 +22,7 @@ const Tournament: React.FC = () => {
         getJugadoresInscriptos(id ?? 0)
         getMatches(id ?? 0)
     }, [])
+
 
     const user = useUser((state) => state.user);
     const [players, getJugadoresInscriptos] = useJugadoresInscriptos((state) => [state.jugadoresInscriptos, state.getJugadoresInscriptos]);
@@ -32,7 +32,8 @@ const Tournament: React.FC = () => {
     const [matches, getMatches] = useMatches((state) => [state.matches, state.getMatches]);
 
 
-    const { handleOpenModal, modal, contextHolder } = useAutoInscripcion({ id: id ?? 0 })
+    const { handleOpenModal: handleOpenModalInscribirse, modal: modalInscribirse, contextHolder: contextHolderInscribirse } = useAutoInscripcion({ id: id ?? 0 })
+    const { handleOpenModal: handleOpenModalDesinscribirse, modal: modalDesinscribirse, contextHolder: contextHolderDesinscribirse } = useAutoDesinscribirse({ id: id ?? 0 })
 
     const isAdminOfTournament = tournament?.users.map((u) => u.dni).includes(user?.dni ?? 0)
     const isJugador = user?.isAdmin === false;
@@ -72,15 +73,17 @@ const Tournament: React.FC = () => {
         {
             key: `/tournament/${id}/draw`,
             label: 'Cuadro',
-            active: pathname === `/tournament/${id}/draw`,
+            active: location.pathname === `/tournament/${id}/draw`,
         }
     ]
 
     return (
         <>
-            <div key={'holderInscripcion'}>{contextHolder}</div>
+            <div key={'holderInscripcion'}>{contextHolderInscribirse}</div>
+            <div key={'holderDesinscripcion'}>{contextHolderDesinscribirse}</div>
             <div key={'holderUpdate'}>{contextHolderUpdate}</div>
-            {modal}
+            {modalInscribirse}
+            {modalDesinscribirse}
             {modalUpdate}
             <main className={styles.main}>
                 <section className={styles.section}>
@@ -91,16 +94,14 @@ const Tournament: React.FC = () => {
                     </div>
                     <div className={styles.btns}>
                         <Tabs
-                            activeKey={pathname}
+                            activeKey={location.pathname}
                             onTabClick={(key) => {
                                 navigate(`${key}`);
-                                setPathname(`${key}`);
                             }}
                             items={isAdminOfTournament ? itemsAdmin : itemsPlayer}>
                         </Tabs>
-                        {isJugador && !estaInscripto && <button onClick={handleOpenModal} className={styles.btn}>Inscribirse</button>}
-                        {/* TODO */}
-                        {isJugador && !hasMatches && estaInscripto && <button onClick={handleOpenModal} className={styles.btn}>Desinscribirse</button>}
+                        {isJugador && !estaInscripto && <button onClick={handleOpenModalInscribirse} className={styles.btn}>Inscribirse</button>}
+                        {isJugador && !hasMatches && estaInscripto && <button onClick={handleOpenModalDesinscribirse} className={styles.btn}>Desinscribirse</button>}
                     </div>
                     <Outlet></Outlet>
                 </section>

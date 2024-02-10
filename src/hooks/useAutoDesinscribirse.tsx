@@ -20,7 +20,7 @@ const useAutoDesinscribirse: Function = ({id}) => {
     const [openModal, setOpenModal] = React.useState(false);
     const [messageAPI, contextHolder] = message.useMessage();
 
-    const inscribirse = async () => {
+    const desinscribirse = async () => {
         try{
             await autoDesinscrirse(id ?? 0, token ?? 'token')
             setOpenModal(false)
@@ -30,6 +30,7 @@ const useAutoDesinscribirse: Function = ({id}) => {
                 key: 'inscribirse',
             })
             getJugadoresInscriptos(id)
+            
         } catch (error){
             console.log(error)
             messageAPI.error({
@@ -48,7 +49,7 @@ const useAutoDesinscribirse: Function = ({id}) => {
   const modal = (
       <Modal
         open={openModal}
-        onOk={inscribirse}
+        onOk={desinscribirse}
         okText="desinscribirse"
         onCancel={() => setOpenModal(false)}>
             <p>¿Deseas desinscribirte?</p>

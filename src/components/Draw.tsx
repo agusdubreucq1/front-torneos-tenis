@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import styles from '../styles/drawTournament.module.css'
-import { potenciasDe2 } from '../services/tools';
+import { max, potenciasDe2 } from '../services/tools';
 import { arrayDeNumbers } from '../services/tools';
 import CardMatchEmpty from './CardMatch/CardMatchEmpty';
 import CardMatch from './CardMatch/CardMatch';
@@ -11,13 +11,24 @@ import { useMatches } from '../store/matches';
 import { Result } from 'antd';
 import { useTournament } from '../hooks/useTournament';
 import { getRondas } from '../constantes';
+import useResizeObserver from 'use-resize-observer';
+import IconChevronLeft from './icons/IconChevronLeft';
+import IconChevronRight from './icons/IconChevronRight';
 
 
 
 const Draw: React.FC = () => {
 
-    const { id } = useParams()
     const drawRef = useRef<HTMLDivElement>(null)
+    const { width, height } = useResizeObserver<HTMLDivElement>({ref: drawRef});
+
+    const cantidadDeRondas = Math.floor((width! + 40) / 260) === 0 ? 1 : Math.floor((width! + 40) / 260) // width mas el padding que se resta solo
+
+    useEffect(() => {
+        console.log('width', width, 'height', height, cantidadDeRondas)
+    }, [width, height])
+
+    const { id } = useParams()
     const { tournament } = useTournament({ id })
 
     const matches = useMatches(state => state.matches);
@@ -45,8 +56,8 @@ const Draw: React.FC = () => {
     return (
         <>
             <div className={styles.container} >
-                <span className={[styles.btn_scroll_left, styles.btn_scroll].join(' ')} onClick={() => drawRef?.current?.scrollTo({ left: drawRef?.current.scrollLeft - 240, behavior: 'smooth' })}>{'<'}</span>
-                <span className={[styles.btn_scroll_right, styles.btn_scroll].join(' ')} onClick={() => drawRef?.current?.scrollTo({ left: drawRef?.current.scrollLeft + 240, behavior: 'smooth' })}>{'>'}</span>
+                <span className={[styles.btn_scroll_left, styles.btn_scroll].join(' ')} onClick={() => drawRef?.current?.scrollTo({ left: drawRef?.current.scrollLeft - max(260,((width! + 40) / cantidadDeRondas)), behavior: 'smooth' })}><IconChevronLeft color='#000' /></span>
+                <span className={[styles.btn_scroll_right, styles.btn_scroll].join(' ')} onClick={() => drawRef?.current?.scrollTo({ left: drawRef?.current.scrollLeft + max(260,((width! + 40) / cantidadDeRondas)), behavior: 'smooth' })}><IconChevronRight color='#000' /></span>
                 <div className={styles.cuadro} ref={drawRef}>
                     {
                         rondas.map((jugadoresPorRonda: number) => {
@@ -55,7 +66,8 @@ const Draw: React.FC = () => {
                                 <div className={styles.container_ronda} key={jugadoresPorRonda}>
                                     <span className={styles.nameRonda}>{getRondas(jugadoresPorRonda)}</span>
 
-                                    <div className={styles.ronda} key={jugadoresPorRonda}>
+                                    {/* <div className={styles.ronda} key={jugadoresPorRonda} style={{ width: `calc(calc(min(100dvw, 1200px) - 80px) / ${cantidadDeRondas} - 40px)` }} > */}
+                                    <div className={styles.ronda} key={jugadoresPorRonda} style={{ width: `calc(${width! + 40}px / ${cantidadDeRondas} - 40px)` }} >
                                         {
                                             arrayPartidos.map((orden) => {
                                                 const partido = findPartido(orden, jugadoresPorRonda)
