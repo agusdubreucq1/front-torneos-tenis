@@ -19,6 +19,7 @@ import InscripcionJugador from './pages/inscripcionJugador'
 import { Result } from 'antd'
 import Footer from './components/Footer'
 import Perfil from './pages/Perfil'
+// import Perfil from './pages/Perfil'
 
 
 function App() {
