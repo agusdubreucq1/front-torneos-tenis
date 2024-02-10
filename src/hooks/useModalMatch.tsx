@@ -1,4 +1,4 @@
-import { Alert, DatePicker, Form, FormInstance, Input, Modal, Select } from 'antd';
+import { Alert, DatePicker, Form, FormInstance, Modal, Select } from 'antd';
 import React, { useEffect } from 'react';
 import { useJugadoresInscriptos } from '../store/jugadoresInscriptos';
 import { Match } from '../vite-env';

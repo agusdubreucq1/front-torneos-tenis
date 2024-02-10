@@ -1,4 +1,4 @@
-import { Modal, Select, Form, Input, DatePicker, Alert, message } from 'antd';
+import { Modal, Select, Form, DatePicker, Alert, message } from 'antd';
 import React from 'react';
 import { createPartido } from '../services/partido';
 import { useUser } from '../store/user';
