@@ -37,7 +37,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename='/'>
         <Header></Header>
         <Routes>
           <Route path='/' element={<Index />} ></Route>
