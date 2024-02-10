@@ -18,7 +18,7 @@ import Draw from './components/Draw'
 import InscripcionJugador from './pages/inscripcionJugador'
 import { Result } from 'antd'
 import Footer from './components/Footer'
-import Perfil from './pages/Perfil'
+// import Perfil from './pages/Perfil'
 // import Perfil from './pages/Perfil'
 
 
@@ -52,7 +52,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path='/create/tournament' element={<CreateTournament></CreateTournament>}></Route>
             <Route path='/create/jugador' element={<CreateJugador />}></Route>
-            <Route path='/perfil' element={<Perfil />}></Route>
+            {/* <Route path='/perfil' element={<Perfil />}></Route> */}
           </Route>
           <Route path='*' element={<Result status={"error"} title={"404"} subTitle={"No se ha encontrado la ruta"} extra={<Link to={"/"} >Volver al inicio</Link>} />} ></Route>
         </Routes>
