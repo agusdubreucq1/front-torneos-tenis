@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useTournaments } from '../store/tournaments';
 import CardTournament from './CardTournament';
 import styles from '../styles/listTournaments.module.css'
 import { Tournament } from '../vite-env';

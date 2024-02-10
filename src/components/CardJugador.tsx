@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Jugador } from '../vite-env';
+import {  Player } from '../vite-env';
 
 interface Props{
-    jugador: Jugador
+    jugador: Player
 }
 
 const CardJugador: React.FC<Props> = ({jugador}) => {
