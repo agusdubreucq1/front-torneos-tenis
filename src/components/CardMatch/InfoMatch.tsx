@@ -2,6 +2,7 @@ import React from 'react';
 import { Match } from '../../vite-env';
 import styles from '../../styles/cardMatch.module.css'
 import tick from '/icons/tick.svg'
+import { capitalizarPrimeraLetra } from '../../services/tools';
 
 
 interface Props {
@@ -14,11 +15,11 @@ const InfoMatch: React.FC<Props> = ({ match }) => {
         <div key={match?.id} className={styles.match}>
             <div className={styles.jugadores}>
                 <div className={styles.jugador}>
-                    <p className={match?.ganador == 1 ? styles.ganador : ''}>{match?.Pareja1.user.apellido + '.' + match?.Pareja1.user.nombre.slice(0, 1).toUpperCase()}</p>
+                    <p className={match?.ganador == 1 ? styles.ganador : ''}>{match?.Pareja1.user.nombre.slice(0, 1).toUpperCase() + '.' + capitalizarPrimeraLetra(match?.Pareja1.user.apellido)  }</p>
                     {match?.ganador == 1 && <img src={tick}></img>}
                 </div>
                 <div className={styles.jugador}>
-                    <p className={match?.ganador == 2 ? styles.ganador : ''}>{match?.Pareja2.user.apellido + '.' + match?.Pareja2.user.nombre.slice(0, 1).toUpperCase()}</p>
+                    <p className={match?.ganador == 2 ? styles.ganador : ''}>{match?.Pareja2.user.nombre.slice(0, 1).toUpperCase() + '.' + capitalizarPrimeraLetra(match?.Pareja2.user.apellido) }</p>
                     {match?.ganador == 2 && <img src={tick}></img>}
                 </div>
             </div>
