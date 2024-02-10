@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from '../styles/register.module.css'
 import styleForm from '../styles/form.module.css'
-import { Alert, Button, Form, Input, Switch } from 'antd';
+import { Alert, Button, Form, Input, InputNumber, Switch } from 'antd';
 import useRegister from '../hooks/useRegister';
 
 const Register: React.FC = () => {
 
-    const { error, loading, newUser, handleChange, handleSubmit, handleChangeSwitch } = useRegister();
+    const { error, loading, newUser, handleChange, handleChangeDNI, handleSubmit, handleChangeSwitch } = useRegister();
 
     return (
         <main className={styles.main}>
@@ -37,7 +37,7 @@ const Register: React.FC = () => {
                             rules={[{ required: true, message: 'Ingresa el dni!' }]}
                             name={"dni"}
                             label="DNI" >
-                            <Input className={styleForm.input} name='dni' type='number' onChange={handleChange} />
+                            <InputNumber className={styleForm.input} name='dni' type='number' onChange={handleChangeDNI} />
                         </Form.Item>
 
                         <Form.Item

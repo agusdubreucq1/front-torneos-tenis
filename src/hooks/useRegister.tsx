@@ -1,16 +1,26 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../services/login';
+import { valueType } from 'antd/es/statistic/utils';
+
+interface UserRegister{
+    nombre: string;
+    apellido: string;
+    dni: valueType | null;
+    password: string;
+    confirmPassword: string;
+    isAdmin: boolean;
+}
 
 const useRegister = () => {
     const navigate = useNavigate();
 
     const [error, setError] = React.useState<null | String>(null);
     const [loading, setLoading] = React.useState(false);
-    const [newUser, setNewUser] = React.useState({
+    const [newUser, setNewUser] = React.useState<UserRegister>({
         nombre: '',
         apellido: '',
-        dni: '',
+        dni: null,
         password: '',
         confirmPassword: '',
         isAdmin: false
@@ -20,6 +30,13 @@ const useRegister = () => {
         setNewUser({
             ...newUser,
             [event.target.name]: event.target.value
+        })
+    }
+
+    const handleChangeDNI = (value: valueType | null) => {
+        setNewUser({
+            ...newUser,
+            dni: value
         })
     }
 
@@ -54,6 +71,7 @@ const useRegister = () => {
         newUser,
         loading,
         handleChange,
+        handleChangeDNI,
         handleChangeSwitch,
         handleSubmit
     }
