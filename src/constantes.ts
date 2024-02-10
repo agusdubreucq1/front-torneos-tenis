@@ -1,4 +1,4 @@
-export const URLBACK = "http://localhost:3000";
+export const URLBACK = "https://api-torneos-tenis.vercel.app";
 
 export const ESTADOS_TORNEOS = {
     EN_CURSO: "ABIERTO",
