@@ -27,7 +27,7 @@ const Login: React.FC = () => {
                             label="DNI"
                             rules={[{ required: true, message: 'Ingresa el dni!' }]}
                             name={'dni'}>
-                            <InputNumber style={{ width: '100%' }} className={styleForm.input} name='dni' type='number' prefix={<img style={{ width: 20, height: 20 }} src={userImg}></img>}></InputNumber>
+                            <InputNumber style={{ width: '100%', display: 'flex', alignItems: 'center' }} className={styleForm.input} name='dni' type='number' prefix={<img style={{ width: 20, height: 20 }} src={userImg}></img>}></InputNumber>
                         </Form.Item>
 
                         <Form.Item

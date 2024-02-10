@@ -36,32 +36,28 @@ const Jugadores: React.FC = () => {
             <section className={styles.section}>
                 <h1 className={styles.title}>Jugadores</h1>
                 <div className={styles.filters}>
-                    <Search value={search} style={{maxWidth: 300}} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar por nombre o apellido"></Search>
+                    <Search value={search} style={{ maxWidth: 300 }} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar por nombre o apellido"></Search>
                 </div>
 
                 {user?.isAdmin && <Link to={'/create/jugador'} className={styles.btn}><img src={plus}></img>Crear Jugador</Link>}
                 {
                     error ? <Result status="error" title="Error" subTitle={error} /> :
-                        <div className={styles.tabla}>
-                            <div className={styles.head}>
-                                <p>Nombre</p>
-                                <p>Apellido</p>
-                                <p>DNI</p>
-                                <p></p>
+                        loading ? <Spin style={{ padding: 40 }}></Spin> :
+                            <div className={styles.tabla}>
+                                <div className={styles.head}>
+                                    <p>Nombre</p>
+                                    <p>Apellido</p>
+                                    <p>DNI</p>
+                                    <p></p>
+                                </div>
+                                {filteredPlayers.map(j =>
+                                    <div key={j.user?.dni} className={styles.fila}>
+                                        <p>{j.user?.nombre}</p>
+                                        <p>{j.user?.apellido}</p>
+                                        <p>{j.user?.dni}</p>
+                                        <Link className={styles.link_ver} to={`/jugador/${j.id}`}><IconEye /></Link>
+                                    </div>)}
                             </div>
-                            {
-                                loading
-                                    ? <Spin style={{ padding: 40 }}></Spin>
-                                    : filteredPlayers.map(j =>
-                                        <div key={j.user?.dni} className={styles.fila}>
-                                            <p>{j.user?.nombre}</p>
-                                            <p>{j.user?.apellido}</p>
-                                            <p>{j.user?.dni}</p>
-                                            <Link className={styles.link_ver} to={`/jugador/${j.id}`}><IconEye /></Link>
-                                        </div>)
-                            }
-
-                        </div>
                 }
             </section>
         </main>

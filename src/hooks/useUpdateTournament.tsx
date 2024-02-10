@@ -74,16 +74,15 @@ const useUpdateTournament: Function = ({ id }) => {
 
     const modal = (
         <Modal
-            // style={{ width: 600, background: '#dfdfdf', borderRadius: 20 }}
             open={openModal}
             title="Editar Torneo"
             centered
             styles={{}}
             okText="Confirmar"
+            confirmLoading={loading}
             onOk={handleSubmit}
             onCancel={() => setOpenModal(false)}>
             <Form
-                // style={{ background: '#dfdfdf'}}
                 form={form}
                 labelCol={{ span: 4 }}
                 layout="horizontal"

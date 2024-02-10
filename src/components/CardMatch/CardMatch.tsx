@@ -22,12 +22,13 @@ const CardMatch: React.FC<{ match: Match, isAdmin?: boolean }> = ({ match, isAdm
 
     const [openModalDelete, setOpenModalDelete] = React.useState(false);
 
-
+    
     const handleOk = async () => {
         setError(null);
+        setLoading(true);
         try {
             const values = await form.validateFields();
-            setLoading(true);
+            
             form.resetFields();
             const body = { ...match, ...values };
             await updateMatch(String(match?.id), body, token!);
@@ -41,6 +42,8 @@ const CardMatch: React.FC<{ match: Match, isAdmin?: boolean }> = ({ match, isAdm
             setLoading(false);
         }
     };
+
+    const { modal, form, handleOpenModal, setLoading, setError, handleCloseModal } = useModalMatch(handleOk, match);
 
 
     const handleDelete = async () => {
@@ -63,7 +66,6 @@ const CardMatch: React.FC<{ match: Match, isAdmin?: boolean }> = ({ match, isAdm
     }
 
 
-    const { modal, form, handleOpenModal, setLoading, setError, handleCloseModal } = useModalMatch(handleOk, match);
 
     console.log(isAdmin)
     return (

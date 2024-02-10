@@ -102,7 +102,18 @@ const useModalMatch: UseModalMatch = (handleOk, match) => {
                   return Promise.resolve();
                 },
               }),]}>
-            <Input placeholder='ej: 6-3'></Input>
+            <Select
+              options={[
+                { label: '6-0', value: '6-0' },
+                { label: '6-1', value: '6-1' },
+                { label: '6-2', value: '6-2' },
+                { label: '6-3', value: '6-3' },
+                { label: '6-4', value: '6-4' },
+                { label: '7-5', value: '7-5' },
+                { label: '7-6', value: '7-6' },
+              ]
+              }
+            />
           </Form.Item>
 
           <Form.Item label={'Fecha'} name={'fecha'}

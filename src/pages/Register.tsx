@@ -37,7 +37,7 @@ const Register: React.FC = () => {
                             rules={[{ required: true, message: 'Ingresa el dni!' }]}
                             name={"dni"}
                             label="DNI" >
-                            <InputNumber className={styleForm.input} name='dni' type='number' onChange={handleChangeDNI} />
+                            <InputNumber className={styleForm.input} max={99999999} min={10000000} style={{ width: '100%', display: 'flex', alignItems: 'center' }} name='dni' type='number' onChange={handleChangeDNI} />
                         </Form.Item>
 
                         <Form.Item
