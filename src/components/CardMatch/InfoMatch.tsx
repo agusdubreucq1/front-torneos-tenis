@@ -16,11 +16,11 @@ const InfoMatch: React.FC<Props> = ({ match }) => {
             <div className={styles.jugadores}>
                 <div className={styles.jugador}>
                     <p className={match?.ganador == 1 ? styles.ganador : ''}>{match?.Pareja1.user.nombre.slice(0, 1).toUpperCase() + '.' + capitalizarPrimeraLetra(match?.Pareja1.user.apellido)  }</p>
-                    {match?.ganador == 1 && <img src={tick}></img>}
+                    {match?.ganador == 1 && <img alt="icono de tick" src={tick}></img>}
                 </div>
                 <div className={styles.jugador}>
                     <p className={match?.ganador == 2 ? styles.ganador : ''}>{match?.Pareja2.user.nombre.slice(0, 1).toUpperCase() + '.' + capitalizarPrimeraLetra(match?.Pareja2.user.apellido) }</p>
-                    {match?.ganador == 2 && <img src={tick}></img>}
+                    {match?.ganador == 2 && <img alt="icono de tick" src={tick}></img>}
                 </div>
             </div>
             <div className={styles.resultado}>

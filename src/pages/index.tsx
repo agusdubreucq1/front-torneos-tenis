@@ -14,7 +14,7 @@ const Index: React.FC = () => {
   return (
     <main className={styles.main}>
       <section className={styles.section}>
-        {user?.isAdmin && <Link to="/create/tournament" className={styles.btn}><img src={plus}></img>Crear Torneo</Link>}
+        {user?.isAdmin && <Link to="/create/tournament" className={styles.btn}><img alt='icono de mas' src={plus}></img>Crear Torneo</Link>}
         <ListTournaments tournaments={tournaments} loading={loading} error={error}></ListTournaments>
       </section>
     </main>

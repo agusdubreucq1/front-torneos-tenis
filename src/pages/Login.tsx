@@ -34,7 +34,7 @@ const Login: React.FC = () => {
                             label="Password"
                             rules={[{ required: true, message: 'Ingresa la contraseña!' }]}
                             name={'password'}>
-                            <Input.Password name='password' className={styleForm.input} prefix={<img style={{ width: 20, height: 20 }} src={padlock}></img>}></Input.Password>
+                            <Input.Password name='password' className={styleForm.input} prefix={<img alt='icono de candado' style={{ width: 20, height: 20 }} src={padlock}></img>}></Input.Password>
                         </Form.Item>
 
                         <Form.Item>

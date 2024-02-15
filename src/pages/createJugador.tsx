@@ -51,7 +51,7 @@ const CreateJugador: React.FC = () => {
                         >
                             <Input className={styleForm.input}
                                 prefix={
-                                    <img src={dni_img} style={{ width: 20, height: 20 }} alt="dni" />
+                                    <img src={dni_img} style={{ width: 20, height: 20 }} alt="icono de dni" />
                                 }
                                 type="number"
                                 placeholder="DNI"

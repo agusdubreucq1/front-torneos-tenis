@@ -39,7 +39,7 @@ const Jugadores: React.FC = () => {
                     <Search value={search} style={{ maxWidth: 300 }} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar por nombre o apellido"></Search>
                 </div>
 
-                {user?.isAdmin && <Link to={'/create/jugador'} className={styles.btn}><img src={plus}></img>Crear Jugador</Link>}
+                {user?.isAdmin && <Link to={'/create/jugador'} className={styles.btn}><img alt='icono de mas' src={plus}></img>Crear Jugador</Link>}
                 {
                     error ? <Result status="error" title="Error" subTitle={error} /> :
                         loading ? <Spin style={{ padding: 40 }}></Spin> :

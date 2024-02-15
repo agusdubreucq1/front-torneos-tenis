@@ -14,18 +14,18 @@ interface Props {
 
 const CardTournament: React.FC<Props> = ({ tournament }) => {
   return (
-    <Link to={`/tournament/${tournament.id}/details`} className={styles.link}>
+    <Link to={`/tournament/${tournament.id}/details`} className={styles.link} aria-label="Detalles del torneo">
       <article className={styles.card}>
-        <div className={styles.head}>
-        <div className={`${styles.estado} ${tournament.estado === ESTADOS_TORNEOS.EN_CURSO ? styles.disponible : (tournament.estado === ESTADOS_TORNEOS.FINALIZADO ? styles.finalizado : styles.suspendido)}`}></div>
-        <p >{tournament.nombre}</p>
-      </div>
-      <div className={styles.info}>
-        <div className={styles.dato}><img src={map} alt="" /><p>{tournament.lugar ? tournament.lugar : '-'}</p></div>
-        <div className={styles.dato}><img src={date} alt="" /> <p>{tournament.fecha.slice(0, 10)}</p></div>
-        <div className={styles.dato}><img src={category} alt="" /><p>{tournament.categoria}</p></div>
-      </div>
-    </article>
+        <header className={styles.head}>
+          <div className={`${styles.estado} ${tournament.estado === ESTADOS_TORNEOS.EN_CURSO ? styles.disponible : (tournament.estado === ESTADOS_TORNEOS.FINALIZADO ? styles.finalizado : styles.suspendido)}`}></div>
+          <p style={{ fontWeight: 'bold' }}>{tournament.nombre}</p>
+        </header>
+        <section className={styles.info}>
+          <div className={styles.dato}><img src={map} alt="icono de mapa" /><p>{tournament.lugar ? tournament.lugar : '-'}</p></div>
+          <div className={styles.dato}><img src={date} alt="icono de fecha" /> <p>{tournament.fecha.slice(0, 10)}</p></div>
+          <div className={styles.dato}><img src={category} alt="icono de categoria" /><p>{tournament.categoria}</p></div>
+        </section>
+      </article>
     </Link >
 
   );

@@ -41,6 +41,7 @@ const Header: React.FC = () => {
 
     return (
         <header className={styles.header}>
+            <h1 style={{display: 'none'}}>Mis torneos de tenis</h1>
             <Modal
                 centered
                 children={<><p></p></>}
@@ -49,7 +50,7 @@ const Header: React.FC = () => {
                 title='¿Desea cerrar sesión?' open={modalOpen} onOk={handleOk} onCancel={handleCancel}>
             </Modal>
             <nav className={styles.nav}>
-                <img src={logo}></img>
+                <img src={logo} alt='icono de mis torneos'></img>
                 <ul className={styles.ul}>
                     <li className={styles.li}><Link to="/"><IconHome />Home</Link></li>
                     <li className={styles.li}><Link to="/jugadores"><IconPlayer /> Jugadores</Link></li>
