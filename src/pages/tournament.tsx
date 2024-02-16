@@ -11,6 +11,7 @@ import useUpdateTournament from '../hooks/useUpdateTournament';
 import { useMatches } from '../store/matches';
 import IconEdit from '../components/icons/IconEdit';
 import useAutoDesinscribirse from '../hooks/useAutoDesinscribirse';
+import { Helmet } from 'react-helmet-async';
 
 const Tournament: React.FC = () => {
     const navigate = useNavigate()
@@ -79,6 +80,10 @@ const Tournament: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{tournament?.nombre} | MisTorneos</title>
+                <meta name="description" content="Accede a la informacion del torneo, jugadores inscriptos, cuadro con sus torneos y demas" />
+            </Helmet>
             <div key={'holderInscripcion'}>{contextHolderInscribirse}</div>
             <div key={'holderDesinscripcion'}>{contextHolderDesinscribirse}</div>
             <div key={'holderUpdate'}>{contextHolderUpdate}</div>

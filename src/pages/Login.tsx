@@ -7,10 +7,16 @@ import userImg from '/icons/user.svg'
 import padlock from '/icons/padlock.svg'
 import { Alert, Button, Form, Input, InputNumber } from 'antd';
 import { useLogin } from '../hooks/useLogin';
+import { Helmet } from 'react-helmet-async';
 
 const Login: React.FC = () => {
     const { handleSubmit, error, loading } = useLogin();
     return (
+        <>
+        <Helmet>
+            <title>Login | MisTorneos</title>
+            <meta name="description" content="Logueate para acceder" />
+        </Helmet>
         <main className={styles.main}>
             <section className={styles.section}>
                 <div className={styleForm.container_form}>
@@ -48,6 +54,7 @@ const Login: React.FC = () => {
 
             </section>
         </main>
+        </>
     );
 };
 

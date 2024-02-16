@@ -3,12 +3,18 @@ import styles from '../styles/register.module.css'
 import styleForm from '../styles/form.module.css'
 import { Alert, Button, Form, Input, InputNumber, Switch } from 'antd';
 import useRegister from '../hooks/useRegister';
+import { Helmet } from 'react-helmet-async';
 
 const Register: React.FC = () => {
 
     const { error, loading, newUser, handleChange, handleChangeDNI, handleSubmit, handleChangeSwitch } = useRegister();
 
     return (
+        <>
+        <Helmet>
+            <title>Register | MisTorneos</title>
+            <meta name="description" content="Registrate para acceder, podras registrarte como administrador de torneos o como jugador" />
+        </Helmet>
         <main className={styles.main}>
             <section className={styles.section}>
                 <div className={styleForm.container_form}>
@@ -72,6 +78,7 @@ const Register: React.FC = () => {
 
             </section>
         </main>
+        </>
     );
 };
 

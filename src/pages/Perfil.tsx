@@ -6,6 +6,7 @@ import styles from '../styles/perfil.module.css'
 import PlayerMatches from '../components/PlayerMatches';
 import TournamentsUser from '../components/TournamentsUser';
 import InscripcionesJugador from '../components/InscripcionesJugador';
+import { Helmet } from 'react-helmet-async';
 
 const Perfil: React.FC = () => {
 
@@ -23,7 +24,7 @@ const Perfil: React.FC = () => {
     }
 
     const tabs_player = [
-        { key: '1', label: 'Partidos', children: <PlayerMatches id={user.jugador?.id ?? ''}  /> }, { key: '2', label: 'Torneos', children: <InscripcionesJugador id={user.jugador?.id ?? ''} />  }
+        { key: '1', label: 'Partidos', children: <PlayerMatches id={user.jugador?.id ?? ''} /> }, { key: '2', label: 'Torneos', children: <InscripcionesJugador id={user.jugador?.id ?? ''} /> }
     ]
 
     const tabs_admin = [
@@ -31,29 +32,35 @@ const Perfil: React.FC = () => {
     ]
 
     return (
-        <main className={styles.main}>
-            <section className={styles.section}>
-                <ConfigProvider
-                    theme={{
-                        token: {
-                            colorPrimary: '#000',
-                            fontSizeLG: 30
-                        },
-                    }}
-                >
-                    <div className={styles.container_nombre}>
-                        <h1 className={styles.title}>{user?.nombre + ' ' + user?.apellido}</h1>
-                        <h2 className={styles.subtitle}>{user.isAdmin ? 'Administrador' : 'Jugador'}</h2>
-                    </div>
+        <>
+            <Helmet>
+                <title>Perfil | MisTorneos</title>
+                <meta name="description" content="Accede a la informacion de tu perfil, partidos y torneos" />
+            </Helmet>
+            <main className={styles.main}>
+                <section className={styles.section}>
+                    <ConfigProvider
+                        theme={{
+                            token: {
+                                colorPrimary: '#000',
+                                fontSizeLG: 30
+                            },
+                        }}
+                    >
+                        <div className={styles.container_nombre}>
+                            <h1 className={styles.title}>{user?.nombre + ' ' + user?.apellido}</h1>
+                            <h2 className={styles.subtitle}>{user.isAdmin ? 'Administrador' : 'Jugador'}</h2>
+                        </div>
 
-                    <Tabs
-                        defaultActiveKey="1"
-                        centered
-                        items={user.isAdmin ? tabs_admin : tabs_player}
-                    />
-                </ConfigProvider>
-            </section>
-        </main >
+                        <Tabs
+                            defaultActiveKey="1"
+                            centered
+                            items={user.isAdmin ? tabs_admin : tabs_player}
+                        />
+                    </ConfigProvider>
+                </section>
+            </main >
+        </>
     );
 };
 

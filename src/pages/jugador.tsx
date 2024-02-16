@@ -6,6 +6,7 @@ import useJugador from '../hooks/usePlayer';
 import {  Result,  Tabs, ConfigProvider } from 'antd';
 import PlayerMatches from '../components/PlayerMatches';
 import InscripcionesJugador from '../components/InscripcionesJugador';
+import { Helmet } from 'react-helmet-async';
 
 const Jugador: React.FC = () => {
     const { id } = useParams();
@@ -25,6 +26,11 @@ const Jugador: React.FC = () => {
 
 
     return (
+        <>
+        <Helmet>
+            <title>{jugador.user?.nombre + ' ' + jugador.user?.apellido} | MisTorneos</title>
+            <meta name="description" content="Accede a los informacion del jugador, partidos y torneos" />
+        </Helmet>
         <main className={styles.main}>
             <section className={styles.section}>
                 <ConfigProvider
@@ -52,6 +58,7 @@ const Jugador: React.FC = () => {
 
             </section>
         </main >
+        </>
     );
 };
 

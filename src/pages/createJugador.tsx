@@ -6,11 +6,17 @@ import { UserOutlined } from '@ant-design/icons';
 
 import dni_img from '/icons/dni.svg'
 import useCreateJugador from '../hooks/useCreateJugador';
+import { Helmet } from 'react-helmet-async';
 
 const CreateJugador: React.FC = () => {
 
     const { onFinish, error, loading, contextHolder } = useCreateJugador()
     return (
+        <>
+        <Helmet>
+            <title>Crear jugador | MisTorneos</title>
+            <meta name="description" content="Crea un nuevo jugador para inscribirlo a tus torneos" />
+        </Helmet>
         <main className={styles.main}>
             <section className={styles.section}>
 
@@ -67,6 +73,7 @@ const CreateJugador: React.FC = () => {
 
             </section>
         </main>
+        </>
     );
 };
 

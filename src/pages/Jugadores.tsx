@@ -10,6 +10,7 @@ import { Player } from '../vite-env';
 import Search from 'antd/es/input/Search';
 import IconEye from '../components/icons/IconEye';
 import { useUser } from '../store/user';
+import { Helmet } from 'react-helmet-async';
 
 const Jugadores: React.FC = () => {
 
@@ -32,6 +33,11 @@ const Jugadores: React.FC = () => {
 
 
     return (
+        <>
+        <Helmet>
+            <title>Jugadores | MisTorneos</title>
+            <meta name="description" content="Accede a los todos los jugadores disponibles y accede a sus detalles" />
+        </Helmet>
         <main className={styles.main}>
             <section className={styles.section}>
                 <h1 className={styles.title}>Jugadores</h1>
@@ -61,6 +67,7 @@ const Jugadores: React.FC = () => {
                 }
             </section>
         </main>
+        </>
     );
 };
 
